@@ -1,7 +1,6 @@
 import React from 'react'
-import {withRouter} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {login} from '../actions/login'
 
 class Login extends React.Component {
     constructor(props) {
@@ -11,21 +10,11 @@ class Login extends React.Component {
           password: ''
         }
         this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
-  //dispatch this info to redux register state
-  handleSubmit() {
-    console.log('hello')
-    //destructring- takes this.state and gets the properties username and password making
-    //them available as variables so we can use them as parameters
-    const {username, password} = this.state
-    this.props.dispatch(login(username, password))
-  }
-
   
   render() {
 
@@ -37,7 +26,15 @@ class Login extends React.Component {
            <br/>
             <input type='password' id='password' name='password' placeholder='password' value={this.state.password} onChange={this.handleChange}/>
             <br/>
-           <button onClick={() => this.handleSubmit()} >Submit</button>
+            <div>
+                {/* ternary that checks for correct login details- if they match render login button which directs to /home
+                else return 'invalid login' */}
+                {this.props.registeredUsername === this.state.username && 
+                this.props.registeredPassword === this.state.password ? 
+                <div><Link to='/home'><button >Submit</button></Link></div> 
+                : <div><h3>'Incorrect login details'</h3></div>}
+            </div>
+            
         </div>
     )
 
@@ -47,9 +44,10 @@ class Login extends React.Component {
 
 function mapStateToProps (state) {
 return {
-    username: state.username,
-    password: state.password
-}
+    //getting username and password from register reducer state (reducer is called registerUser)
+    registeredUsername: state.registerUser.username,
+    registeredPassword: state.registerUser.password
+ }
 }
 
 export default withRouter(connect(mapStateToProps)(Login))

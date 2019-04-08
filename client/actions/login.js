@@ -1,4 +1,4 @@
-export const register = (username, password) => {
+export const login = (username, password) => {
     return {
         type: 'LOGIN',
         username,

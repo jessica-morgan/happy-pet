@@ -10,7 +10,7 @@ export const registerUser = (state = initialRegisterState, action) => {
           // ...state,
             username: action.username,
             email: action.email,
-            password: action.password,
+            password: action.password
           }
         default:
         return state
