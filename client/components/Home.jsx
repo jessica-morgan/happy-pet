@@ -1,7 +1,6 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {login} from '../actions/login'
 
 class Home extends React.Component {
     constructor(props) {
@@ -18,7 +17,7 @@ class Home extends React.Component {
         return (
         
             <div>
-                <h3>'Welcome' + {this.props.loginUsername}</h3>
+                <h3>Welcome {this.props.registeredUsername}</h3>
             </div>
         )
 
@@ -28,7 +27,7 @@ class Home extends React.Component {
 
 function mapStateToProps (state) {
     return {
-        loginUsername: state.login.username,
+        registeredUsername: state.registerUser.username,
     }
   }
   

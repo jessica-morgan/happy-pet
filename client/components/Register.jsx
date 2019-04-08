@@ -19,12 +19,11 @@ class Register extends React.Component {
         this.setState({ [event.target.name]: event.target.value });
       }
       //dispatch this info to redux register state
-      handleSubmit(e){
+      handleSubmit(){
         //destructring- takes this.state and gets the properties username, password and email, making
         //them available as variables so we can use them as parameters
         const {username, password, email} = this.state
         this.props.dispatch(register(username, email, password))
-        e.preventDefault()
       }
 
       render() {
