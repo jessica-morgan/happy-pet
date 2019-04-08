@@ -1,0 +1,37 @@
+button {
+    position: relative;
+    color: rgb(255, 91, 25);
+    background-color: rgb(254, 253, 255);
+    fill-opacity: 0%;
+    height: 32px;
+    width: 84px;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none;
+    border-radius: 15px 15px 15px 15px;
+    border-color: rgb(255, 85, 33);
+    border-style: solid;
+    opacity: 0.5;
+    font-size: 18px;
+    font-family: 'Muli', sans-serif;
+}
+
+.landing-text {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    font-size: 18px;
+    color: rgb(83, 64, 54);
+    opacity: 0.7;
+}
+
+.input-fields {
+    font-family: 'Poppins', sans-serif;
+    width: 200px;
+    height: 25px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px 8px 8px 8px;
+}

@@ -34,9 +34,9 @@ class Login extends React.Component {
     
         <div>
            {/* dispatch info of each input element to redux */}
-           <input type='text' id='username' name='username' placeholder='username' value={this.state.username} onChange={this.handleChange}/>
+           <input className='input-fields' type='text' id='username' name='username' placeholder='username' value={this.state.username} onChange={this.handleChange}/>
            <br/>
-            <input type='password' id='password' name='password' placeholder='password' value={this.state.password} onChange={this.handleChange}/>
+            <input className='input-fields' type='password' id='password' name='password' placeholder='password' value={this.state.password} onChange={this.handleChange}/>
             <br/>
             <div>
               <button onClick = {() => this.checkLogInDetails()}>Login</button>

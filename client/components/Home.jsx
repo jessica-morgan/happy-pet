@@ -11,13 +11,12 @@ class Home extends React.Component {
  
       }
 
-
       render() {
 
         return (
         
             <div>
-                <h3>Welcome {this.props.registeredUsername}</h3>
+                <h3 className='landing-text'>Welcome {this.props.registeredUsername}</h3>
             </div>
         )
 

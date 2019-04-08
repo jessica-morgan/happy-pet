@@ -31,11 +31,11 @@ class IncorrectLogin extends React.Component {
     return (
     
         <div>
-            <h3>Your login details were incorrect, please try logging in again</h3>
+            <h3 className='landing-text'>Your login details were incorrect, please try logging in again</h3>
             <br/>
-           <input type='text' id='username' name='username' placeholder='username' value={this.state.username} onChange={this.handleChange}/>
+           <input className='input-fields' type='text' id='username' name='username' placeholder='username' value={this.state.username} onChange={this.handleChange}/>
            <br/>
-            <input type='password' id='password' name='password' placeholder='password' value={this.state.password} onChange={this.handleChange}/>
+            <input className='input-fields' type='password' id='password' name='password' placeholder='password' value={this.state.password} onChange={this.handleChange}/>
             <br/>
             <div>
               <button onClick = {() => this.checkLogInDetails()}>Login</button>
