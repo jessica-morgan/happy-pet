@@ -31480,6 +31480,14 @@ var _Home = __webpack_require__(76);
 
 var _Home2 = _interopRequireDefault(_Home);
 
+var _LandingPage = __webpack_require__(77);
+
+var _LandingPage2 = _interopRequireDefault(_LandingPage);
+
+var _IncorrectLogin = __webpack_require__(78);
+
+var _IncorrectLogin2 = _interopRequireDefault(_IncorrectLogin);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
@@ -31489,8 +31497,10 @@ var App = function App() {
     _react2.default.createElement(
       _reactRouterDom.Switch,
       null,
+      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _LandingPage2.default }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/register', component: _Register2.default }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/login', component: _Login2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/incorrectLogin', component: _IncorrectLogin2.default }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/home', component: _Home2.default })
     )
   );
@@ -31641,7 +31651,7 @@ var register = exports.register = function register(username, email, password) {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -31665,75 +31675,74 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var Login = function (_React$Component) {
-    _inherits(Login, _React$Component);
+  _inherits(Login, _React$Component);
 
-    function Login(props) {
-        _classCallCheck(this, Login);
+  function Login(props) {
+    _classCallCheck(this, Login);
 
-        var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
 
-        _this.state = {
-            username: '',
-            password: ''
-        };
-        _this.handleChange = _this.handleChange.bind(_this);
-        return _this;
+    _this.state = {
+      username: '',
+      password: ''
+    };
+    _this.handleChange = _this.handleChange.bind(_this);
+    _this.checkLogInDetails = _this.checkLogInDetails.bind(_this);
+    return _this;
+  }
+
+  _createClass(Login, [{
+    key: 'handleChange',
+    value: function handleChange(event) {
+      this.setState(_defineProperty({}, event.target.name, event.target.value));
     }
+  }, {
+    key: 'checkLogInDetails',
+    value: function checkLogInDetails() {
+      if (this.props.registeredUsername === this.state.username && this.props.registeredPassword === this.state.password) {
+        //this.props.history.push allows us to change/update the url path when the funtion returns true- can be used
+        //instead of invoking/rendering another component
+        this.props.history.push('/home');
+      } else {
+        this.props.history.push('/incorrectLogin');
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
 
-    _createClass(Login, [{
-        key: 'handleChange',
-        value: function handleChange(event) {
-            this.setState(_defineProperty({}, event.target.name, event.target.value));
-        }
-    }, {
-        key: 'render',
-        value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement('input', { type: 'text', id: 'username', name: 'username', placeholder: 'username', value: this.state.username, onChange: this.handleChange }),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement('input', { type: 'password', id: 'password', name: 'password', placeholder: 'password', value: this.state.password, onChange: this.handleChange }),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'button',
+            { onClick: function onClick() {
+                return _this2.checkLogInDetails();
+              } },
+            'Login'
+          )
+        )
+      );
+    }
+  }]);
 
-            return _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement('input', { type: 'text', id: 'username', name: 'username', placeholder: 'username', value: this.state.username, onChange: this.handleChange }),
-                _react2.default.createElement('br', null),
-                _react2.default.createElement('input', { type: 'password', id: 'password', name: 'password', placeholder: 'password', value: this.state.password, onChange: this.handleChange }),
-                _react2.default.createElement('br', null),
-                _react2.default.createElement(
-                    'div',
-                    null,
-                    this.props.registeredUsername === this.state.username && this.props.registeredPassword === this.state.password ? _react2.default.createElement(
-                        'div',
-                        null,
-                        _react2.default.createElement(
-                            _reactRouterDom.Link,
-                            { to: '/home' },
-                            _react2.default.createElement(
-                                'button',
-                                null,
-                                'Submit'
-                            )
-                        )
-                    ) : _react2.default.createElement(
-                        'div',
-                        null,
-                        _react2.default.createElement(
-                            'h3',
-                            null,
-                            '\'Incorrect login details\''
-                        )
-                    )
-                )
-            );
-        }
-    }]);
-
-    return Login;
+  return Login;
 }(_react2.default.Component);
 
 function mapStateToProps(state) {
-    return {
-        //getting username and password from register reducer state (reducer is called registerUser)
-        registeredUsername: state.registerUser.username,
-        registeredPassword: state.registerUser.password
-    };
+  return {
+    //getting username and password from register reducer state (reducer is called registerUser)
+    registeredUsername: state.registerUser.username,
+    registeredPassword: state.registerUser.password
+  };
 }
 
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(Login));
@@ -31807,6 +31816,179 @@ function mapStateToProps(state) {
 }
 
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(Home));
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(3);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var LandingPage = function LandingPage() {
+    return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+                'h3',
+                null,
+                'Don\'t have an account? Please visit the registration page'
+            ),
+            _react2.default.createElement('br', null),
+            _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: '/register' },
+                _react2.default.createElement(
+                    'button',
+                    null,
+                    'Register'
+                )
+            )
+        ),
+        _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+                'h3',
+                null,
+                'Already have an account?'
+            ),
+            _react2.default.createElement('br', null),
+            _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: '/login' },
+                _react2.default.createElement(
+                    'button',
+                    null,
+                    'Login'
+                )
+            )
+        )
+    );
+};
+
+exports.default = (0, _reactRouterDom.withRouter)(LandingPage);
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(3);
+
+var _reactRedux = __webpack_require__(5);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var IncorrectLogin = function (_React$Component) {
+  _inherits(IncorrectLogin, _React$Component);
+
+  function IncorrectLogin(props) {
+    _classCallCheck(this, IncorrectLogin);
+
+    var _this = _possibleConstructorReturn(this, (IncorrectLogin.__proto__ || Object.getPrototypeOf(IncorrectLogin)).call(this, props));
+
+    _this.state = {
+      username: '',
+      password: ''
+    };
+    _this.handleChange = _this.handleChange.bind(_this);
+    _this.checkLogInDetails = _this.checkLogInDetails.bind(_this);
+    return _this;
+  }
+
+  _createClass(IncorrectLogin, [{
+    key: 'handleChange',
+    value: function handleChange(event) {
+      this.setState(_defineProperty({}, event.target.name, event.target.value));
+    }
+  }, {
+    key: 'checkLogInDetails',
+    value: function checkLogInDetails() {
+      if (this.props.registeredUsername === this.state.username && this.props.registeredPassword === this.state.password) {
+        this.props.history.push('/home');
+      } else {
+        this.props.histroy.push('/incorrectLogin');
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h3',
+          null,
+          'Your login details were incorrect, please try logging in again'
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement('input', { type: 'text', id: 'username', name: 'username', placeholder: 'username', value: this.state.username, onChange: this.handleChange }),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement('input', { type: 'password', id: 'password', name: 'password', placeholder: 'password', value: this.state.password, onChange: this.handleChange }),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'button',
+            { onClick: function onClick() {
+                return _this2.checkLogInDetails();
+              } },
+            'Login'
+          )
+        )
+      );
+    }
+  }]);
+
+  return IncorrectLogin;
+}(_react2.default.Component);
+
+function mapStateToProps(state) {
+  return {
+    registeredUsername: state.registerUser.username,
+    registeredPassword: state.registerUser.password
+  };
+}
+
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(IncorrectLogin));
 
 /***/ })
 /******/ ]);
