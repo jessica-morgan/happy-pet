@@ -31412,6 +31412,7 @@ var registerUser = exports.registerUser = function registerUser() {
         //don't need to include state becuase its empty anyway which seems to cause a problem
         // ...state,
         username: action.username,
+        firstname: action.firstname,
         email: action.email,
         password: action.password
       };
@@ -31551,6 +31552,7 @@ var Register = function (_React$Component) {
 
     _this.state = {
       username: '',
+      firstname: '',
       email: '',
       password: ''
     };
@@ -31564,7 +31566,8 @@ var Register = function (_React$Component) {
     value: function handleChange(event) {
       this.setState(_defineProperty({}, event.target.name, event.target.value));
     }
-    //dispatch this info to redux register state
+
+    //dispatch this info to redux register 
 
   }, {
     key: 'handleSubmit',
@@ -31573,10 +31576,11 @@ var Register = function (_React$Component) {
       //them available as variables so we can use them as parameters
       var _state = this.state,
           username = _state.username,
-          password = _state.password,
-          email = _state.email;
+          firstname = _state.firstname,
+          email = _state.email,
+          password = _state.password;
 
-      this.props.dispatch((0, _register.register)(username, email, password));
+      this.props.dispatch((0, _register.register)(username, firstname, email, password));
     }
   }, {
     key: 'render',
@@ -31587,6 +31591,8 @@ var Register = function (_React$Component) {
         'div',
         null,
         _react2.default.createElement('input', { className: 'input-fields', type: 'text', id: 'username', name: 'username', placeholder: 'username', value: this.state.username, onChange: this.handleChange }),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement('input', { className: 'input-fields', type: 'text', id: 'firstname', name: 'firstname', placeholder: 'name', value: this.state.name, onChange: this.handleChange }),
         _react2.default.createElement('br', null),
         _react2.default.createElement('input', { className: 'input-fields', type: 'text', id: 'email', name: 'email', placeholder: 'email', value: this.state.email, onChange: this.handleChange }),
         _react2.default.createElement('br', null),
@@ -31613,6 +31619,7 @@ var Register = function (_React$Component) {
 function mapStateToProps(state) {
   return {
     username: state.username,
+    name: state.name,
     email: state.email,
     password: state.password
   };
@@ -31632,12 +31639,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 //action takes a username, email and password from the handleSubmit in register which gets
 //info from state and dispatches it
-var register = exports.register = function register(username, email, password) {
+var register = exports.register = function register(username, firstname, email, password) {
   return {
     //if action register is called
     type: 'REGISTER',
     //return this
     username: username,
+    firstname: firstname,
     email: email,
     password: password
   };
@@ -31800,7 +31808,7 @@ var Home = function (_React$Component) {
                     'h3',
                     { className: 'landing-text' },
                     'Welcome ',
-                    this.props.registeredUsername
+                    this.props.registeredName
                 )
             );
         }
@@ -31811,7 +31819,7 @@ var Home = function (_React$Component) {
 
 function mapStateToProps(state) {
     return {
-        registeredUsername: state.registerUser.username
+        registeredName: state.registerUser.firstname
     };
 }
 

@@ -16,7 +16,7 @@ class Home extends React.Component {
         return (
         
             <div>
-                <h3 className='landing-text'>Welcome {this.props.registeredUsername}</h3>
+                <h3 className='landing-text'>Welcome {this.props.registeredName}</h3>
             </div>
         )
 
@@ -26,7 +26,7 @@ class Home extends React.Component {
 
 function mapStateToProps (state) {
     return {
-        registeredUsername: state.registerUser.username,
+        registeredName: state.registerUser.firstname,
     }
   }
   

@@ -33,20 +33,13 @@ class Login extends React.Component {
     return (
     
         <div>
-           {/* dispatch info of each input element to redux */}
            <input className='input-fields' type='text' id='username' name='username' placeholder='username' value={this.state.username} onChange={this.handleChange}/>
            <br/>
             <input className='input-fields' type='password' id='password' name='password' placeholder='password' value={this.state.password} onChange={this.handleChange}/>
             <br/>
             <div>
               <button onClick = {() => this.checkLogInDetails()}>Login</button>
-                {/* ternary that checks for correct login details- if they match render login button which directs to /home
-                else return 'invalid login' */}
-                {/* {this.props.registeredUsername === this.state.username && 
-                this.props.registeredPassword === this.state.password ? 
-                <div><Link to='/home'><button >Submit</button></Link></div> 
-                //atm this renders as default
-                : <div><h3>Incorrect login details</h3></div>} */}
+
             </div>
             
         </div>

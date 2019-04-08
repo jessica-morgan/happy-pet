@@ -9,6 +9,7 @@ export const registerUser = (state = initialRegisterState, action) => {
           //don't need to include state becuase its empty anyway which seems to cause a problem
           // ...state,
             username: action.username,
+            firstname: action.firstname,
             email: action.email,
             password: action.password
           }

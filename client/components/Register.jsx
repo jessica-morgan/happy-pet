@@ -8,6 +8,7 @@ class Register extends React.Component {
         super(props)
         this.state = {
           username: '',
+          firstname: '',
           email: '',
           password: ''
         }
@@ -18,12 +19,13 @@ class Register extends React.Component {
       handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
       }
-      //dispatch this info to redux register state
+
+      //dispatch this info to redux register 
       handleSubmit(){
         //destructring- takes this.state and gets the properties username, password and email, making
         //them available as variables so we can use them as parameters
-        const {username, password, email} = this.state
-        this.props.dispatch(register(username, email, password))
+        const {username, firstname, email, password} = this.state
+        this.props.dispatch(register(username, firstname, email, password))
       }
 
       render() {
@@ -31,9 +33,10 @@ class Register extends React.Component {
         return (
         
             <div>
-               {/* dispatch info of each input element to redux */}
                <input className='input-fields' type='text' id='username' name='username' placeholder='username' value={this.state.username} onChange={this.handleChange}/>
                <br/>
+               <input className='input-fields' type='text' id='firstname' name='firstname' placeholder='name' value={this.state.name} onChange={this.handleChange}/>
+                <br/>
                 <input className='input-fields' type='text' id='email' name='email' placeholder='email' value={this.state.email} onChange={this.handleChange}/>
                 <br/>
                 <input className='input-fields' type='password' id='password' name='password' placeholder='password' value={this.state.password} onChange={this.handleChange}/>
@@ -49,6 +52,7 @@ class Register extends React.Component {
 function mapStateToProps (state) {
     return {
         username: state.username,
+        name: state.name,
         email: state.email,
         password: state.password
     }
