@@ -1,5 +1,5 @@
 import React from 'react'
-import {withRouter} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 class Home extends React.Component {
@@ -16,7 +16,15 @@ class Home extends React.Component {
         return (
         
             <div>
+                <div>
                 <h3 className='landing-text'>Welcome {this.props.registeredName}</h3>
+                </div>
+
+                <div>
+                    <Link style={{textDecoration: 'none'}} to='/createpet'><button>Create a pet</button></Link>
+                </div>
+                {/* create a pet option that takes you to new page where you can give your pet a name,
+                type, habitat, favourtie activity  */}
             </div>
         )
 

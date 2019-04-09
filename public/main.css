@@ -1,14 +1,9 @@
 button {
-    position: relative;
     color: rgb(255, 91, 25);
     background-color: rgb(254, 253, 255);
     fill-opacity: 0%;
-    height: 32px;
-    width: 84px;
     text-align: center;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
     text-decoration: none;
     border-radius: 15px 15px 15px 15px;
     border-color: rgb(255, 85, 33);
@@ -16,6 +11,8 @@ button {
     opacity: 0.5;
     font-size: 18px;
     font-family: 'Muli', sans-serif;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .landing-text {
@@ -26,12 +23,82 @@ button {
     opacity: 0.7;
 }
 
+.title {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    font-size: 30px;
+    color: rgb(83, 64, 54);
+    opacity: 0.7;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.createpet-text {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    font-size: 15px;
+    color: rgb(83, 64, 54);
+    opacity: 0.7;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .input-fields {
     font-family: 'Poppins', sans-serif;
     width: 200px;
     height: 25px;
     display: block;
+    border-radius: 8px 8px 8px 8px;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 8px 8px 8px 8px;
 }
+
+  .image-container {
+    display: grid;
+    grid-gap: 55px;
+    justify-content: space-evenly;
+    float: left;
+    padding-left: 10px;
+  }
+
+  .grid-images {
+      width: 135px;
+      height: 210px;
+  }
+
+  .row-col1 {
+    grid-column: 1 / span 2;
+    grid-row: 1;
+    grid-auto-columns: min-content;
+    grid-auto-rows: min-content;
+  }
+
+  .row-col2 {
+    grid-column: 1;
+    grid-row: 2;
+    grid-auto-columns: min-content;
+    grid-auto-rows: min-content;
+  }
+
+  .row-col3 {
+    grid-column: 2;
+    grid-row: 2;
+    grid-auto-columns: min-content;
+    grid-auto-rows: min-content;
+  }
+
+  .row-col4 {
+    grid-column: 1;
+    grid-row: 3;
+    grid-auto-columns: min-content;
+    grid-auto-rows: min-content;
+  }
+
+  .row-col5 {
+    grid-column: 2;
+    grid-row: 3;
+    grid-auto-columns: min-content;
+    grid-auto-rows: min-content;
+  }

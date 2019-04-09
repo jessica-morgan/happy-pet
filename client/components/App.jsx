@@ -5,6 +5,7 @@ import Login from './Login'
 import Home from './Home'
 import LandingPage from './LandingPage'
 import IncorrectLogin from './IncorrectLogin'
+import CreatePet from './CreatePet'
 
 const App = () => (
   <div>
@@ -14,6 +15,7 @@ const App = () => (
   <Route path='/login' component={Login}/>
   <Route path='/incorrectLogin' component={IncorrectLogin}/>
   <Route path='/home' component={Home}/>
+  <Route path='/createpet' component={CreatePet}/>
     </Switch>
   </div>
 )

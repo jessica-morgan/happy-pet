@@ -31381,11 +31381,16 @@ var _login = __webpack_require__(71);
 
 var _login2 = _interopRequireDefault(_login);
 
+var _petInfo = __webpack_require__(81);
+
+var _petInfo2 = _interopRequireDefault(_petInfo);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
   registerUser: _register2.default,
-  login: _login2.default
+  login: _login2.default,
+  getPetInfo: _petInfo2.default
 });
 
 /***/ }),
@@ -31489,6 +31494,10 @@ var _IncorrectLogin = __webpack_require__(78);
 
 var _IncorrectLogin2 = _interopRequireDefault(_IncorrectLogin);
 
+var _CreatePet = __webpack_require__(79);
+
+var _CreatePet2 = _interopRequireDefault(_CreatePet);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
@@ -31502,7 +31511,8 @@ var App = function App() {
       _react2.default.createElement(_reactRouterDom.Route, { path: '/register', component: _Register2.default }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/login', component: _Login2.default }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/incorrectLogin', component: _IncorrectLogin2.default }),
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/home', component: _Home2.default })
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/home', component: _Home2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/createpet', component: _CreatePet2.default })
     )
   );
 };
@@ -31805,10 +31815,27 @@ var Home = function (_React$Component) {
                 'div',
                 null,
                 _react2.default.createElement(
-                    'h3',
-                    { className: 'landing-text' },
-                    'Welcome ',
-                    this.props.registeredName
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'landing-text' },
+                        'Welcome ',
+                        this.props.registeredName
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        _reactRouterDom.Link,
+                        { style: { textDecoration: 'none' }, to: '/createpet' },
+                        _react2.default.createElement(
+                            'button',
+                            null,
+                            'Create a pet'
+                        )
+                    )
                 )
             );
         }
@@ -31998,6 +32025,229 @@ function mapStateToProps(state) {
 }
 
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(IncorrectLogin));
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(2);
+
+var _reactRedux = __webpack_require__(4);
+
+var _petInfo = __webpack_require__(80);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var CreatePet = function (_React$Component) {
+    _inherits(CreatePet, _React$Component);
+
+    function CreatePet(props) {
+        _classCallCheck(this, CreatePet);
+
+        var _this = _possibleConstructorReturn(this, (CreatePet.__proto__ || Object.getPrototypeOf(CreatePet)).call(this, props));
+
+        _this.state = {
+            petType: '',
+            petName: '',
+            habitat: '',
+            activity: ''
+        };
+        _this.handleClick = _this.handleClick.bind(_this);
+        _this.handleChange = _this.handleChange.bind(_this);
+        return _this;
+    }
+
+    _createClass(CreatePet, [{
+        key: 'handleClick',
+        value: function handleClick(id) {
+            //sets state with pet type chosen
+            this.setState({ petType: id });
+        }
+    }, {
+        key: 'handleChange',
+        value: function handleChange(event) {
+            //sets state with pet info input
+            this.setState(_defineProperty({}, event.target.name, event.target.value));
+        }
+    }, {
+        key: 'handleSubmit',
+        value: function handleSubmit() {
+            //dispatch component state to redux petinfo
+            var _state = this.state,
+                petType = _state.petType,
+                petName = _state.petName,
+                habitat = _state.habitat,
+                activity = _state.activity;
+
+            this.props.dispatch((0, _petInfo.petInfo)(petType, petName, habitat, activity));
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'h1',
+                    { className: 'title' },
+                    'Create a pet!'
+                ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'image-container' },
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'row-col1 landing-text' },
+                        'Choose your pet'
+                    ),
+                    _react2.default.createElement('img', { id: 'dog', className: 'row-col2 grid-images', src: '/images/dogpet.png', onClick: function onClick() {
+                            _this2.handleClick('dog');
+                        } }),
+                    _react2.default.createElement('img', { id: 'giraffe', className: 'row-col3 grid-images', src: '/images/giraffepet.png', onClick: function onClick() {
+                            _this2.handleClick('giraffe');
+                        } }),
+                    _react2.default.createElement('img', { id: 'cat', className: 'row-col4 grid-images', src: 'images/catpet.png', onClick: function onClick() {
+                            _this2.handleClick('cat');
+                        } }),
+                    _react2.default.createElement('img', { id: 'tiger', className: 'row-col5 grid-images', src: '/images/tigerpet.png', onClick: function onClick() {
+                            _this2.handleClick('tiger');
+                        } })
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement('br', null),
+                    _react2.default.createElement('br', null),
+                    _react2.default.createElement('br', null),
+                    _react2.default.createElement('br', null),
+                    _react2.default.createElement('br', null),
+                    _react2.default.createElement('br', null),
+                    _react2.default.createElement('br', null),
+                    _react2.default.createElement('br', null),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'createpet-text' },
+                        'Give your pet a name:'
+                    ),
+                    _react2.default.createElement('input', { className: 'input-fields', type: 'text', name: 'petName', id: 'petName', onChange: this.handleChange }),
+                    _react2.default.createElement('br', null),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'createpet-text' },
+                        'Where does your pet live?'
+                    ),
+                    _react2.default.createElement('input', { className: 'input-fields', type: 'text', name: 'habitat', id: 'habitat', onChange: this.handleChange }),
+                    _react2.default.createElement('br', null),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'createpet-text' },
+                        'What does your pet like to do?'
+                    ),
+                    _react2.default.createElement('input', { className: 'input-fields', type: 'text', name: 'activity', id: 'activity', onChange: this.handleChange }),
+                    _react2.default.createElement('br', null),
+                    _react2.default.createElement(
+                        _reactRouterDom.Link,
+                        { style: { textDecoration: 'none' }, to: '/petpage' },
+                        _react2.default.createElement(
+                            'button',
+                            null,
+                            'Enter'
+                        )
+                    )
+                ),
+                _react2.default.createElement('div', null)
+            );
+        }
+    }]);
+
+    return CreatePet;
+}(_react2.default.Component);
+
+function mapStateToProps(state) {
+    return {
+        petType: state.getPetInfo.petType,
+        petName: state.getPetInfo.petName,
+        habitat: state.getPetInfo.habitat,
+        activity: state.getPetInfo.activity
+    };
+}
+
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(CreatePet));
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var petInfo = exports.petInfo = function petInfo(petType, petName, habitat, activity) {
+    return {
+        type: 'PET_INFO',
+        petType: petType,
+        petName: petName,
+        habitat: habitat,
+        activity: activity
+    };
+};
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var initialPetState = [];
+
+var getPetInfo = exports.getPetInfo = function getPetInfo() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialPetState;
+    var action = arguments[1];
+
+    switch (action.type) {
+        case 'PET_INFO':
+            return {
+                petType: action.petType,
+                petName: action.petName,
+                habitat: action.habitat,
+                activity: action.activity
+            };
+        default:
+            return state;
+    }
+};
+
+exports.default = getPetInfo;
 
 /***/ })
 /******/ ]);
