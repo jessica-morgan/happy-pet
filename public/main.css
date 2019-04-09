@@ -43,6 +43,7 @@ button {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-top: -28px;
 }
 
 .input-fields {
@@ -55,17 +56,112 @@ button {
     margin-right: auto;
 }
 
-  .image-container {
+  .createpet-container {
     display: grid;
     grid-gap: 55px;
     justify-content: space-evenly;
     float: left;
-    padding-left: 10px;
+    padding-left: 30px;
+  }
+
+  .input-container {
+    display: grid;
+    grid-gap: 40px;
+    justify-content: space-evenly;
+    float: right;
+    padding-right: 30px;
+    margin-top: 140px;
+  }
+
+  .petInfo-text-container {
+    width: 70px;
+    height: 30px;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    font-size: 18px;
+    color: rgb(83, 64, 54);
+    opacity: 0.7;
+  }
+
+  .input-rowcol1 {
+    grid-column: 1;
+    grid-row: 1;
+    grid-auto-columns: min-content;
+    grid-auto-rows: min-content;
+  }
+
+  .input-rowcol2 {
+    grid-column: 2;
+    grid-row: 1;
+    grid-auto-columns: min-content;
+    grid-auto-rows: min-content;
+  }
+
+  .input-rowcol3 {
+    grid-column: 1;
+    grid-row: 2;
+    grid-auto-columns: min-content;
+    grid-auto-rows: min-content;
+  }
+
+  .input-rowcol4 {
+    grid-column: 2;
+    grid-row: 2;
+    grid-auto-columns: min-content;
+    grid-auto-rows: min-content;
+  }
+
+  .input-rowcol5 {
+    grid-column: 1;
+    grid-row: 3;
+    grid-auto-columns: min-content;
+    grid-auto-rows: min-content;
+  }
+
+  .input-rowcol6 {
+    grid-column: 2;
+    grid-row: 3;
+    grid-auto-columns: min-content;
+    grid-auto-rows: min-content;
+  }
+
+  .input-rowcol7 {
+    grid-column: 3 / span 2;
+    grid-row: 1;
+    grid-auto-columns: min-content;
+    grid-auto-rows: min-content;
+  }
+
+  .input-rowcol8 {
+    grid-column: 3 / span 2;
+    grid-row: 2;
+    grid-auto-columns: min-content;
+    grid-auto-rows: min-content;
+  }
+
+  .input-rowcol9 {
+    grid-column: 3 / span 2;
+    grid-row: 3;
+    grid-auto-columns: min-content;
+    grid-auto-rows: min-content;
+  }
+
+  .input-rowcol10 {
+    grid-column: 4;
+    grid-row: 4;
+    grid-auto-columns: min-content;
+    grid-auto-rows: min-content;
+    text-decoration: none;
   }
 
   .grid-images {
-      width: 135px;
-      height: 210px;
+      width: 80px;
+      height: 120px;
+  }
+
+  .chosen-pet {
+    width: 130px;
+    height: 180px;
   }
 
   .row-col1 {
@@ -98,6 +194,42 @@ button {
 
   .row-col5 {
     grid-column: 2;
+    grid-row: 3;
+    grid-auto-columns: min-content;
+    grid-auto-rows: min-content;
+  }
+
+  .row-col6 {
+    grid-column: 3 / span 2;
+    grid-row: 2 /span 2;
+    grid-auto-columns: min-content;
+    grid-auto-rows: min-content;
+    padding-left: 70px;
+  }
+
+  .row-col7 {
+    grid-column: 5;
+    grid-row: 2;
+    grid-auto-columns: min-content;
+    grid-auto-rows: min-content;
+  }
+
+  .row-col8 {
+    grid-column: 6;
+    grid-row: 2;
+    grid-auto-columns: min-content;
+    grid-auto-rows: min-content;
+  }
+
+  .row-col9 {
+    grid-column: 5;
+    grid-row: 3;
+    grid-auto-columns: min-content;
+    grid-auto-rows: min-content;
+  }
+
+  .row-col10 {
+    grid-column: 6;
     grid-row: 3;
     grid-auto-columns: min-content;
     grid-auto-rows: min-content;

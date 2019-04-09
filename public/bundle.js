@@ -552,6 +552,26 @@ if (process.env.NODE_ENV !== "production") {
 
 /***/ }),
 /* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Provider__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Context__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__connect_connect__ = __webpack_require__(46);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Provider", function() { return __WEBPACK_IMPORTED_MODULE_0__components_Provider__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "connectAdvanced", function() { return __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ReactReduxContext", function() { return __WEBPACK_IMPORTED_MODULE_2__components_Context__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "connect", function() { return __WEBPACK_IMPORTED_MODULE_3__connect_connect__["a"]; });
+
+
+
+
+
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -645,26 +665,6 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 	return to;
 };
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Provider__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Context__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__connect_connect__ = __webpack_require__(46);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Provider", function() { return __WEBPACK_IMPORTED_MODULE_0__components_Provider__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "connectAdvanced", function() { return __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ReactReduxContext", function() { return __WEBPACK_IMPORTED_MODULE_2__components_Context__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "connect", function() { return __WEBPACK_IMPORTED_MODULE_3__connect_connect__["a"]; });
-
-
-
-
 
 
 /***/ }),
@@ -3853,7 +3853,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactDom = __webpack_require__(31);
 
-var _reactRedux = __webpack_require__(4);
+var _reactRedux = __webpack_require__(3);
 
 var _redux = __webpack_require__(13);
 
@@ -3863,7 +3863,7 @@ var _reducers = __webpack_require__(69);
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
-var _App = __webpack_require__(72);
+var _App = __webpack_require__(73);
 
 var _App2 = _interopRequireDefault(_App);
 
@@ -3897,7 +3897,7 @@ document.addEventListener('DOMContentLoaded', function () {
  * LICENSE file in the root directory of this source tree.
  */
 
-var k=__webpack_require__(3),n="function"===typeof Symbol&&Symbol.for,p=n?Symbol.for("react.element"):60103,q=n?Symbol.for("react.portal"):60106,r=n?Symbol.for("react.fragment"):60107,t=n?Symbol.for("react.strict_mode"):60108,u=n?Symbol.for("react.profiler"):60114,v=n?Symbol.for("react.provider"):60109,w=n?Symbol.for("react.context"):60110,x=n?Symbol.for("react.concurrent_mode"):60111,y=n?Symbol.for("react.forward_ref"):60112,z=n?Symbol.for("react.suspense"):60113,aa=n?Symbol.for("react.memo"):
+var k=__webpack_require__(4),n="function"===typeof Symbol&&Symbol.for,p=n?Symbol.for("react.element"):60103,q=n?Symbol.for("react.portal"):60106,r=n?Symbol.for("react.fragment"):60107,t=n?Symbol.for("react.strict_mode"):60108,u=n?Symbol.for("react.profiler"):60114,v=n?Symbol.for("react.provider"):60109,w=n?Symbol.for("react.context"):60110,x=n?Symbol.for("react.concurrent_mode"):60111,y=n?Symbol.for("react.forward_ref"):60112,z=n?Symbol.for("react.suspense"):60113,aa=n?Symbol.for("react.memo"):
 60115,ba=n?Symbol.for("react.lazy"):60116,A="function"===typeof Symbol&&Symbol.iterator;function ca(a,b,d,c,e,g,h,f){if(!a){a=void 0;if(void 0===b)a=Error("Minified exception occurred; use the non-minified dev environment for the full error message and additional helpful warnings.");else{var l=[d,c,e,g,h,f],m=0;a=Error(b.replace(/%s/g,function(){return l[m++]}));a.name="Invariant Violation"}a.framesToPop=1;throw a;}}
 function B(a){for(var b=arguments.length-1,d="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=0;c<b;c++)d+="&args[]="+encodeURIComponent(arguments[c+1]);ca(!1,"Minified React error #"+a+"; visit %s for the full message or use the non-minified dev environment for full errors and additional helpful warnings. ",d)}var C={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}},D={};
 function E(a,b,d){this.props=a;this.context=b;this.refs=D;this.updater=d||C}E.prototype.isReactComponent={};E.prototype.setState=function(a,b){"object"!==typeof a&&"function"!==typeof a&&null!=a?B("85"):void 0;this.updater.enqueueSetState(this,a,b,"setState")};E.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate")};function F(){}F.prototype=E.prototype;function G(a,b,d){this.props=a;this.context=b;this.refs=D;this.updater=d||C}var H=G.prototype=new F;
@@ -3937,7 +3937,7 @@ if (process.env.NODE_ENV !== "production") {
   (function() {
 'use strict';
 
-var _assign = __webpack_require__(3);
+var _assign = __webpack_require__(4);
 var checkPropTypes = __webpack_require__(8);
 
 // TODO: this is special because it gets imported during build.
@@ -5887,7 +5887,7 @@ if (process.env.NODE_ENV === 'production') {
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(1),n=__webpack_require__(3),r=__webpack_require__(17);function ba(a,b,c,d,e,f,g,h){if(!a){a=void 0;if(void 0===b)a=Error("Minified exception occurred; use the non-minified dev environment for the full error message and additional helpful warnings.");else{var l=[c,d,e,f,g,h],k=0;a=Error(b.replace(/%s/g,function(){return l[k++]}));a.name="Invariant Violation"}a.framesToPop=1;throw a;}}
+var aa=__webpack_require__(1),n=__webpack_require__(4),r=__webpack_require__(17);function ba(a,b,c,d,e,f,g,h){if(!a){a=void 0;if(void 0===b)a=Error("Minified exception occurred; use the non-minified dev environment for the full error message and additional helpful warnings.");else{var l=[c,d,e,f,g,h],k=0;a=Error(b.replace(/%s/g,function(){return l[k++]}));a.name="Invariant Violation"}a.framesToPop=1;throw a;}}
 function x(a){for(var b=arguments.length-1,c="https://reactjs.org/docs/error-decoder.html?invariant="+a,d=0;d<b;d++)c+="&args[]="+encodeURIComponent(arguments[d+1]);ba(!1,"Minified React error #"+a+"; visit %s for the full message or use the non-minified dev environment for full errors and additional helpful warnings. ",c)}aa?void 0:x("227");function ca(a,b,c,d,e,f,g,h,l){var k=Array.prototype.slice.call(arguments,3);try{b.apply(c,k)}catch(m){this.onError(m)}}
 var da=!1,ea=null,fa=!1,ha=null,ia={onError:function(a){da=!0;ea=a}};function ja(a,b,c,d,e,f,g,h,l){da=!1;ea=null;ca.apply(ia,arguments)}function ka(a,b,c,d,e,f,g,h,l){ja.apply(this,arguments);if(da){if(da){var k=ea;da=!1;ea=null}else x("198"),k=void 0;fa||(fa=!0,ha=k)}}var la=null,ma={};
 function na(){if(la)for(var a in ma){var b=ma[a],c=la.indexOf(a);-1<c?void 0:x("96",a);if(!oa[c]){b.extractEvents?void 0:x("97",a);oa[c]=b;c=b.eventTypes;for(var d in c){var e=void 0;var f=c[d],g=b,h=d;pa.hasOwnProperty(h)?x("99",h):void 0;pa[h]=f;var l=f.phasedRegistrationNames;if(l){for(e in l)l.hasOwnProperty(e)&&qa(l[e],g,h);e=!0}else f.registrationName?(qa(f.registrationName,g,h),e=!0):e=!1;e?void 0:x("98",d,a)}}}}
@@ -6905,7 +6905,7 @@ if (process.env.NODE_ENV !== "production") {
 'use strict';
 
 var React = __webpack_require__(1);
-var _assign = __webpack_require__(3);
+var _assign = __webpack_require__(4);
 var checkPropTypes = __webpack_require__(8);
 var scheduler = __webpack_require__(17);
 var tracing = __webpack_require__(36);
@@ -28973,7 +28973,7 @@ exports.isSuspense = isSuspense;
 
 
 var ReactIs = __webpack_require__(7);
-var assign = __webpack_require__(3);
+var assign = __webpack_require__(4);
 
 var ReactPropTypesSecret = __webpack_require__(9);
 var checkPropTypes = __webpack_require__(8);
@@ -31381,7 +31381,7 @@ var _login = __webpack_require__(71);
 
 var _login2 = _interopRequireDefault(_login);
 
-var _petInfo = __webpack_require__(81);
+var _petInfo = __webpack_require__(72);
 
 var _petInfo2 = _interopRequireDefault(_petInfo);
 
@@ -31465,6 +31465,37 @@ exports.default = login;
 
 
 Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var initialPetState = [];
+
+var getPetInfo = exports.getPetInfo = function getPetInfo() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialPetState;
+    var action = arguments[1];
+
+    switch (action.type) {
+        case 'PET_INFO':
+            return {
+                petType: action.petType,
+                petName: action.petName,
+                habitat: action.habitat,
+                activity: action.activity
+            };
+        default:
+            return state;
+    }
+};
+
+exports.default = getPetInfo;
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
@@ -31474,27 +31505,27 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(2);
 
-var _Register = __webpack_require__(73);
+var _Register = __webpack_require__(74);
 
 var _Register2 = _interopRequireDefault(_Register);
 
-var _Login = __webpack_require__(75);
+var _Login = __webpack_require__(76);
 
 var _Login2 = _interopRequireDefault(_Login);
 
-var _Home = __webpack_require__(76);
+var _Home = __webpack_require__(77);
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _LandingPage = __webpack_require__(77);
+var _LandingPage = __webpack_require__(78);
 
 var _LandingPage2 = _interopRequireDefault(_LandingPage);
 
-var _IncorrectLogin = __webpack_require__(78);
+var _IncorrectLogin = __webpack_require__(79);
 
 var _IncorrectLogin2 = _interopRequireDefault(_IncorrectLogin);
 
-var _CreatePet = __webpack_require__(79);
+var _CreatePet = __webpack_require__(80);
 
 var _CreatePet2 = _interopRequireDefault(_CreatePet);
 
@@ -31520,7 +31551,7 @@ var App = function App() {
 exports.default = (0, _reactRouterDom.withRouter)(App);
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31538,9 +31569,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(2);
 
-var _reactRedux = __webpack_require__(4);
+var _reactRedux = __webpack_require__(3);
 
-var _register = __webpack_require__(74);
+var _register = __webpack_require__(75);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31638,7 +31669,7 @@ function mapStateToProps(state) {
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(Register));
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31662,7 +31693,7 @@ var register = exports.register = function register(username, firstname, email, 
 };
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31680,7 +31711,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(2);
 
-var _reactRedux = __webpack_require__(4);
+var _reactRedux = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31766,7 +31797,7 @@ function mapStateToProps(state) {
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(Login));
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31784,7 +31815,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(2);
 
-var _reactRedux = __webpack_require__(4);
+var _reactRedux = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31853,7 +31884,7 @@ function mapStateToProps(state) {
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(Home));
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31920,7 +31951,7 @@ var LandingPage = function LandingPage() {
 exports.default = (0, _reactRouterDom.withRouter)(LandingPage);
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31938,7 +31969,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(2);
 
-var _reactRedux = __webpack_require__(4);
+var _reactRedux = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32027,7 +32058,7 @@ function mapStateToProps(state) {
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(IncorrectLogin));
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32045,9 +32076,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(2);
 
-var _reactRedux = __webpack_require__(4);
+var _reactRedux = __webpack_require__(3);
 
-var _petInfo = __webpack_require__(80);
+var _petInfo = __webpack_require__(81);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32118,7 +32149,7 @@ var CreatePet = function (_React$Component) {
                 _react2.default.createElement('br', null),
                 _react2.default.createElement(
                     'div',
-                    { className: 'image-container' },
+                    { className: 'createpet-container' },
                     _react2.default.createElement(
                         'h3',
                         { className: 'row-col1 landing-text' },
@@ -32135,51 +32166,79 @@ var CreatePet = function (_React$Component) {
                         } }),
                     _react2.default.createElement('img', { id: 'tiger', className: 'row-col5 grid-images', src: '/images/tigerpet.png', onClick: function onClick() {
                             _this2.handleClick('tiger');
-                        } })
+                        } }),
+                    this.state.petType === 'dog' ? _react2.default.createElement('img', { className: 'row-col6 chosen-pet', src: '/images/dogpet.png' }) : _react2.default.createElement('div', { className: 'row-col6 chosen-pet' }),
+                    this.state.petType === 'giraffe' ? _react2.default.createElement('img', { className: 'row-col6 chosen-pet', src: '/images/giraffepet.png' }) : _react2.default.createElement('div', { className: 'row-col6 chosen-pet' }),
+                    this.state.petType === 'cat' ? _react2.default.createElement('img', { className: 'row-col6 chosen-pet', src: '/images/catpet.png' }) : _react2.default.createElement('div', { className: 'row-col6 chosen-pet' }),
+                    this.state.petType === 'tiger' ? _react2.default.createElement('img', { className: 'row-col6 chosen-pet', src: '/images/tigerpet.png' }) : _react2.default.createElement('div', { className: 'row-col6 chosen-pet' })
                 ),
                 _react2.default.createElement(
                     'div',
-                    null,
-                    _react2.default.createElement('br', null),
-                    _react2.default.createElement('br', null),
-                    _react2.default.createElement('br', null),
-                    _react2.default.createElement('br', null),
-                    _react2.default.createElement('br', null),
-                    _react2.default.createElement('br', null),
-                    _react2.default.createElement('br', null),
-                    _react2.default.createElement('br', null),
+                    { className: 'input-container' },
                     _react2.default.createElement(
                         'h3',
-                        { className: 'createpet-text' },
+                        { className: 'input-rowcol1 landing-text' },
+                        'Name:'
+                    ),
+                    this.state.petName.length > 0 ? _react2.default.createElement(
+                        'h3',
+                        { className: 'input-rowcol2 petInfo-text-container' },
+                        ' ',
+                        this.state.petName
+                    ) : _react2.default.createElement('div', { className: 'input-rowcol2 petInfo-text-container' }),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'input-rowcol3 landing-text' },
+                        'Habitat:'
+                    ),
+                    this.state.habitat.length > 0 ? _react2.default.createElement(
+                        'h3',
+                        { className: 'input-rowcol4 petInfo-text-container' },
+                        ' ',
+                        this.state.habitat
+                    ) : _react2.default.createElement('div', { className: 'input-rowcol4 petInfo-text-container' }),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'input-rowcol5 landing-text' },
+                        'Activity:'
+                    ),
+                    this.state.activity.length > 0 ? _react2.default.createElement(
+                        'h3',
+                        { className: 'input-rowcol6 petInfo-text-container' },
+                        ' ',
+                        this.state.activity
+                    ) : _react2.default.createElement('div', { className: 'input-rowcol6 petInfo-text-container' }),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'input-rowcol7 createpet-text' },
                         'Give your pet a name:'
                     ),
-                    _react2.default.createElement('input', { className: 'input-fields', type: 'text', name: 'petName', id: 'petName', onChange: this.handleChange }),
+                    _react2.default.createElement('input', { style: { marginTop: '15px' }, className: 'input-rowcol7 input-fields', type: 'text', name: 'petName', id: 'petName', onChange: this.handleChange }),
                     _react2.default.createElement('br', null),
                     _react2.default.createElement(
                         'h3',
-                        { className: 'createpet-text' },
+                        { className: 'input-rowcol8 createpet-text' },
                         'Where does your pet live?'
                     ),
-                    _react2.default.createElement('input', { className: 'input-fields', type: 'text', name: 'habitat', id: 'habitat', onChange: this.handleChange }),
+                    _react2.default.createElement('input', { style: { marginTop: '15px' }, className: 'input-rowcol8 input-fields', type: 'text', name: 'habitat', id: 'habitat', onChange: this.handleChange }),
                     _react2.default.createElement('br', null),
                     _react2.default.createElement(
                         'h3',
-                        { className: 'createpet-text' },
+                        { className: 'input-rowcol9 createpet-text' },
                         'What does your pet like to do?'
                     ),
-                    _react2.default.createElement('input', { className: 'input-fields', type: 'text', name: 'activity', id: 'activity', onChange: this.handleChange }),
+                    _react2.default.createElement('input', { style: { marginTop: '15px' }, className: 'input-rowcol9 input-fields', type: 'text', name: 'activity', id: 'activity', onChange: this.handleChange }),
                     _react2.default.createElement('br', null),
                     _react2.default.createElement(
                         _reactRouterDom.Link,
-                        { style: { textDecoration: 'none' }, to: '/petpage' },
+                        { className: 'input-rowcol10', to: '/petpage' },
                         _react2.default.createElement(
                             'button',
                             null,
                             'Enter'
                         )
                     )
-                ),
-                _react2.default.createElement('div', null)
+                )
             );
         }
     }]);
@@ -32199,7 +32258,7 @@ function mapStateToProps(state) {
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(CreatePet));
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32217,37 +32276,6 @@ var petInfo = exports.petInfo = function petInfo(petType, petName, habitat, acti
         activity: activity
     };
 };
-
-/***/ }),
-/* 81 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var initialPetState = [];
-
-var getPetInfo = exports.getPetInfo = function getPetInfo() {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialPetState;
-    var action = arguments[1];
-
-    switch (action.type) {
-        case 'PET_INFO':
-            return {
-                petType: action.petType,
-                petName: action.petName,
-                habitat: action.habitat,
-                activity: action.activity
-            };
-        default:
-            return state;
-    }
-};
-
-exports.default = getPetInfo;
 
 /***/ })
 /******/ ]);
