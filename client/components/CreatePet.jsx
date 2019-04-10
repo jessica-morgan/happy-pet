@@ -87,7 +87,9 @@ class CreatePet extends React.Component {
                     <h3 className='input-rowcol9 createpet-text'>What does your pet like to do?</h3>
                     <input style={{marginTop: '15px'}} className='input-rowcol9 input-fields' type='text' name='activity' id='activity'onChange={this.handleChange}/>
                     <br/>
-                    <Link className='input-rowcol10' to='/petpage'><button >Enter</button></Link>
+                    <Link className='input-rowcol10' to='/petpage'>
+                    <button onClick={() => {this.handleSubmit(this.state)}}>Enter</button>
+                    </Link>
              
                 </div>
                </div>

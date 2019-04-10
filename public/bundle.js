@@ -31529,6 +31529,10 @@ var _CreatePet = __webpack_require__(80);
 
 var _CreatePet2 = _interopRequireDefault(_CreatePet);
 
+var _PetPage = __webpack_require__(82);
+
+var _PetPage2 = _interopRequireDefault(_PetPage);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
@@ -31543,7 +31547,8 @@ var App = function App() {
       _react2.default.createElement(_reactRouterDom.Route, { path: '/login', component: _Login2.default }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/incorrectLogin', component: _IncorrectLogin2.default }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/home', component: _Home2.default }),
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/createpet', component: _CreatePet2.default })
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/createpet', component: _CreatePet2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/petpage', component: _PetPage2.default })
     )
   );
 };
@@ -32234,7 +32239,9 @@ var CreatePet = function (_React$Component) {
                         { className: 'input-rowcol10', to: '/petpage' },
                         _react2.default.createElement(
                             'button',
-                            null,
+                            { onClick: function onClick() {
+                                    _this2.handleSubmit(_this2.state);
+                                } },
                             'Enter'
                         )
                     )
@@ -32276,6 +32283,119 @@ var petInfo = exports.petInfo = function petInfo(petType, petName, habitat, acti
         activity: activity
     };
 };
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(2);
+
+var _reactRedux = __webpack_require__(3);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var PetPage = function (_React$Component) {
+    _inherits(PetPage, _React$Component);
+
+    function PetPage(props) {
+        _classCallCheck(this, PetPage);
+
+        var _this = _possibleConstructorReturn(this, (PetPage.__proto__ || Object.getPrototypeOf(PetPage)).call(this, props));
+
+        _this.state = {};
+        return _this;
+    }
+
+    _createClass(PetPage, [{
+        key: 'render',
+        value: function render() {
+
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'h1',
+                    { className: 'title' },
+                    this.props.petName
+                ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'petPage-container' },
+                    this.props.petType === 'dog' ? _react2.default.createElement('img', { className: 'petPage-row-col1 petPage-grid-images', src: '/images/dogpet.png' }) : _react2.default.createElement('div', { className: 'petPage-row-col1 petPage-grid-images' }),
+                    this.props.petType === 'giraffe' ? _react2.default.createElement('img', { className: 'petPage-row-col1 petPage-grid-images', src: '/images/giraffepet.png' }) : _react2.default.createElement('div', { className: 'petPage-row-col1 petPage-grid-images' }),
+                    this.props.petType === 'cat' ? _react2.default.createElement('img', { className: 'petPage-row-col1 petPage-grid-images', src: '/images/catpet.png' }) : _react2.default.createElement('div', { className: 'petPage-row-col1 petPage-grid-images' }),
+                    this.props.petType === 'tiger' ? _react2.default.createElement('img', { className: 'petPage-row-col1 petPage-grid-images', src: '/images/tigerpet.png' }) : _react2.default.createElement('div', { className: 'petPage-row-col1 petPage-grid-images' }),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'petPage-row-col2 petPage-stats-title' },
+                        'Owner:'
+                    ),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'petPage-row-col3 landing-text' },
+                        this.props.username
+                    ),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'petPage-row-col4 petPage-stats-title ' },
+                        'Habitat:'
+                    ),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'petPage-row-col5 landing-text' },
+                        this.props.habitat
+                    ),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'petPage-row-col6 petPage-stats-title ' },
+                        'Activity:'
+                    ),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'petPage-row-col7 landing-text' },
+                        this.props.activity
+                    )
+                )
+            );
+        }
+    }]);
+
+    return PetPage;
+}(_react2.default.Component);
+
+function mapStateToProps(state) {
+    return {
+        username: state.registerUser.username,
+        petType: state.getPetInfo.petType,
+        petName: state.getPetInfo.petName,
+        habitat: state.getPetInfo.habitat,
+        activity: state.getPetInfo.activity
+    };
+}
+
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(PetPage));
 
 /***/ })
 /******/ ]);
