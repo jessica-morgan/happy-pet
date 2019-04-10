@@ -6,12 +6,12 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex('users').insert([
         {
-        username: '', 
-        firstname: '', 
-        email: '', 
-        password: '', 
-        created_at: null, 
-        updated_at: null
+        username: 'jess123', 
+        firstname: 'Jess', 
+        email: 'jess@gmail.com', 
+        password: '1234', 
+        created_at: '2019-04-11 11:05:10', 
+        updated_at: ''
        }
       ]);
     });

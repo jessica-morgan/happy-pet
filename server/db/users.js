@@ -1,13 +1,11 @@
 const connection = require('./index')
 
 module.exports = {
-  getUser
+  getUsers
 }
 
-function getUser (user, db = connection) {
+function getUsers (db = connection) {
     return db('users')
-      .where({
-        username: user.username
-      })
-      .first()
+      .select()
   }
+
