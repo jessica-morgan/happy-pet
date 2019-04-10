@@ -13,8 +13,10 @@ server.use(function (req, res, next) {
 })
 
 const userRoutes = require('./routes/userroutes')
+const petRoutes = require('./routes/petroutes')
 
 server.use('/api/v1/users', userRoutes)
+server.use('/api/v1/pets', petRoutes)
 
 server.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'))
