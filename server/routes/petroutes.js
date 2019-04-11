@@ -4,6 +4,7 @@ const router = express.Router()
 
 router.use(express.json())
 
+//gets all pets info
 router.get('/', (req, res) => {
     db.getPets()
       .then(pets => {
@@ -13,5 +14,25 @@ router.get('/', (req, res) => {
         res.status(500).send(err)
       })
   })
+
+//posts new pet info to db
+router.post('/newpet', (req, res) => {
+    const ownername = req.body.owner
+    const pettype = req.body.petType
+    const petname = req.body.petName
+    const pethabitat = req.body.habitat
+    const petactivity = req.body.activity
+    const petfed = false
+    db.newPet(ownername, pettype, petname, pethabitat, petactivity, petfed)
+    .then(petdata => {
+        res.json(petdata)
+      })
+      .catch(err => {
+        res.status(500).send(err)
+      })
+})
+
+
+
 
 module.exports = router
