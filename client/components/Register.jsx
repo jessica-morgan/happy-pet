@@ -1,7 +1,8 @@
 import React from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {register} from '../actions/register'
+import {newUserApi} from '../api/users'
+import { getNewUser } from '../actions/register';
 
 class Register extends React.Component {
     constructor(props) {
@@ -25,7 +26,9 @@ class Register extends React.Component {
         //destructring- takes this.state and gets the properties username, password and email, making
         //them available as variables so we can use them as parameters
         const {username, firstname, email, password} = this.state
-        this.props.dispatch(register(username, firstname, email, password))
+        //this posts new user to database from registration form
+        newUserApi(username, firstname, email, password)
+        this.props.dispatch(getNewUser(username))//this aint gonna work- find a way to get newuser info and dispatch to redux
       }
 
       render() {

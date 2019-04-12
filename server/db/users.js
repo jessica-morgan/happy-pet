@@ -1,15 +1,38 @@
 const connection = require('./index')
 
 module.exports = {
+  newUser,
   getUsers,
-  getUsersPet
+  getUsersPet,
+  loggedIn,
+  getNewUser
 }
 
+//inserts new user to database
+function newUser (newusername, userfirstname, useremail, userpassword, db = connection) {
+  return db('users')
+  .insert({
+    username: newusername,
+    firstname: userfirstname,
+    email: useremail,
+    password: userpassword
+  })
+}
+
+//gets new user from database
+function getNewUser (username) {
+  return db('users')
+  .where('username', username)
+  .select()
+}
+
+//gets all users
 function getUsers (db = connection) {
     return db('users')
       .select()
   }
 
+  //gets pets by username
   function getUsersPet (owner, db = connection) {
     return db('users')
     .join('pets', 'pets.owner', 'username')
@@ -17,5 +40,13 @@ function getUsers (db = connection) {
     .select('username', 'petName')
   }
 
-  
+//checks for logged in
+function loggedIn (username, db = connection) {
+  return db('users')
+  .where('username', username)
+  .update({
+    loggedin: true
+  })
+  .select('username', 'loggedin')
+}
 
