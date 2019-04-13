@@ -24,11 +24,11 @@ class Home extends React.Component {
 
       render() {
 
-        if (this.props.loggedIn) {
-            return <Redirect to ='/home'/>
-          } else {
-            <Redirect to = '/login'/>
-          }    
+        if (this.props.loggedIn  === 1) {
+          return this.props.history.push('/home')
+        } else {
+            this.props.history.push('/login')
+        }    
   
         return (
         
@@ -53,6 +53,7 @@ class Home extends React.Component {
 function mapStateToProps (state) {
     return {
         username: state.login.username,
+        loggedIn: state.login.loggedin
     }
   }
   

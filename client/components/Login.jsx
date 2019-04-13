@@ -26,8 +26,8 @@ class Login extends React.Component {
 
   render() {
     //if user is already logged in redirect to home page
-    if (this.props.loggedIn) {
-      return <Redirect to ='/home'/>
+    if (this.props.loggedIn  === 1) {
+      return this.props.history.push('/home')
     }
 
     return (

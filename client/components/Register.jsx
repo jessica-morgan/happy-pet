@@ -32,10 +32,10 @@ class Register extends React.Component {
 
       render() {
 
-        if (this.props.loggedIn) {
-          return <Redirect to ='/home'/>
+        if (this.props.loggedIn  === 1) {
+          return this.props.history.push('/home')
         } else {
-          <Redirect to = '/login'/>
+            this.props.history.push('/login')
         }    
 
         return (
@@ -58,6 +58,7 @@ class Register extends React.Component {
 
 function mapStateToProps (state) {
     return {
+        loggedIn: state.login.loggedin,
         username: state.username,
         name: state.name,
         email: state.email,

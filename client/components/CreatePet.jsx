@@ -35,10 +35,10 @@ class CreatePet extends React.Component {
 
       render() {
 
-        if (this.props.loggedIn) {
-          return <Redirect to ='/home'/>
+        if (this.props.loggedIn === 1) {
+          return this.props.history.push('/home')
         } else {
-          <Redirect to = '/login'/>
+            this.props.history.push('/login')
         }    
 
         return (
@@ -108,6 +108,7 @@ class CreatePet extends React.Component {
 
 function mapStateToProps (state) {
     return {
+        loggedIn: state.login.loggedin,
         ownerName: state.login.username,
         petType: state.getPetInfo.petType,
         petName: state.getPetInfo.petName,

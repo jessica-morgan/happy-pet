@@ -12,10 +12,10 @@ class UserPage extends React.Component {
 
       render() {
 
-        if (this.props.loggedIn) {
-          return <Redirect to ='/home'/>
+        if (this.props.loggedin === 1) {
+          return this.props.history.push('/home')
         } else {
-          <Redirect to = '/login'/>
+            this.props.history.push('/login')
         }    
 
         return (

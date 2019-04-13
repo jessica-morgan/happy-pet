@@ -15,11 +15,11 @@ class PetPage extends React.Component {
 
       render() {
 
-        if (this.props.loggedIn) {
-          return <Redirect to ='/home'/>
+        if (this.props.loggedIn  === 1) {
+          return this.props.history.push('/home')
         } else {
-          <Redirect to = '/login'/>
-        }    
+            this.props.history.push('/login')
+        }       
 
         return (
         
@@ -58,6 +58,7 @@ class PetPage extends React.Component {
 
 function mapStateToProps (state) {
     return {
+        loggedin: state.login.loggedin,
         username: state.login.username,
         petType: state.getPetInfo.petType,
         petName: state.getPetInfo.petName,
