@@ -13,21 +13,22 @@ export function getPetApi() {
   }
 
   //posts new pet
-  export function newpetApi(ownername, pettype, petname, pethabitat, petactivity, petfed) {
+  export function newpetApi(ownername, pettype, petname, pethabitat, petactivity) {
     return request
-    .post(`${url}/newpet`)
+    .post(`${url}/newpet/${ownername}`)
     .send({
       owner: ownername,
       petType: pettype,
       petName: petname,
       habitat: pethabitat,
-      activity: petactivity,
-      fed: petfed
+      activity: petactivity
     })
     .then(res => res.body)
     .catch(err => {
-      if (err) throw Error('Cannot create user')
+      if (err) throw Error('Cannot create pet')
     })
   }
+
+
   
 

@@ -10,6 +10,8 @@ class PetPage extends React.Component {
         }
       }
 
+      
+
       render() {
 
         if (this.props.loggedIn) {

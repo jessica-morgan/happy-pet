@@ -1,7 +1,7 @@
 import React from 'react'
 import {Redirect, Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {petInfo} from '../actions/petInfo'
+import { newpetApi } from '../api/pets'
 
 class CreatePet extends React.Component {
     constructor(props) {
@@ -27,9 +27,10 @@ class CreatePet extends React.Component {
       }
 
       handleSubmit() {
-          //dispatch component state to redux petinfo
-          const {petType, petName, habitat, activity} = this.state
-        this.props.dispatch(petInfo(petType, petName, habitat, activity))
+        //dispatch component state to redux petinfo
+        const owner = this.props.ownerName
+        const {petType, petName, habitat, activity} = this.state
+        newpetApi(owner, petType, petName, habitat, activity)
       }
 
       render() {
@@ -107,6 +108,7 @@ class CreatePet extends React.Component {
 
 function mapStateToProps (state) {
     return {
+        ownerName: state.login.username,
         petType: state.getPetInfo.petType,
         petName: state.getPetInfo.petName,
         habitat: state.getPetInfo.habitat,

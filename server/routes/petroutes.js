@@ -16,14 +16,13 @@ router.get('/', (req, res) => {
   })
 
 //posts new pet to db
-router.post('/newpet', (req, res) => {
-    const ownername = req.body.owner
+router.post('/newpet/:owner', (req, res) => {
+    const ownername = req.params.owner
     const pettype = req.body.petType
     const petname = req.body.petName
     const pethabitat = req.body.habitat
     const petactivity = req.body.activity
-    const petfed = false
-    db.newPet(ownername, pettype, petname, pethabitat, petactivity, petfed)
+    db.newPet(ownername, pettype, petname, pethabitat, petactivity)
     .then(petdata => {
         res.json(petdata)
       })

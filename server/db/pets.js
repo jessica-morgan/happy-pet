@@ -12,14 +12,13 @@ function getPets (db = connection) {
 }
 
 //posts new pet to db
-function newPet (ownername, pettype, petname, pethabitat, petactivity, petfed, db = connection) {
+function newPet (ownername, pettype, petname, pethabitat, petactivity, db = connection) {
     return db('pets')
     .insert({
         owner: ownername,
         petType: pettype,
         petName: petname,
         habitat: pethabitat,
-        activity: petactivity,
-        fed: petfed
+        activity: petactivity
     })
 }
