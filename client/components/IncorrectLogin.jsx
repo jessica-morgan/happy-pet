@@ -17,16 +17,15 @@ class IncorrectLogin extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   }
   
-  checkLogInDetails() {
-    if (this.props.registeredUsername === this.state.username && 
-      this.props.registeredPassword === this.state.password) {
-        this.props.history.push('/home')
-      } else {
-        this.props.histroy.push('/incorrectLogin')
-      }
-  }
-
+  checkLogInDetails(username, password) {
+     this.props.dispatch(getUserLogIn(username, password))
+   }
+ 
   render() {
+
+    if (this.props.loggedIn) {
+      return <Redirect to ='/home'/>
+    }
 
     return (
     
@@ -38,7 +37,7 @@ class IncorrectLogin extends React.Component {
             <input className='input-fields' type='password' id='password' name='password' placeholder='password' value={this.state.password} onChange={this.handleChange}/>
             <br/>
             <div>
-              <button onClick = {() => this.checkLogInDetails()}>Login</button>
+              <button onClick = {() => this.checkLogInDetails(this.state.username, this.state.password)}>Login</button>
             </div>
             
         </div>
@@ -50,8 +49,7 @@ class IncorrectLogin extends React.Component {
 
 function mapStateToProps (state) {
 return {
-    registeredUsername: state.registerUser.username,
-    registeredPassword: state.registerUser.password
+  loggedIn: state.login.loggedin
  }
 }
 

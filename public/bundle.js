@@ -3851,7 +3851,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.newUserApi = newUserApi;
-exports.getNewUserApi = getNewUserApi;
+exports.getUserApi = getUserApi;
 exports.getUsersApi = getUsersApi;
 exports.getUsersPetApi = getUsersPetApi;
 exports.loggedInApi = loggedInApi;
@@ -3865,8 +3865,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var url = 'http://localhost:3000/api/v1/users';
 
 //posts new user
-//new user is added to database but redux state is a number (the number the user is in
-//the databse) not the user object...whyy
+//new user is added to database 
 function newUserApi(newusername, userfirstname, useremail, userpassword) {
     return _superagent2.default.post(url + '/newuser').send({
         username: newusername,
@@ -3880,8 +3879,8 @@ function newUserApi(newusername, userfirstname, useremail, userpassword) {
     });
 }
 
-//gets new user
-function getNewUserApi(username) {
+//gets a single user by username
+function getUserApi(username) {
     return _superagent2.default.get(url + '/' + username).then(function (res) {
         return res.body;
     }).catch(function (err) {
@@ -31560,21 +31559,17 @@ exports.default = registerUser;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-var initialLoginState = {};
+var initialLoginState = [];
 
 var login = exports.login = function login() {
     var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialLoginState;
     var action = arguments[1];
 
     switch (action.type) {
-        case 'LOGIN':
-            return {
-                username: action.username,
-                password: action.password
-            };
         case 'LOGGED_IN':
             return {
                 username: action.username,
+                password: action.password,
                 loggedin: true
             };
         default:
@@ -34024,6 +34019,8 @@ var _reactRouterDom = __webpack_require__(2);
 
 var _reactRedux = __webpack_require__(3);
 
+var _login = __webpack_require__(92);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -34047,7 +34044,8 @@ var Login = function (_React$Component) {
       password: ''
     };
     _this.handleChange = _this.handleChange.bind(_this);
-    // this.checkLogInDetails = this.checkLogInDetails.bind(this)
+    _this.checkLogInDetails = _this.checkLogInDetails.bind(_this);
+    // this.checkValidated = this.checkValidated.bind(this)
     return _this;
   }
 
@@ -34057,20 +34055,22 @@ var Login = function (_React$Component) {
       this.setState(_defineProperty({}, event.target.name, event.target.value));
     }
 
-    // checkLogInDetails() {
-    //   if (this.props.registeredUsername === this.state.username && 
-    //     this.props.registeredPassword === this.state.password) {
-    //       //this.props.history.push allows us to change/update the url path when the funtion returns true- can be used
-    //       //instead of invoking/rendering another component
-    //       this.props.history.push('/home')
-    //     } else {
-    //       this.props.history.push('/incorrectLogin')
-    //     }
-    // }
+    //checks username and password is in database- changes logged in to true if matched
 
+  }, {
+    key: 'checkLogInDetails',
+    value: function checkLogInDetails(username, password) {
+      this.props.dispatch((0, _login.getUserLogIn)(username, password));
+    }
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
+      //if user is already logged in redirect to home page
+      if (this.props.loggedIn) {
+        return _react2.default.createElement(_reactRouterDom.Redirect, { to: '/home' });
+      }
 
       return _react2.default.createElement(
         'div',
@@ -34079,7 +34079,17 @@ var Login = function (_React$Component) {
         _react2.default.createElement('br', null),
         _react2.default.createElement('input', { className: 'input-fields', type: 'password', id: 'password', name: 'password', placeholder: 'password', value: this.state.password, onChange: this.handleChange }),
         _react2.default.createElement('br', null),
-        _react2.default.createElement('div', null)
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'button',
+            { onClick: function onClick() {
+                _this2.checkLogInDetails(_this2.state.username, _this2.state.password);
+              } },
+            'Login'
+          )
+        )
       );
     }
   }]);
@@ -34090,8 +34100,7 @@ var Login = function (_React$Component) {
 function mapStateToProps(state) {
   return {
     //getting username and password from register reducer state (reducer is called registerUser)
-    // registeredUsername: state.registerUser.username,
-    // registeredPassword: state.registerUser.password
+    loggedIn: state.login.loggedin
   };
 }
 
@@ -34306,17 +34315,17 @@ var IncorrectLogin = function (_React$Component) {
     }
   }, {
     key: 'checkLogInDetails',
-    value: function checkLogInDetails() {
-      if (this.props.registeredUsername === this.state.username && this.props.registeredPassword === this.state.password) {
-        this.props.history.push('/home');
-      } else {
-        this.props.histroy.push('/incorrectLogin');
-      }
+    value: function checkLogInDetails(username, password) {
+      this.props.dispatch(getUserLogIn(username, password));
     }
   }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
+
+      if (this.props.loggedIn) {
+        return _react2.default.createElement(Redirect, { to: '/home' });
+      }
 
       return _react2.default.createElement(
         'div',
@@ -34337,7 +34346,7 @@ var IncorrectLogin = function (_React$Component) {
           _react2.default.createElement(
             'button',
             { onClick: function onClick() {
-                return _this2.checkLogInDetails();
+                return _this2.checkLogInDetails(_this2.state.username, _this2.state.password);
               } },
             'Login'
           )
@@ -34351,8 +34360,7 @@ var IncorrectLogin = function (_React$Component) {
 
 function mapStateToProps(state) {
   return {
-    registeredUsername: state.registerUser.username,
-    registeredPassword: state.registerUser.password
+    loggedIn: state.login.loggedin
   };
 }
 
@@ -34692,6 +34700,43 @@ function mapStateToProps(state) {
 }
 
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(PetPage));
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.loggedIn = undefined;
+exports.getUserLogIn = getUserLogIn;
+
+var _users = __webpack_require__(28);
+
+function getUserLogIn(username, password) {
+    return function (dispatch) {
+        (0, _users.getUserApi)(username)
+        //get a user by username- if username === username && password === password
+        //then change logged in to true
+        .then(function (res) {
+            if (res[0].username === username && res[0].password === password) {
+                //changes login state to true and changes loggedin to true in db
+                return dispatch(loggedIn(res[0].username, res[0].password)) && (0, _users.loggedInApi)(res[0].username);
+            }
+        });
+    };
+}
+
+var loggedIn = exports.loggedIn = function loggedIn(username, password) {
+    return {
+        type: 'LOGGED_IN',
+        username: username,
+        password: password
+    };
+};
 
 /***/ })
 /******/ ]);

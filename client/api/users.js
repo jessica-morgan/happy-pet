@@ -3,8 +3,7 @@ import request from 'superagent'
 const url = 'http://localhost:3000/api/v1/users'
 
 //posts new user
-//new user is added to database but redux state is a number (the number the user is in
-//the databse) not the user object...whyy
+//new user is added to database 
 export function newUserApi(newusername, userfirstname, useremail, userpassword) { 
     return request
     .post(`${url}/newuser`)
@@ -20,8 +19,8 @@ export function newUserApi(newusername, userfirstname, useremail, userpassword) 
     })
 }
 
-//gets new user
-export function getNewUserApi(username) {
+//gets a single user by username
+export function getUserApi(username) {
     return request
     .get(`${url}/${username}`)
     .then(res => res.body)

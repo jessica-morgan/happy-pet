@@ -19,9 +19,10 @@ router.post('/newuser', (req, res) => {
     })
 })
 
-//gets new user
-router.get('/newuser/:username', (req, res) => {
-    db.getNewUser(username)
+//get single user 
+router.get('/:username', (req, res) => {
+    const username = req.params.username
+    db.getUser(username)
     .then(user => {
         res.json(user)
     })

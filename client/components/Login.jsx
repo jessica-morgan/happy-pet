@@ -1,7 +1,7 @@
 import React from 'react'
-import {withRouter} from 'react-router-dom'
+import {Redirect, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-
+import { getUserLogIn } from '../actions/login'
 
 class Login extends React.Component {
     constructor(props) {
@@ -11,25 +11,24 @@ class Login extends React.Component {
           password: ''
         }
         this.handleChange = this.handleChange.bind(this)
-        // this.checkLogInDetails = this.checkLogInDetails.bind(this)
+        this.checkLogInDetails = this.checkLogInDetails.bind(this)
+        // this.checkValidated = this.checkValidated.bind(this)
   }
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
   
-  // checkLogInDetails() {
-  //   if (this.props.registeredUsername === this.state.username && 
-  //     this.props.registeredPassword === this.state.password) {
-  //       //this.props.history.push allows us to change/update the url path when the funtion returns true- can be used
-  //       //instead of invoking/rendering another component
-  //       this.props.history.push('/home')
-  //     } else {
-  //       this.props.history.push('/incorrectLogin')
-  //     }
-  // }
+  //checks username and password is in database- changes logged in to true if matched
+  checkLogInDetails(username, password) {
+   this.props.dispatch(getUserLogIn(username, password))
+  }
 
   render() {
+    //if user is already logged in redirect to home page
+    if (this.props.loggedIn) {
+      return <Redirect to ='/home'/>
+    }
 
     return (
     
@@ -39,8 +38,8 @@ class Login extends React.Component {
             <input className='input-fields' type='password' id='password' name='password' placeholder='password' value={this.state.password} onChange={this.handleChange}/>
             <br/>
             <div>
-              {/* <button onClick = {() => this.checkLogInDetails()}>Login</button> */}
-
+              <button onClick = {() => {this.checkLogInDetails(this.state.username, this.state.password)}}>
+              Login</button>
             </div>
             
         </div>
@@ -53,8 +52,7 @@ class Login extends React.Component {
 function mapStateToProps (state) {
 return {
     //getting username and password from register reducer state (reducer is called registerUser)
-    // registeredUsername: state.registerUser.username,
-    // registeredPassword: state.registerUser.password
+    loggedIn: state.login.loggedin
  }
 }
 

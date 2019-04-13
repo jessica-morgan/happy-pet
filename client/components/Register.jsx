@@ -48,8 +48,7 @@ class Register extends React.Component {
             </div>
         )
 
-      } 
-     
+      }     
 }
 
 function mapStateToProps (state) {

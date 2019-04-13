@@ -1,28 +1,24 @@
-import {loggedInApi} from '../api/users'
+import {getUserApi, loggedInApi} from '../api/users'
 
-export function getUserLoggedIn (username) {
+export function getUserLogIn (username, password) {
     return function (dispatch) {
-      loggedInApi(username)
+      getUserApi(username)
+      //get a user by username- if username === username && password === password
+      //then change logged in to true
         .then(res => {
-            console.log(res) //test what the response is 
-          dispatch(loggedIn(res))
+             if (res[0].username === username && res[0].password === password) {
+               //changes login state to true and changes loggedin to true in db
+              return dispatch(loggedIn(res[0].username, res[0].password)) && loggedInApi(res[0].username) 
+            }
         })
     }
   }
-  //decide how i want this^^ to translate to redux- how i wanna use it in components?
 
-export const login = (username, password) => {
-    return {
-        type: 'LOGIN',
-        username,
-        password
-    }
-}
-
-export const loggedIn = (username) => {
+export const loggedIn = (username, password) => {
     return {
         type: 'LOGGED_IN',
-        username
+        username,
+        password
     }
 }
 

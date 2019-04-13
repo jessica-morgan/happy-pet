@@ -5,7 +5,7 @@ module.exports = {
   getUsers,
   getUsersPet,
   loggedIn,
-  getNewUser
+  getUser
 }
 
 //inserts new user to database
@@ -19,8 +19,8 @@ function newUser (newusername, userfirstname, useremail, userpassword, db = conn
   })
 }
 
-//gets new user from database
-function getNewUser (username) {
+//gets a single user from database
+function getUser (username, db = connection) {
   return db('users')
   .where('username', username)
   .select()
