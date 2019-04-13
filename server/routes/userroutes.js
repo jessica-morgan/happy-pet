@@ -19,18 +19,6 @@ router.post('/newuser', (req, res) => {
     })
 })
 
-//get single user 
-router.get('/:username', (req, res) => {
-    const username = req.params.username
-    db.getUser(username)
-    .then(user => {
-        res.json(user)
-    })
-    .catch(err => {
-        res.status(500).send(err)
-    })
-})
-
 //gets all users
 router.get('/', (req, res) => {
     db.getUsers()
@@ -41,6 +29,18 @@ router.get('/', (req, res) => {
         res.status(500).send(err)
       })
   })
+
+  //get single user 
+router.get('/:username', (req, res) => {
+    const username = req.params.username
+    db.getUser(username)
+    .then(user => {
+        res.json(user)
+    })
+    .catch(err => {
+        res.status(500).send(err)
+    })
+})
 
 //gets users pets by their username
 router.get('/userspet/:username', (req, res) => {

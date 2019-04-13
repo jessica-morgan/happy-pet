@@ -37,7 +37,7 @@ function getUsers (db = connection) {
     return db('users')
     .join('pets', 'pets.owner', 'username')
     .where('users.username', owner)
-    .select('username', 'petName')
+    .select('username', 'petType', 'petName', 'habitat', 'activity')
   }
 
 //checks for logged in

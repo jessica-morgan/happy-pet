@@ -1,6 +1,8 @@
 import React from 'react'
 import {Redirect, Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
+import { getUser } from '../actions/users'
+import { getUsersPetInfo } from '../actions/petInfo';
 
 class Home extends React.Component {
     constructor(props) {
@@ -9,6 +11,15 @@ class Home extends React.Component {
  
         }
  
+      }
+
+      //event handler that gets user info from db dispatch to redux
+      handleClickUserInfo() {
+        this.props.dispatch(getUser(this.props.username))
+      }
+
+      handleClickPetInfo() {
+        this.props.dispatch(getUsersPetInfo(this.props.username))
       }
 
       render() {
@@ -29,8 +40,9 @@ class Home extends React.Component {
                 <div>
                     <Link style={{textDecoration: 'none'}} to='/createpet'><button>Create a pet</button></Link>
                 </div>
-                {/* create a pet option that takes you to new page where you can give your pet a name,
-                type, habitat, favourtie activity  */}
+                    <Link style={{textDecoration: 'none'}} to='/userpage'><button onClick={() => {this.handleClickUserInfo(); this.handleClickPetInfo()}}>User page</button></Link>
+                {/* link to users page which shows all their pets, link button will need to trigger action that gets all users info
+                 */}
             </div>
         )
 
@@ -40,7 +52,7 @@ class Home extends React.Component {
 
 function mapStateToProps (state) {
     return {
-        registeredName: state.registerUser.firstname,
+        username: state.login.username,
     }
   }
   

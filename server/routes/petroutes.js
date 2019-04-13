@@ -31,6 +31,4 @@ router.post('/newpet/:owner', (req, res) => {
       })
 })
 
-
-
 module.exports = router

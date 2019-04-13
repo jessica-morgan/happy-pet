@@ -277,3 +277,99 @@ button {
   opacity: 0.7;
 }
 
+.user-info-container1 {
+  display: grid;
+  grid-gap: 25px;
+  justify-content: space-evenly;
+  float: left;
+  padding-left: 30px;
+}
+
+.userPage-row-col1 {
+  grid-column: 1 ;
+  grid-row: 2;
+  grid-auto-columns: min-content;
+  grid-auto-rows: min-content;
+}
+
+.userPage-row-col2 {
+  grid-column: 1 ;
+  grid-row: 3;
+  grid-auto-columns: min-content;
+  grid-auto-rows: min-content;
+}
+
+.userPage-row-col3 {
+  grid-column: 1;
+  grid-row: 4;
+  grid-auto-columns: min-content;
+  grid-auto-rows: min-content;
+}
+
+.userPage-row-col4 {
+  grid-column: 2;
+  grid-row: 2;
+  grid-auto-columns: min-content;
+  grid-auto-rows: min-content;
+}
+
+.userPage-row-col5 {
+  grid-column: 2;
+  grid-row: 3;
+  grid-auto-columns: min-content;
+  grid-auto-rows: min-content;
+}
+
+.userPage-row-col6 {
+  grid-column: 2;
+  grid-row: 4;
+  grid-auto-columns: min-content;
+  grid-auto-rows: min-content;
+}
+
+.userPage-text {
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  font-size: 15px;
+  color: rgb(83, 64, 54);
+  opacity: 0.7;
+  padding-top: 6px;
+}
+
+.user-info-container2 {
+display: grid;
+grid-gap: 25px;
+justify-content: space-evenly;
+position: relative;
+margin-left: auto;
+margin-right: auto;
+padding-left: 30px;
+}
+
+.userPage-row-col7 {
+  grid-column: 1 / span 3;
+  grid-row: 1 / span 3;
+  grid-auto-columns: min-content;
+  grid-auto-rows: min-content;
+}
+
+.userPage-row-col8 {
+  grid-column: 1 / span 3;
+  grid-row: 2 / span 3;
+  grid-auto-columns: min-content;
+  grid-auto-rows: min-content;
+}
+
+.userPage-petimg {
+  width: 100px;
+  height: 195px;
+}
+
+
+
+
+
+
+
+
+

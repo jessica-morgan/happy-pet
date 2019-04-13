@@ -7,6 +7,7 @@ import LandingPage from './LandingPage'
 import IncorrectLogin from './IncorrectLogin'
 import CreatePet from './CreatePet'
 import PetPage from './PetPage'
+import UserPage from './UserPage'
 
 const App = () => (
   <div>
@@ -18,6 +19,7 @@ const App = () => (
   <Route path='/home' component={Home}/>
   <Route path='/createpet' component={CreatePet}/>
   <Route path='/petpage' component={PetPage}/>
+  <Route path='/userpage' component={UserPage}/>
     </Switch>
   </div>
 )

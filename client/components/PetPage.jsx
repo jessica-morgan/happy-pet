@@ -1,6 +1,7 @@
 import React from 'react'
 import {Redirect, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {getUsersPetInfo} from '../actions/petInfo'
 
 class PetPage extends React.Component {
     constructor(props) {
@@ -48,7 +49,6 @@ class PetPage extends React.Component {
                 </h3>
                 <h3 className='petPage-row-col7 landing-text'>{this.props.activity}</h3>
             </div>
-
            </div>
         )
 
@@ -58,7 +58,7 @@ class PetPage extends React.Component {
 
 function mapStateToProps (state) {
     return {
-        username: state.registerUser.username,
+        username: state.login.username,
         petType: state.getPetInfo.petType,
         petName: state.getPetInfo.petName,
         habitat: state.getPetInfo.habitat,
