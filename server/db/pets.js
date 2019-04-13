@@ -2,7 +2,8 @@ const connection = require('./index')
 
 module.exports = {
   getPets,
-  newPet
+  newPet,
+  petImage
 }
 
 //gets all pets
@@ -21,4 +22,11 @@ function newPet (ownername, pettype, petname, pethabitat, petactivity, db = conn
         habitat: pethabitat,
         activity: petactivity
     })
+}
+
+//finds pet image by pet type
+function petImage (pettype, db = connection) {
+  return db('petImages')
+  .where('petImages.petType', pettype)
+  .select('imageUrl')
 }

@@ -34733,6 +34733,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getPetApi = getPetApi;
 exports.newpetApi = newpetApi;
+exports.petImageApi = petImageApi;
 
 var _superagent = __webpack_require__(29);
 
@@ -34744,7 +34745,7 @@ var url = 'http://localhost:3000/api/v1/pets';
 
 //gets all pets data
 function getPetApi() {
-  return _superagent2.default.get(url).then(function (res) {
+  return _superagent2.default.get('' + url).then(function (res) {
     return res.body;
   }).catch(function (err) {
     if (err) throw Error('Cannot get pets');
@@ -34760,6 +34761,15 @@ function newpetApi(ownername, pettype, petname, pethabitat, petactivity) {
     habitat: pethabitat,
     activity: petactivity
   }).then(function (res) {
+    return res.body;
+  }).catch(function (err) {
+    if (err) throw Error('Cannot create pet');
+  });
+}
+
+//gets pet image by pet type
+function petImageApi(pettype) {
+  return _superagent2.default.get(url + '/petimage/' + pettype).then(function (res) {
     return res.body;
   }).catch(function (err) {
     if (err) throw Error('Cannot create pet');

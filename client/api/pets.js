@@ -5,7 +5,7 @@ const url = 'http://localhost:3000/api/v1/pets'
 //gets all pets data
 export function getPetApi() {
     return request
-      .get(url)
+      .get(`${url}`)
       .then(res => res.body)
       .catch(err => {
         if (err) throw Error('Cannot get pets')
@@ -23,6 +23,16 @@ export function getPetApi() {
       habitat: pethabitat,
       activity: petactivity
     })
+    .then(res => res.body)
+    .catch(err => {
+      if (err) throw Error('Cannot create pet')
+    })
+  }
+
+  //gets pet image by pet type
+  export function petImageApi(pettype) {
+    return request
+    .get(`${url}/petimage/${pettype}`)
     .then(res => res.body)
     .catch(err => {
       if (err) throw Error('Cannot create pet')

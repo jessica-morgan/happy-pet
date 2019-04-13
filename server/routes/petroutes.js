@@ -31,4 +31,16 @@ router.post('/newpet/:owner', (req, res) => {
       })
 })
 
+//gets pet image by pet type
+router.get('/petimage/:pettype', (req, res) => {
+    const petType = req.params.pettype
+    db.petImage(petType)
+    .then(petimg => {
+      res.json(petimg)
+    })
+  .catch(err => {
+    res.status(500).send(err)
+  })
+})
+
 module.exports = router
