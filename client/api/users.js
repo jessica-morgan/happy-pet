@@ -4,7 +4,7 @@ const url = 'http://localhost:3000/api/v1/users'
 
 //posts new user
 //new user is added to database 
-export function newUserApi(newusername, userfirstname, useremail, userpassword) { 
+export function makeNewUserApi(newusername, userfirstname, useremail, userpassword) { 
     return request
     .post(`${url}/newuser`)
     .send({

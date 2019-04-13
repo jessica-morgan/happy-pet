@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
       })
   })
 
-//posts new pet info to db
+//posts new pet to db
 router.post('/newpet', (req, res) => {
     const ownername = req.body.owner
     const pettype = req.body.petType
@@ -31,7 +31,6 @@ router.post('/newpet', (req, res) => {
         res.status(500).send(err)
       })
 })
-
 
 
 

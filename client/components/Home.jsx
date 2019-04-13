@@ -13,6 +13,12 @@ class Home extends React.Component {
 
       render() {
 
+        if (this.props.loggedIn) {
+            return <Redirect to ='/home'/>
+          } else {
+            <Redirect to = '/login'/>
+          }    
+  
         return (
         
             <div>

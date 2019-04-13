@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link, withRouter} from 'react-router-dom'
+import {Redirect, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 class PetPage extends React.Component {
@@ -11,6 +11,12 @@ class PetPage extends React.Component {
       }
 
       render() {
+
+        if (this.props.loggedIn) {
+          return <Redirect to ='/home'/>
+        } else {
+          <Redirect to = '/login'/>
+        }    
 
         return (
         

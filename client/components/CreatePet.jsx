@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link, withRouter} from 'react-router-dom'
+import {Redirect, Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {petInfo} from '../actions/petInfo'
 
@@ -33,6 +33,12 @@ class CreatePet extends React.Component {
       }
 
       render() {
+
+        if (this.props.loggedIn) {
+          return <Redirect to ='/home'/>
+        } else {
+          <Redirect to = '/login'/>
+        }    
 
         return (
         

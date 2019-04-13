@@ -5,11 +5,13 @@ module.exports = {
   newPet
 }
 
+//gets all pets
 function getPets (db = connection) {
   return db('pets')
   .select()
 }
 
+//posts new pet to db
 function newPet (ownername, pettype, petname, pethabitat, petactivity, petfed, db = connection) {
     return db('pets')
     .insert({
