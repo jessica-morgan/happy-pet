@@ -1,4 +1,11 @@
-const initialPetState = []
+const initialPetState = [{
+    owner: '',
+    petType: '',
+    petName: '',
+    habitat: '',
+    activity: '',
+    petImage: ''
+ }]
 
 export const getPetInfo = (state = initialPetState, action) => {
     switch (action.type) {
@@ -10,9 +17,16 @@ export const getPetInfo = (state = initialPetState, action) => {
            habitat: action.habitat,
            activity: action.activity
         }
+        case 'PET_IMG':
+        return {
+            ...state,
+            petImage: action.petImgUrl
+        }
         default:
         return state
     }
 }
+
+
 
 export default getPetInfo

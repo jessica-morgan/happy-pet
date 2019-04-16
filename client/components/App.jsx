@@ -8,6 +8,7 @@ import IncorrectLogin from './IncorrectLogin'
 import CreatePet from './CreatePet'
 import PetPage from './PetPage'
 import UserPage from './UserPage'
+import LoadingView from './LoadingView'
 
 const App = () => (
   <div>
@@ -20,6 +21,7 @@ const App = () => (
   <Route path='/createpet' component={CreatePet}/>
   <Route path='/petpage' component={PetPage}/>
   <Route path='/userpage' component={UserPage}/>
+  <Route path='/loading' component={LoadingView}/>
     </Switch>
   </div>
 )

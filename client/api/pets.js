@@ -33,7 +33,7 @@ export function getPetApi() {
   export function petImageApi(pettype) {
     return request
     .get(`${url}/petimage/${pettype}`)
-    .then(res => res.body)
+    .then(res => res.body[0].imageUrl)
     .catch(err => {
       if (err) throw Error('Cannot create pet')
     })

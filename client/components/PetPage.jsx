@@ -11,15 +11,15 @@ class PetPage extends React.Component {
         }
       }
 
-      
+      componentDidMount () {
+        if (this.props.loggedin  === true) {
+          this.props.history.push('/petpage')
+      } else {
+          this.props.history.push('/login')
+      } 
+    }
 
       render() {
-
-        if (this.props.loggedIn  === 1) {
-          return this.props.history.push('/home')
-        } else {
-            this.props.history.push('/login')
-        }       
 
         return (
         
@@ -27,6 +27,7 @@ class PetPage extends React.Component {
                 <h1 className='title'>{this.props.petName}</h1>
              <br/><br/><br/>
             <div className='petPage-container'>
+            {/* here find a way to access pet image url without needing ternary for every possibility */}
                  {this.props.petType === 'dog' ? <img className='petPage-row-col1 petPage-grid-images' src="/images/dogpet.png"/> 
                 : <div className='petPage-row-col1 petPage-grid-images'></div>}
                 {this.props.petType === 'giraffe' ? <img className='petPage-row-col1 petPage-grid-images' src="/images/giraffepet.png"/> 

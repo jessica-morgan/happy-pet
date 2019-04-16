@@ -13,6 +13,14 @@ class IncorrectLogin extends React.Component {
         this.checkLogInDetails = this.checkLogInDetails.bind(this)
   }
 
+  componentDidMount () {
+    if (this.props.loggedIn  === true) {
+      this.props.history.push('/home')
+  } else {
+      this.props.history.push('/login')
+  } 
+}
+
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
@@ -23,9 +31,7 @@ class IncorrectLogin extends React.Component {
  
   render() {
 
-    if (this.props.loggedIn  === 1) {
-      return this.props.history.push('/home')
-        }
+
     return (
     
         <div>

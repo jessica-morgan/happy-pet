@@ -1,22 +1,27 @@
 import React from 'react'
 import {Link, Redirect, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
+import { petImageApi } from '../api/pets'
 
 class UserPage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-
+          petImageUrl: '' 
         }
       }   
 
-      render() {
+      componentDidMount () {
+        if (this.props.loggedin  === true) {
+          this.props.history.push('/userpage')
+      } else {
+          this.props.history.push('/login')
+      } 
+    }
 
-        if (this.props.loggedin === 1) {
-          return this.props.history.push('/home')
-        } else {
-            this.props.history.push('/login')
-        }    
+      render() {
+ 
+
 
         return (
         
@@ -35,14 +40,16 @@ class UserPage extends React.Component {
                 </div>
 
                  <div className='user-info-container2'>
-                 {this.props.pettype === 'dog' ? <Link to='/petpage'><img src='/images/dogpet.png' className='userPage-petimg'></img></Link>
+                 {/* here find a way to access pet image url without needing ternary for every possibility */}
+                 {this.props.pettype ? <Link to='/petpage'><img src='' className='userPage-petimg'></img></Link> : <div></div>}
+                 {/* {this.props.pettype === 'dog' ? <Link to='/petpage'><img src='/images/dogpet.png' className='userPage-petimg'></img></Link>
                  : <div></div>}
                  {this.props.pettype === 'cat' ? <Link to='/petpage'><img src='/images/catpet.png' className='userPage-petimg'></img></Link> 
                  : <div></div>}
                  {this.props.pettype === 'tiger' ? <Link to='/petpage'><img src='/images/tigerpet.png' className='userPage-petimg'></img></Link> 
                  : <div></div>}
                  {this.props.pettype === 'giraffe' ? <Link to='/petpage'><img src='/images/giraffepet.png' className='userPage-petimg'></img></Link> 
-                 : <div></div>}
+                 : <div></div>} */}
                  <h3 className='userPage-row-col8 landing-text'>Visit {this.props.petname}'s page</h3>
                  </div>
                 {/* link to pet page, button will need to trigger getuserspetinfo action so it can display pet stats */}
@@ -57,7 +64,7 @@ function mapStateToProps (state) {
     return {
         username: state.login.username,
         firstname: state.user.firstname,
-        loggedin: state.user.loggedin,
+        loggedin: state.login.loggedin,
         pettype: state.getPetInfo.petType,
         petname: state.getPetInfo.petName
     }

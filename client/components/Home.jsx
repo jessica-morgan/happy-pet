@@ -2,7 +2,7 @@ import React from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { getUser } from '../actions/users'
-import { getUsersPetInfo } from '../actions/petInfo';
+import { getUsersPetInfo, getPetImage } from '../actions/petInfo'
 
 class Home extends React.Component {
     constructor(props) {
@@ -10,9 +10,17 @@ class Home extends React.Component {
         this.state = {
  
         }
- 
+        this.handleClickUserInfo = this.handleClickUserInfo.bind(this)
+        this.handleClickPetInfo = this.handleClickPetInfo.bind(this)
       }
 
+      componentDidMount () {
+        if (this.props.loggedIn  === true) {
+          this.props.history.push('/home')
+      } else {
+          this.props.history.push('/login')
+      } 
+    }
       //event handler that gets user info from db dispatch to redux
       handleClickUserInfo() {
         this.props.dispatch(getUser(this.props.username))
@@ -21,15 +29,14 @@ class Home extends React.Component {
       handleClickPetInfo() {
         this.props.dispatch(getUsersPetInfo(this.props.username))
       }
+      //sets pet image url to state.getPetInfo.petImage
+      handleClickPetImage() {
+        this.props.dispatch(getPetImage(this.props.pettype))
+      }
+
 
       render() {
-
-        if (this.props.loggedIn  === 1) {
-          return this.props.history.push('/home')
-        } else {
-            this.props.history.push('/login')
-        }    
-  
+   
         return (
         
             <div>
@@ -53,7 +60,8 @@ class Home extends React.Component {
 function mapStateToProps (state) {
     return {
         username: state.login.username,
-        loggedIn: state.login.loggedin
+        loggedIn: state.login.loggedin,
+        pettype: state.getPetInfo.petType
     }
   }
   

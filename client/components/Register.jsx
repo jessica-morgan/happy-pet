@@ -17,6 +17,14 @@ class Register extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
       }
 
+      componentDidMount () {
+        if (this.props.loggedIn  === true) {
+          this.props.history.push('/home')
+      } else {
+          this.props.history.push('/register')
+      } 
+    }
+
       handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
       }
@@ -31,12 +39,6 @@ class Register extends React.Component {
       }
 
       render() {
-
-        if (this.props.loggedIn  === 1) {
-          return this.props.history.push('/home')
-        } else {
-            this.props.history.push('/login')
-        }    
 
         return (
         

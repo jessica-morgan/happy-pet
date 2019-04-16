@@ -12,7 +12,6 @@ class Login extends React.Component {
         }
         this.handleChange = this.handleChange.bind(this)
         this.checkLogInDetails = this.checkLogInDetails.bind(this)
-        // this.checkValidated = this.checkValidated.bind(this)
   }
 
   handleChange(event) {
@@ -26,9 +25,9 @@ class Login extends React.Component {
 
   render() {
     //if user is already logged in redirect to home page
-    if (this.props.loggedIn  === 1) {
-      return this.props.history.push('/home')
-    }
+    if (this.props.loggedIn  === true) {
+      this.props.history.push('/home')
+    } 
 
     return (
     

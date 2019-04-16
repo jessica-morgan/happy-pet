@@ -2,24 +2,19 @@
 import React from 'react'
 import {render} from 'react-dom'
 import {Provider} from 'react-redux'
-import {createStore, applyMiddleware, compose} from 'redux'
 import {BrowserRouter as Router} from 'react-router-dom'
-import thunkMiddleware from 'redux-thunk'
-
-import reducers from './reducers'
+import { PersistGate } from 'redux-persist/lib/integration/react'
+import { persistor, store } from './store'
 import App from './components/App'
-
-let store = createStore(reducers, compose(
-  applyMiddleware(thunkMiddleware),
-  window.devToolsExtension ? window.devToolsExtension() : f => f
-))
-
+import LoadingView from './components/LoadingView'
 
 document.addEventListener('DOMContentLoaded', () => {
   render(
     <Provider store={store}>
-    <Router>
+     <Router>
+     <PersistGate loading={<LoadingView />} persistor={persistor}>
       <App />
+      </PersistGate>
       </Router>
     </Provider>,
     document.getElementById('app')
