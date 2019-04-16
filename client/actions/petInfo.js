@@ -15,7 +15,7 @@ export function getPetImage (pettype) {
     return function(dispatch) {
         petImageApi(pettype)
         .then(res => {
-            return dispatch(petImg(res[0].imageUrl))
+            return dispatch(petImg(res))
         })
     }
 }

@@ -5383,7 +5383,7 @@ function getUsersPetInfo(username) {
 function getPetImage(pettype) {
     return function (dispatch) {
         (0, _pets.petImageApi)(pettype).then(function (res) {
-            return dispatch(petImg(res[0].imageUrl));
+            return dispatch(petImg(res));
         });
     };
 }
@@ -35433,7 +35433,7 @@ var Home = function (_React$Component) {
                     _react2.default.createElement(
                         'button',
                         { onClick: function onClick() {
-                                _this2.handleClickUserInfo();_this2.handleClickPetInfo();
+                                _this2.handleClickUserInfo();_this2.handleClickPetInfo();_this2.handleClickPetImage();
                             } },
                         'User page'
                     )
@@ -36137,7 +36137,7 @@ var UserPage = function (_React$Component) {
                         { className: 'userPage-row-col3 landing-text' },
                         'Status:'
                     ),
-                    this.props.loggedin === 1 ? _react2.default.createElement(
+                    this.props.loggedin === true ? _react2.default.createElement(
                         'h3',
                         { className: 'userPage-row-col6 userPage-text' },
                         'Online'
@@ -36152,8 +36152,8 @@ var UserPage = function (_React$Component) {
                     { className: 'user-info-container2' },
                     this.props.pettype ? _react2.default.createElement(
                         _reactRouterDom.Link,
-                        { to: '/petpage' },
-                        _react2.default.createElement('img', { src: '', className: 'userPage-petimg' })
+                        { to: '/petpage', className: ' userPage-row-col7' },
+                        _react2.default.createElement('img', { src: this.props.petimage, className: 'userPage-petimg' })
                     ) : _react2.default.createElement('div', null),
                     _react2.default.createElement(
                         'h3',
@@ -36176,7 +36176,8 @@ function mapStateToProps(state) {
         firstname: state.user.firstname,
         loggedin: state.login.loggedin,
         pettype: state.getPetInfo.petType,
-        petname: state.getPetInfo.petName
+        petname: state.getPetInfo.petName,
+        petimage: state.getPetInfo.petImage
     };
 }
 

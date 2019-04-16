@@ -47,7 +47,7 @@ class Home extends React.Component {
                 <div>
                     <Link style={{textDecoration: 'none'}} to='/createpet'><button>Create a pet</button></Link>
                 </div>
-                    <Link style={{textDecoration: 'none'}} to='/userpage'><button onClick={() => {this.handleClickUserInfo(); this.handleClickPetInfo()}}>User page</button></Link>
+                    <Link style={{textDecoration: 'none'}} to='/userpage'><button onClick={() => {this.handleClickUserInfo(); this.handleClickPetInfo(); this.handleClickPetImage()}}>User page</button></Link>
                 {/* link to users page which shows all their pets, link button will need to trigger action that gets all users info
                  */}
             </div>
