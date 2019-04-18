@@ -7,6 +7,7 @@ exports.up = function(knex, Promise) {
     table.string('habitat').notNullable();
     table.string('activity').notNullable();
     table.boolean('fed');
+    table.string('last_fed');
     table.string('image').notNullable();
     table.timestamp('created_at').defaultTo(knex.fn.now());
     table.timestamp('updated_at').defaultTo(knex.fn.now());

@@ -58,6 +58,8 @@ class Home extends React.Component {
                  {/* this link isn't working but logs user out */}
               <Link style={{textDecoration: 'none'}} to='/login'><button onClick={() => {this.logoutUser()}}>Logout</button></Link> 
 
+                 
+
             </div>
         )
 

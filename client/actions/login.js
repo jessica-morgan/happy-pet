@@ -18,7 +18,6 @@ export function getUserLogIn (username, password) {
     return function (dispatch) {
       getUserApi(username)
         .then(res => {
-          console.log(res)
              if (res[0].username === username) {
               return dispatch(logOut(res[0].username)) && logoutUserApi(res[0].username)
             }

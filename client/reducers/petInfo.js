@@ -4,6 +4,7 @@ const initialPetState = [{
     petName: '',
     habitat: '',
     activity: '',
+    fed: false,
     petImage: ''
  }]
 
@@ -15,7 +16,8 @@ export const getPetInfo = (state = initialPetState, action) => {
            petType: action.petType,
            petName: action.petName,
            habitat: action.habitat,
-           activity: action.activity
+           activity: action.activity,
+           fed: action.fed
         }
         case 'PET_IMG':
         return {

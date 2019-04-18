@@ -12,6 +12,7 @@ exports.seed = function(knex, Promise) {
         habitat: 'House',
         activity: 'Eating',
         fed: false,
+        last_fed: '',
         image: '/images/catpet.png',
         created_at: '2019-04-11 14:09:10', 
         updated_at: ''

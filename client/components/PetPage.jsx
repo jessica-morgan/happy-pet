@@ -27,15 +27,14 @@ class PetPage extends React.Component {
                 <h1 className='title'>{this.props.petName}</h1>
              <br/><br/><br/>
             <div className='petPage-container'>
-            {/* here find a way to access pet image url without needing ternary for every possibility */}
-                 {this.props.petType === 'dog' ? <img className='petPage-row-col1 petPage-grid-images' src="/images/dogpet.png"/> 
+
+                 {this.props.petType ? <img className='petPage-row-col1 petPage-grid-images' src={this.props.petImage}/> 
                 : <div className='petPage-row-col1 petPage-grid-images'></div>}
-                {this.props.petType === 'giraffe' ? <img className='petPage-row-col1 petPage-grid-images' src="/images/giraffepet.png"/> 
-                : <div className='petPage-row-col1 petPage-grid-images'></div>}
-                 {this.props.petType === 'cat' ? <img className='petPage-row-col1 petPage-grid-images' src="/images/catpet.png"/> 
-                : <div className='petPage-row-col1 petPage-grid-images'></div>}
-                 {this.props.petType === 'tiger' ? <img className='petPage-row-col1 petPage-grid-images' src="/images/tigerpet.png"/> 
-                : <div className='petPage-row-col1 petPage-grid-images'></div>}
+
+                <h3 className='petPage-row-col10 petPage-stats-title'>
+                <button>Feed {this.props.petName}</button>
+                </h3>
+                {/* feed option here */}
 
                 <h3 className='petPage-row-col2 petPage-stats-title'>
                 Owner:
@@ -49,12 +48,17 @@ class PetPage extends React.Component {
                 Activity:
                 </h3>
                 <h3 className='petPage-row-col7 landing-text'>{this.props.activity}</h3>
+                <h3 className='petPage-row-col8 petPage-stats-title '>
+                Status:
+                </h3>
+                {this.props.fed === true ? <h3 className='petPage-row-col9 landing-text'>Full!</h3> :
+                <h3 className='petPage-row-col9 landing-text'>Hungry!</h3>}
+                
             </div>
            </div>
         )
 
       } 
-     
 }
 
 function mapStateToProps (state) {
@@ -64,7 +68,9 @@ function mapStateToProps (state) {
         petType: state.getPetInfo.petType,
         petName: state.getPetInfo.petName,
         habitat: state.getPetInfo.habitat,
-        activity: state.getPetInfo.activity
+        activity: state.getPetInfo.activity,
+        petImage: state.getPetInfo.petImage,
+        fed: state.getPetInfo.fed
     }
   }
   

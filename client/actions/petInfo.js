@@ -20,14 +20,15 @@ export function getPetImage (pettype) {
     }
 }
 
-export const petInfo = (username, petType, petName, habitat, activity) => {
+export const petInfo = (username, petType, petName, habitat, activity, fed) => {
     return {
         type: 'PET_INFO',
         username,
         petType,
         petName,
         habitat,
-        activity
+        activity,
+        fed
     }
 }
 
