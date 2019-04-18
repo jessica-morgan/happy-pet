@@ -3,6 +3,8 @@ import {Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { getUser } from '../actions/users'
 import { getUsersPetInfo, getPetImage } from '../actions/petInfo'
+import { logout } from '../actions/login'
+
 
 class Home extends React.Component {
     constructor(props) {
@@ -34,6 +36,9 @@ class Home extends React.Component {
         this.props.dispatch(getPetImage(this.props.pettype))
       }
 
+      logoutUser() {
+        this.props.dispatch(logout(this.props.userN))
+      }
 
       render() {
    
@@ -50,6 +55,9 @@ class Home extends React.Component {
                     <Link style={{textDecoration: 'none'}} to='/userpage'><button onClick={() => {this.handleClickUserInfo(); this.handleClickPetInfo(); this.handleClickPetImage()}}>User page</button></Link>
                 {/* link to users page which shows all their pets, link button will need to trigger action that gets all users info
                  */}
+                 {/* this link isn't working but logs user out */}
+              <Link style={{textDecoration: 'none'}} to='/login'><button onClick={() => {this.logoutUser()}}>Logout</button></Link> 
+
             </div>
         )
 
@@ -59,6 +67,7 @@ class Home extends React.Component {
 
 function mapStateToProps (state) {
     return {
+        userN: state.user.username,
         username: state.login.username,
         loggedIn: state.login.loggedin,
         pettype: state.getPetInfo.petType

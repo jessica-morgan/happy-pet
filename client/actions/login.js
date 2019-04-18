@@ -1,4 +1,4 @@
-import {getUserApi, loggedInApi} from '../api/users'
+import {getUserApi, loggedInApi, logoutUserApi} from '../api/users'
 
 export function getUserLogIn (username, password) {
     return function (dispatch) {
@@ -14,6 +14,18 @@ export function getUserLogIn (username, password) {
     }
   }
 
+  export function logout (username) {
+    return function (dispatch) {
+      getUserApi(username)
+        .then(res => {
+          console.log(res)
+             if (res[0].username === username) {
+              return dispatch(logOut(res[0].username)) && logoutUserApi(res[0].username)
+            }
+        })
+    }
+  } 
+
 export const loggedIn = (username, password) => {
     return {
         type: 'LOGGED_IN',
@@ -22,3 +34,9 @@ export const loggedIn = (username, password) => {
     }
 }
 
+export const logOut = (username) => {
+  return {
+    type: 'LOGOUT',
+    username
+  }
+}

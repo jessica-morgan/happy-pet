@@ -1,7 +1,6 @@
 import React from 'react'
 import {Link, Redirect, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import { petImageApi } from '../api/pets'
 
 class UserPage extends React.Component {
     constructor(props) {
@@ -21,8 +20,6 @@ class UserPage extends React.Component {
 
       render() {
  
-
-
         return (
         
             <div>

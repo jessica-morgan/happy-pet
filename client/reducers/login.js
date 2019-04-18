@@ -8,11 +8,14 @@ export const login = (state = initialLoginState, action) => {
             password: action.password,
             loggedin: true
         }
+        case 'LOGOUT':
+        return {
+            username: action.username,
+            loggedin: false
+        }
         default:
         return state
     }
 }
-
-
 
 export default login

@@ -66,6 +66,18 @@ router.get('/loggedin/:username', (req, res) => {
     })
 })
 
+//logs user out
+router.get('/logout/:username', (req, res) => {
+    const username = req.params.username
+    db.logout(username)
+    .then(loggedout => {
+        res.json(loggedout)
+     })
+     .catch(err => {
+        res.status(500).send(err)
+    })
+})
+
 
 
 module.exports = router

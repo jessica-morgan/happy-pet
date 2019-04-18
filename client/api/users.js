@@ -47,3 +47,12 @@ export function getUserApi(username) {
         if (err) throw Error('Cannot get user')
     })
   }
+
+  export function logoutUserApi(username) {
+    return request
+    .get(`${url}/logout/${username}`)
+    .then(res => res.body)
+    .catch(err => {
+      if (err) throw Error('Cannot get user')
+    })
+  }
