@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import { getUser } from '../actions/users'
 import { getUsersPetInfo, getPetImage } from '../actions/petInfo'
 import { logout } from '../actions/login'
+import { getAcctCreated } from '../actions/users'
 
 
 class Home extends React.Component {
@@ -14,6 +15,9 @@ class Home extends React.Component {
         }
         this.handleClickUserInfo = this.handleClickUserInfo.bind(this)
         this.handleClickPetInfo = this.handleClickPetInfo.bind(this)
+        this.handleClickPetImage = this.handleClickPetImage.bind(this)
+        this.logoutUser = this.logoutUser.bind(this)
+        this.getAccountAge = this.getAccountAge.bind(this)
       }
 
       componentDidMount () {
@@ -26,6 +30,10 @@ class Home extends React.Component {
       //event handler that gets user info from db dispatch to redux
       handleClickUserInfo() {
         this.props.dispatch(getUser(this.props.username))
+      }
+
+      getAccountAge() {
+        this.props.dispatch(getAcctCreated(this.props.username))
       }
 
       handleClickPetInfo() {
@@ -52,7 +60,7 @@ class Home extends React.Component {
                 <div>
                     <Link style={{textDecoration: 'none'}} to='/createpet'><button>Create a pet</button></Link>
                 </div>
-                    <Link style={{textDecoration: 'none'}} to='/userpage'><button onClick={() => {this.handleClickUserInfo(); this.handleClickPetInfo(); this.handleClickPetImage()}}>User page</button></Link>
+                    <Link style={{textDecoration: 'none'}} to='/userpage'><button onClick={() => {this.handleClickUserInfo(); this.handleClickPetInfo(); this.handleClickPetImage(); this.getAccountAge()}}>User page</button></Link>
                 {/* link to users page which shows all their pets, link button will need to trigger action that gets all users info
                  */}
                  {/* this link isn't working but logs user out */}

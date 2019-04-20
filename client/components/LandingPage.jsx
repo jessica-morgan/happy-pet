@@ -17,14 +17,6 @@ class LandingPage extends React.Component {
       } 
     }
 
-    getDate() {
-      let date = new Date.parse() //gives timestamp rather than js date object
-      let day = date.getDay() 
-      //returns day of week (0-6)
-      //this number gets posted 
-      return day
-    }
-
       render() {
    
         return (
@@ -40,7 +32,6 @@ class LandingPage extends React.Component {
             <div>
                 <h3 className='landing-text'>Already have an account?</h3>
                 <br/>
-                <button onClick={this.getDate}></button>
             <Link style={{textDecoration: 'none'}} to='/login'><button>Login</button></Link>
             </div>
         </div>

@@ -3,8 +3,6 @@ import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { petHunger } from '../actions/petInfo'
 import { feedPetApi } from '../api/pets'
-//moment will only work when imported this way
-let moment = require('moment')
 
 class FeedPet extends React.Component {
     constructor(props) {

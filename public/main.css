@@ -382,6 +382,22 @@ padding-left: 30px;
   text-align: center;
 }
 
+.userPage-row-col9 {
+  grid-column: 1;
+  grid-row: 5;
+  grid-auto-columns: min-content;
+  grid-auto-rows: min-content;
+  text-align: center;
+}
+
+.userPage-row-col10 {
+  grid-column: 2;
+  grid-row: 5;
+  grid-auto-columns: min-content;
+  grid-auto-rows: min-content;
+  text-align: center;
+}
+
 .userPage-petimg {
   width: 100px;
   height: 195px;

@@ -1,6 +1,8 @@
 import React from 'react'
 import {Link, Redirect, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
+import { getAccountAge } from '../actions/users'
+let moment = require('moment')
 
 class UserPage extends React.Component {
     constructor(props) {
@@ -18,6 +20,13 @@ class UserPage extends React.Component {
       } 
     }
 
+    getAccountAge() {
+      let currentDate = moment()
+      let createdDate = moment(this.props.acctAge)
+      let age = currentDate.diff(createdDate, 'days')
+      this.props.dispatch(getAccountAge(age))
+    }
+
       render() {
  
         return (
@@ -31,15 +40,19 @@ class UserPage extends React.Component {
                  <h3 className='userPage-row-col4 userPage-text'>{this.props.username}</h3>
                  <h3 className='userPage-row-col2 landing-text'>Name:</h3>
                  <h3 className='userPage-row-col5 userPage-text'>{this.props.firstname}</h3>
-                 <h3 className='userPage-row-col3 landing-text'>Status:</h3>
-                 {this.props.loggedin === true ? <h3 className='userPage-row-col6 userPage-text'>Online</h3> 
-                 : <h3 className='userPage-row-col6 userPage-text'>Offline</h3>}
+                 <h3 className='userPage-row-col3 landing-text'>Account age:</h3>
+                 <h3 className='userPage-row-col6 userPage-text'>{this.props.acctAge} days old</h3>
+                 <h3 className='userPage-row-col9 landing-text'>Status:</h3>
+                 {this.props.loggedin === true ? <h3 className='userPage-row-col10 userPage-text'>Online</h3> 
+                 : <h3 className='userPage-row-col10 userPage-text'>Offline</h3>}
                 </div>
 
                  <div className='user-info-container2'>
                  {/* shows pet image and link to page */}
                  {this.props.pettype ? <Link to='/petpage' className=' userPage-row-col7'><img src={this.props.petimage} className='userPage-petimg'></img></Link> : <div></div>}
                  <h3 className='userPage-row-col8 landing-text'>Visit {this.props.petname}'s page</h3>
+
+                 <button onClick = {() => this.getAccountAge()}></button>
                  </div>
            </div>
         )
@@ -52,6 +65,8 @@ function mapStateToProps (state) {
     return {
         username: state.login.username,
         firstname: state.user.firstname,
+        acctCreated: state.user.createdAt,
+        acctAge: state.user.accountAge,
         loggedin: state.login.loggedin,
         pettype: state.getPetInfo.petType,
         petname: state.getPetInfo.petName,

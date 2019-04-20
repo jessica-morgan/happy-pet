@@ -74,7 +74,7 @@ class PetPage extends React.Component {
                 <h3 className='petPage-row-col8 petPage-stats-title '>
                 Status:
                 </h3>
-                {this.props.fed === true ? <h3 className='petPage-row-col9 landing-text'>Full!</h3> :
+                {this.props.fed === 1 ? <h3 className='petPage-row-col9 landing-text'>Full!</h3> :
                 <h3 className='petPage-row-col9 landing-text'>Hungry!</h3>}
                 
             </div>
