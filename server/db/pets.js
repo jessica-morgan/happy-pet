@@ -3,7 +3,8 @@ const connection = require('./index')
 module.exports = {
   getPets,
   newPet,
-  petImage
+  petImage,
+  feedPet
 }
 
 //gets all pets
@@ -30,3 +31,15 @@ function petImage (pettype, db = connection) {
   .where('petImages.petType', pettype)
   .select('imageUrl')
 }
+
+ //changes last fed timestamp changes fed to true
+ function feedPet (username, lastFed, db = connection) {
+  return db('pets')
+  .where('pets.owner', username)
+  .update({
+    last_fed: lastFed,
+    fed: true
+  })
+}
+
+

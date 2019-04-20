@@ -5,7 +5,9 @@ const initialPetState = [{
     habitat: '',
     activity: '',
     fed: false,
-    petImage: ''
+    lastFed: '',
+    petImage: '',
+    hunger: false
  }]
 
 export const getPetInfo = (state = initialPetState, action) => {
@@ -17,12 +19,18 @@ export const getPetInfo = (state = initialPetState, action) => {
            petName: action.petName,
            habitat: action.habitat,
            activity: action.activity,
-           fed: action.fed
+           fed: action.fed,
+           lastFed: action.lastFed
         }
         case 'PET_IMG':
         return {
             ...state,
             petImage: action.petImgUrl
+        }
+        case 'PET_HUNGER':
+        return {
+            ...state,
+            hunger: action.bool
         }
         default:
         return state

@@ -11,8 +11,7 @@ exports.seed = function(knex, Promise) {
         email: 'jess@gmail.com', 
         password: '1234', 
         loggedin: false,
-        created_at: '2019-04-11 11:05:10', 
-        updated_at: ''
+        created_at: '2019-04-11 11:05:10'
        }
       ]);
     });

@@ -6,7 +6,7 @@ export function getUsersPetInfo (username) {
     return function (dispatch) {
       getUsersPetApi(username)
         .then(res => {
-              return dispatch(petInfo(res[0].username, res[0].petType, res[0].petName, res[0].habitat, res[0].activity)) 
+              return dispatch(petInfo(res[0].username, res[0].petType, res[0].petName, res[0].habitat, res[0].activity, res[0].fed, res[0].last_fed)) 
         })
     }
 }
@@ -20,7 +20,8 @@ export function getPetImage (pettype) {
     }
 }
 
-export const petInfo = (username, petType, petName, habitat, activity, fed) => {
+
+export const petInfo = (username, petType, petName, habitat, activity, fed, lastFed) => {
     return {
         type: 'PET_INFO',
         username,
@@ -28,7 +29,8 @@ export const petInfo = (username, petType, petName, habitat, activity, fed) => {
         petName,
         habitat,
         activity,
-        fed
+        fed,
+        lastFed
     }
 }
 
@@ -36,5 +38,12 @@ export const petImg = (petImgUrl) => {
     return {
         type: 'PET_IMG',
         petImgUrl
+    }
+}
+
+export const petHunger = (bool) => {
+    return {
+        type: 'PET_HUNGER',
+        bool
     }
 }

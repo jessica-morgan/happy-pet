@@ -39,6 +39,19 @@ export function getPetApi() {
     })
   }
 
+  //posts pets fed status
+  export function feedPetApi(username, lastFed) {
+    return request
+    .post(`${url}/feedpet/${username}`)
+    .send({
+      last_fed: lastFed,
+      fed: true
+    })
+    .then(res => res.body)
+    .catch(err => {
+      if (err) throw Error('Cannot feed pet')
+    })
+  }
 
   
 

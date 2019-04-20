@@ -6,8 +6,7 @@ exports.up = function(knex, Promise) {
         table.string('email').notNullable();
         table.string('password').notNullable();
         table.boolean('loggedin');
-        table.timestamps('created_at').defaultTo(knex.fn.now());
-        table.timestamps('updated_at').defaultTo(knex.fn.now());
+        table.timestamp('created_at').defaultTo(knex.fn.now());
     })
 };
 

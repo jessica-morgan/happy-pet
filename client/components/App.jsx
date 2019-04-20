@@ -9,6 +9,7 @@ import CreatePet from './CreatePet'
 import PetPage from './PetPage'
 import UserPage from './UserPage'
 import LoadingView from './LoadingView'
+import FeedPet from './FeedPet'
 
 const App = () => (
   <div>
@@ -22,6 +23,7 @@ const App = () => (
   <Route path='/petpage' component={PetPage}/>
   <Route path='/userpage' component={UserPage}/>
   <Route path='/loading' component={LoadingView}/>
+  <Route peth='/feedpet' component={FeedPet}/>
     </Switch>
   </div>
 )
