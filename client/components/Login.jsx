@@ -1,7 +1,8 @@
 import React from 'react'
-import {Redirect, withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { getUserLogIn } from '../actions/login'
+
 
 class Login extends React.Component {
     constructor(props) {
@@ -22,6 +23,8 @@ class Login extends React.Component {
   checkLogInDetails(username, password) {
    this.props.dispatch(getUserLogIn(username, password))
   }
+
+  //get account create and pet created here
 
   render() {
     //if user is already logged in redirect to home page

@@ -7,20 +7,24 @@ const initialPetState = [{
     fed: false,
     lastFed: '',
     petImage: '',
-    hunger: false
+    hunger: false,
+    petCreated: '',
+    petAge: null
  }]
 
 export const getPetInfo = (state = initialPetState, action) => {
     switch (action.type) {
         case 'PET_INFO':
         return {
+           ...state,
            owner: action.username,
            petType: action.petType,
            petName: action.petName,
            habitat: action.habitat,
            activity: action.activity,
            fed: action.fed,
-           lastFed: action.lastFed
+           lastFed: action.lastFed,
+           petCreated: action.petCreated
         }
         case 'PET_IMG':
         return {
@@ -31,6 +35,16 @@ export const getPetInfo = (state = initialPetState, action) => {
         return {
             ...state,
             hunger: action.bool
+        }
+        case 'PET_CREATED':
+        return {
+            ...state,
+            petCreated: action.date
+        }
+        case 'PET_AGE':
+        return {
+            ...state,
+            petAge: action.age
         }
         default:
         return state

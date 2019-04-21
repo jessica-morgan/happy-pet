@@ -46,7 +46,7 @@ router.get('/petimage/:pettype', (req, res) => {
 //posts last fed timestamp and fed status
 router.post('/feedpet/:username', (req, res) => {
   const username = req.params.username
-  const lastFed = req.body.lastFed
+  const lastFed = req.body.last_fed
   db.feedPet(username, lastFed)
   .then(fedData => {
     res.json(fedData)

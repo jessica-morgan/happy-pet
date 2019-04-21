@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { petHunger } from '../actions/petInfo'
 import { feedPetApi } from '../api/pets'
+import {format} from 'date-fns'
 
 class FeedPet extends React.Component {
     constructor(props) {
@@ -23,14 +24,10 @@ class FeedPet extends React.Component {
 
     feedPet() {
       //get js date object
-     let currentDate = new Date()
-     //parse it as timestamp
-     Date.parse(currentDate)
-     //convert to string
-     let newDate = currentDate.toString()
+     let currentDate = format(new Date())
      let username = this.props.username
      //sends new last fed date to and changes fed to true in db, changes fed to true redux state
-     feedPetApi(username, newDate) && this.props.dispatch(petHunger(false))
+     feedPetApi(username, currentDate) && this.props.dispatch(petHunger(false))
     }
 
       render() {

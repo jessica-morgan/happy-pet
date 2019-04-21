@@ -9,7 +9,7 @@ exports.up = function(knex, Promise) {
     table.boolean('fed');
     table.string('last_fed');
     table.string('image').notNullable();
-    table.timestamp('created_at').defaultTo(knex.fn.now());
+    table.timestamp('petCreatedAt').defaultTo(knex.fn.now());
  })
 };
 

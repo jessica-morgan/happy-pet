@@ -4,8 +4,6 @@ import {connect} from 'react-redux'
 import { getUser } from '../actions/users'
 import { getUsersPetInfo, getPetImage } from '../actions/petInfo'
 import { logout } from '../actions/login'
-import { getAcctCreated } from '../actions/users'
-
 
 class Home extends React.Component {
     constructor(props) {
@@ -16,8 +14,7 @@ class Home extends React.Component {
         this.handleClickUserInfo = this.handleClickUserInfo.bind(this)
         this.handleClickPetInfo = this.handleClickPetInfo.bind(this)
         this.handleClickPetImage = this.handleClickPetImage.bind(this)
-        this.logoutUser = this.logoutUser.bind(this)
-        this.getAccountAge = this.getAccountAge.bind(this)
+        this.logoutUser = this.logoutUser.bind(this)   
       }
 
       componentDidMount () {
@@ -27,13 +24,9 @@ class Home extends React.Component {
           this.props.history.push('/login')
       } 
     }
-      //event handler that gets user info from db dispatch to redux
+      //event handler gets user info from db dispatch to redux
       handleClickUserInfo() {
         this.props.dispatch(getUser(this.props.username))
-      }
-
-      getAccountAge() {
-        this.props.dispatch(getAcctCreated(this.props.username))
       }
 
       handleClickPetInfo() {
@@ -60,11 +53,10 @@ class Home extends React.Component {
                 <div>
                     <Link style={{textDecoration: 'none'}} to='/createpet'><button>Create a pet</button></Link>
                 </div>
-                    <Link style={{textDecoration: 'none'}} to='/userpage'><button onClick={() => {this.handleClickUserInfo(); this.handleClickPetInfo(); this.handleClickPetImage(); this.getAccountAge()}}>User page</button></Link>
-                {/* link to users page which shows all their pets, link button will need to trigger action that gets all users info
-                 */}
-                 {/* this link isn't working but logs user out */}
-              <Link style={{textDecoration: 'none'}} to='/login'><button onClick={() => {this.logoutUser()}}>Logout</button></Link> 
+                    <Link style={{textDecoration: 'none'}} to='/userpage'><button onClick={() => {this.handleClickUserInfo(); this.handleClickPetInfo(); this.handleClickPetImage()}}>User page</button></Link>
+
+                 {/* the history.push isn't working but logs user out */}
+              <button onClick={() => {this.logoutUser(); this.props.history.push('/login')}}>Logout</button>
 
 
 
@@ -80,7 +72,8 @@ function mapStateToProps (state) {
         userN: state.user.username,
         username: state.login.username,
         loggedIn: state.login.loggedin,
-        pettype: state.getPetInfo.petType
+        pettype: state.getPetInfo.petType,
+        acctCreated: state.user.createdAt
     }
   }
   

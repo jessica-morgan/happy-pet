@@ -209,7 +209,7 @@ button {
 
   .petPage-container {
     display: grid;
-    grid-gap: 45px;
+    grid-gap: 30px;
     justify-content: space-evenly;
     float: left;
     padding-left: 30px;
@@ -286,6 +286,20 @@ button {
 .petPage-row-col10 {
   grid-column: 1 / span 2;
   grid-row: 4;
+  grid-auto-columns: min-content;
+  grid-auto-rows: min-content;
+}
+
+.petPage-row-col11 {
+  grid-column: 3;
+  grid-row: 5;
+  grid-auto-columns: min-content;
+  grid-auto-rows: min-content;
+}
+
+.petPage-row-col12 {
+  grid-column: 4;
+  grid-row: 5;
   grid-auto-columns: min-content;
   grid-auto-rows: min-content;
 }
