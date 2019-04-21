@@ -72,8 +72,7 @@ function mapStateToProps (state) {
         userN: state.user.username,
         username: state.login.username,
         loggedIn: state.login.loggedin,
-        pettype: state.getPetInfo.petType,
-        acctCreated: state.user.createdAt
+        pettype: state.getPetInfo.petType
     }
   }
   

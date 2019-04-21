@@ -74,9 +74,6 @@ class PetPage extends React.Component {
                 Age:
                 </h3>
                 <h3 className='petPage-row-col9 landing-text'>{this.props.petAge} days old</h3>
-                <h3 className='petPage-row-col11 petPage-stats-title '>
-                Status:
-                </h3>
 
             </div>
            </div>

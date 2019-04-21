@@ -1,6 +1,8 @@
 import React from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
+import { petAge } from '../actions/petInfo'
+import {format, differenceInDays} from 'date-fns'
 
 class UserPage extends React.Component {
     constructor(props) {
@@ -19,7 +21,13 @@ class UserPage extends React.Component {
       } 
     }
 
-   
+    //when click on pet page link calculate pets age using this.props.petCreated state.getPetInfo.petCreated
+    getPetAge() {
+      let created = format(this.props.petCreated)
+      let currentDate = format(new Date())
+      let age = differenceInDays(currentDate, created)
+      this.props.dispatch(petAge(age))
+    }
 
       render() {
  
@@ -41,7 +49,7 @@ class UserPage extends React.Component {
 
                  <div className='user-info-container2'>
                  {/* shows pet image and link to page */}
-                 {this.props.pettype ? <Link to='/petpage' className=' userPage-row-col7'><img src={this.props.petimage} className='userPage-petimg'></img></Link> : <div></div>}
+                 {this.props.pettype ? <Link to='/petpage' className='userPage-row-col7' onClick = {() => this.getPetAge()}><img src={this.props.petimage} className='userPage-petimg'></img></Link> : <div></div>}
                  <h3 className='userPage-row-col8 landing-text'>Visit {this.props.petname}'s page</h3>
                  </div>
            </div>
@@ -60,7 +68,8 @@ function mapStateToProps (state) {
         loggedin: state.login.loggedin,
         pettype: state.getPetInfo.petType,
         petname: state.getPetInfo.petName,
-        petimage: state.getPetInfo.petImage
+        petimage: state.getPetInfo.petImage,
+        petCreated: state.getPetInfo.petCreated
     }
   }
   
