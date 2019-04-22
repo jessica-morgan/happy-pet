@@ -51,12 +51,12 @@ class Home extends React.Component {
                 </div>
 
                 <div>
-                    <Link style={{textDecoration: 'none'}} to='/createpet'><button>Create a pet</button></Link>
+                    <Link style={{textDecoration: 'none'}} to='/createpet'><button className='button'>Create a pet</button></Link>
                 </div>
-                    <Link style={{textDecoration: 'none'}} to='/userpage'><button onClick={() => {this.handleClickUserInfo(); this.handleClickPetInfo(); this.handleClickPetImage()}}>User page</button></Link>
+                    <Link style={{textDecoration: 'none'}} to='/userpage'><button className='button' onClick={() => {this.handleClickUserInfo(); this.handleClickPetInfo(); this.handleClickPetImage()}}>User page</button></Link>
 
                  {/* the history.push isn't working but logs user out */}
-              <button onClick={() => {this.logoutUser(); this.props.history.push('/login')}}>Logout</button>
+              <button className='button' onClick={() => {this.logoutUser(); this.props.history.push('/login')}}>Logout</button>
 
 
 

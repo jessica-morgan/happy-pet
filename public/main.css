@@ -1,4 +1,4 @@
-button {
+.button {
     color: rgb(255, 91, 25);
     background-color: rgb(254, 253, 255);
     fill-opacity: 0%;
@@ -441,6 +441,10 @@ padding-left: 30px;
   text-align: center;
 }
 
+.progress-container {
+  width: 200px;
+  height: 30px;
+}
 
 
 

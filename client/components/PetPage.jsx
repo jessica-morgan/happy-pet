@@ -1,9 +1,9 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import { petHunger, petAge } from '../actions/petInfo'
-
+import { petHunger } from '../actions/petInfo'
 import {format, differenceInHours} from 'date-fns'
+import ProgressBar from 'react-bootstrap/ProgressBar'
 
 class PetPage extends React.Component {
     constructor(props) {
@@ -39,23 +39,32 @@ class PetPage extends React.Component {
       }
       this.props.history.push('/feedpet')
     }
+    
 
       render() {
-
+        //to work out percentage of time elapsed since last fed
+        const timeNow = format(new Date)
+        const timeLastFed = format(this.props.lastFed)
+        const difference = differenceInHours(timeNow, timeLastFed)
+        const percentage = Math.floor((100 * difference) / 24)
+      
         return (
         
             <div>
                 <h1 className='title'>{this.props.petName}</h1>
              <br/><br/><br/>
+
+              {/* use different colors as bar progresses - e.g green, yellow, red */}
+             <ProgressBar className='progress-container' now={Math.floor(percentage)} label={`${percentage}%`} variant="success"/>
+
             <div className='petPage-container'>
 
                  {this.props.petType ? <img className='petPage-row-col1 petPage-grid-images' src={this.props.petImage}/> 
                 : <div className='petPage-row-col1 petPage-grid-images'></div>}
 
                 <h3 className='petPage-row-col10 petPage-stats-title'>
-                {/* Feed button will check for time elapsed */}
-                {/* this button will also redirect a feeding page which will have a button that posts new timestamp to db */}
-                <button onClick={() => {this.checkLastFed()}}>Feed {this.props.petName}</button>
+             
+                <button className='button' onClick={() => {this.checkLastFed()}}>Feed {this.props.petName}</button>
                 </h3>
 
                 <h3 className='petPage-row-col2 petPage-stats-title'>

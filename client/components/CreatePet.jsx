@@ -90,7 +90,7 @@ class CreatePet extends React.Component {
                     <input style={{marginTop: '15px'}} className='input-rowcol9 input-fields' type='text' name='activity' id='activity'onChange={this.handleChange}/>
                     <br/>
                     <Link className='input-rowcol10' to='/home'>
-                    <button onClick={() => {this.handleSubmit(this.state)}}>Enter</button>
+                    <button className='button' onClick={() => {this.handleSubmit(this.state)}}>Enter</button>
                     </Link>
              
                 </div>

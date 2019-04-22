@@ -26,13 +26,13 @@ class LandingPage extends React.Component {
   
           <h3 className='landing-text'>Don't have an account? Please visit the registration page</h3>
           <br/>
-            <Link style={{textDecoration: 'none'}} to='/register'><button>Register</button></Link>
+            <Link style={{textDecoration: 'none'}} to='/register'><button className='button'>Register</button></Link>
             </div>
             <br/>
             <div>
                 <h3 className='landing-text'>Already have an account?</h3>
                 <br/>
-            <Link style={{textDecoration: 'none'}} to='/login'><button>Login</button></Link>
+            <Link style={{textDecoration: 'none'}} to='/login'><button className='button'>Login</button></Link>
             </div>
         </div>
         )

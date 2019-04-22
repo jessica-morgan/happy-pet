@@ -40,7 +40,7 @@ class Login extends React.Component {
             <input className='input-fields' type='password' id='password' name='password' placeholder='password' value={this.state.password} onChange={this.handleChange}/>
             <br/>
             <div>
-              <button onClick = {() => {this.checkLogInDetails(this.state.username, this.state.password)}}>
+              <button className='button' onClick = {() => {this.checkLogInDetails(this.state.username, this.state.password)}}>
               Login</button>
             </div>
             

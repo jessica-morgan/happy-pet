@@ -9,7 +9,7 @@ module.exports = {
   module: {
     loaders: [
       {
-        loader: 'babel-loader',
+        loader: 'babel-loader', 
         test: /\.jsx?$/,
         exclude: /node_modules/
       }
@@ -20,4 +20,3 @@ module.exports = {
   },
   devtool: 'source-map'
 }
-
