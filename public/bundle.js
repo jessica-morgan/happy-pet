@@ -38826,7 +38826,7 @@ exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapSt
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -38843,10 +38843,6 @@ var _petInfo = __webpack_require__(19);
 
 var _dateFns = __webpack_require__(34);
 
-var _ProgressBar = __webpack_require__(278);
-
-var _ProgressBar2 = _interopRequireDefault(_ProgressBar);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -38856,147 +38852,140 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var PetPage = function (_React$Component) {
-  _inherits(PetPage, _React$Component);
+    _inherits(PetPage, _React$Component);
 
-  function PetPage(props) {
-    _classCallCheck(this, PetPage);
+    function PetPage(props) {
+        _classCallCheck(this, PetPage);
 
-    var _this = _possibleConstructorReturn(this, (PetPage.__proto__ || Object.getPrototypeOf(PetPage)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (PetPage.__proto__ || Object.getPrototypeOf(PetPage)).call(this, props));
 
-    _this.state = {};
-    _this.checkLastFed = _this.checkLastFed.bind(_this);
-    return _this;
-  }
-
-  _createClass(PetPage, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      if (this.props.loggedin === true) {
-        this.props.history.push('/petpage');
-      } else {
-        this.props.history.push('/login');
-      }
+        _this.state = {};
+        _this.checkLastFed = _this.checkLastFed.bind(_this);
+        return _this;
     }
-  }, {
-    key: 'checkLastFed',
-    value: function checkLastFed() {
-      var currentDate = (0, _dateFns.format)(new Date());
-      console.log(currentDate);
-      var lastfed = (0, _dateFns.format)(this.props.lastFed);
-      console.log(lastfed);
-      var diff = (0, _dateFns.differenceInHours)(currentDate, lastfed);
-      console.log(diff);
-      if (diff > 24) {
-        //if time diff is more than 24 hours dispatch pethunger to true
-        this.props.dispatch((0, _petInfo.petHunger)(true));
-      } else {
-        //else dispatch false
-        this.props.dispatch((0, _petInfo.petHunger)(false));
-      }
-      this.props.history.push('/feedpet');
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
 
-      //to work out percentage of time elapsed since last fed
-      var timeNow = (0, _dateFns.format)(new Date());
-      var timeLastFed = (0, _dateFns.format)(this.props.lastFed);
-      var difference = (0, _dateFns.differenceInHours)(timeNow, timeLastFed);
-      var percentage = Math.floor(100 * difference / 24);
+    _createClass(PetPage, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            if (this.props.loggedin === true) {
+                this.props.history.push('/petpage');
+            } else {
+                this.props.history.push('/login');
+            }
+        }
+    }, {
+        key: 'checkLastFed',
+        value: function checkLastFed() {
+            var currentDate = (0, _dateFns.format)(new Date());
+            console.log(currentDate);
+            var lastfed = (0, _dateFns.format)(this.props.lastFed);
+            console.log(lastfed);
+            var diff = (0, _dateFns.differenceInHours)(currentDate, lastfed);
+            console.log(diff);
+            if (diff > 24) {
+                //if time diff is more than 24 hours dispatch pethunger to true
+                this.props.dispatch((0, _petInfo.petHunger)(true));
+            } else {
+                //else dispatch false
+                this.props.dispatch((0, _petInfo.petHunger)(false));
+            }
+            this.props.history.push('/feedpet');
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
 
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'h1',
-          { className: 'title' },
-          this.props.petName
-        ),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(_ProgressBar2.default, { className: 'progress-container', now: Math.floor(percentage), label: percentage + '%', variant: 'success' }),
-        _react2.default.createElement(
-          'div',
-          { className: 'petPage-container' },
-          this.props.petType ? _react2.default.createElement('img', { className: 'petPage-row-col1 petPage-grid-images', src: this.props.petImage }) : _react2.default.createElement('div', { className: 'petPage-row-col1 petPage-grid-images' }),
-          _react2.default.createElement(
-            'h3',
-            { className: 'petPage-row-col10 petPage-stats-title' },
-            _react2.default.createElement(
-              'button',
-              { className: 'button', onClick: function onClick() {
-                  _this2.checkLastFed();
-                } },
-              'Feed ',
-              this.props.petName
-            )
-          ),
-          _react2.default.createElement(
-            'h3',
-            { className: 'petPage-row-col2 petPage-stats-title' },
-            'Owner:'
-          ),
-          _react2.default.createElement(
-            'h3',
-            { className: 'petPage-row-col3 landing-text' },
-            this.props.username
-          ),
-          _react2.default.createElement(
-            'h3',
-            { className: 'petPage-row-col4 petPage-stats-title ' },
-            'Habitat:'
-          ),
-          _react2.default.createElement(
-            'h3',
-            { className: 'petPage-row-col5 landing-text' },
-            this.props.habitat
-          ),
-          _react2.default.createElement(
-            'h3',
-            { className: 'petPage-row-col6 petPage-stats-title ' },
-            'Activity:'
-          ),
-          _react2.default.createElement(
-            'h3',
-            { className: 'petPage-row-col7 landing-text' },
-            this.props.activity
-          ),
-          _react2.default.createElement(
-            'h3',
-            { className: 'petPage-row-col8 petPage-stats-title ' },
-            'Age:'
-          ),
-          _react2.default.createElement(
-            'h3',
-            { className: 'petPage-row-col9 landing-text' },
-            this.props.petAge,
-            ' days old'
-          )
-        )
-      );
-    }
-  }]);
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'h1',
+                    { className: 'title' },
+                    this.props.petName
+                ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'petPage-container' },
+                    this.props.petType ? _react2.default.createElement('img', { className: 'petPage-row-col1 petPage-grid-images', src: this.props.petImage }) : _react2.default.createElement('div', { className: 'petPage-row-col1 petPage-grid-images' }),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'petPage-row-col10 petPage-stats-title' },
+                        _react2.default.createElement(
+                            'button',
+                            { className: 'button', onClick: function onClick() {
+                                    _this2.checkLastFed();
+                                } },
+                            'Feed ',
+                            this.props.petName
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'petPage-row-col2 petPage-stats-title' },
+                        'Owner:'
+                    ),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'petPage-row-col3 landing-text' },
+                        this.props.username
+                    ),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'petPage-row-col4 petPage-stats-title ' },
+                        'Habitat:'
+                    ),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'petPage-row-col5 landing-text' },
+                        this.props.habitat
+                    ),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'petPage-row-col6 petPage-stats-title ' },
+                        'Activity:'
+                    ),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'petPage-row-col7 landing-text' },
+                        this.props.activity
+                    ),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'petPage-row-col8 petPage-stats-title ' },
+                        'Age:'
+                    ),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'petPage-row-col9 landing-text' },
+                        this.props.petAge,
+                        ' days old'
+                    )
+                )
+            );
+        }
+    }]);
 
-  return PetPage;
+    return PetPage;
 }(_react2.default.Component);
 
 function mapStateToProps(state) {
-  return {
-    loggedin: state.login.loggedin,
-    username: state.login.username,
-    petType: state.getPetInfo.petType,
-    petName: state.getPetInfo.petName,
-    habitat: state.getPetInfo.habitat,
-    activity: state.getPetInfo.activity,
-    petImage: state.getPetInfo.petImage,
-    fed: state.getPetInfo.fed,
-    lastFed: state.getPetInfo.lastFed,
-    petCreated: state.getPetInfo.petCreated,
-    petAge: state.getPetInfo.petAge
-  };
+    return {
+        loggedin: state.login.loggedin,
+        username: state.login.username,
+        petType: state.getPetInfo.petType,
+        petName: state.getPetInfo.petName,
+        habitat: state.getPetInfo.habitat,
+        activity: state.getPetInfo.activity,
+        petImage: state.getPetInfo.petImage,
+        fed: state.getPetInfo.fed,
+        lastFed: state.getPetInfo.lastFed,
+        petCreated: state.getPetInfo.petCreated,
+        petAge: state.getPetInfo.petAge
+    };
 }
 
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(PetPage));
@@ -43690,6 +43679,10 @@ var _pets = __webpack_require__(33);
 
 var _dateFns = __webpack_require__(34);
 
+var _ProgressBar = __webpack_require__(278);
+
+var _ProgressBar2 = _interopRequireDefault(_ProgressBar);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -43734,12 +43727,18 @@ var FeedPet = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
+      //to work out percentage of time elapsed since last fed
+      var timeNow = (0, _dateFns.format)(new Date());
+      var timeLastFed = (0, _dateFns.format)(this.props.lastFed);
+      var difference = (0, _dateFns.differenceInHours)(timeNow, timeLastFed);
+      var percentage = Math.floor(100 * difference / 24);
+
       return _react2.default.createElement(
         'div',
         null,
         _react2.default.createElement(
           'h1',
-          { className: styles.title },
+          { className: 'title' },
           'Feed ',
           this.props.petName
         ),
@@ -43748,11 +43747,12 @@ var FeedPet = function (_React$Component) {
         _react2.default.createElement('br', null),
         _react2.default.createElement(
           'div',
-          { className: styles.feed - pet - container },
-          this.props.petType ? _react2.default.createElement('img', { className: styles.feed - pet - row - col1 && styles.petPage - grid - images, src: this.props.petImage }) : _react2.default.createElement('div', { className: styles.feed - pet - row - col1 && styles.petPage - grid - images }),
-          this.props.hunger === true ? _react2.default.createElement(
+          { className: 'feed-pet-container' },
+          this.props.petType ? _react2.default.createElement('img', { className: 'feed-pet-row-col1 petPage-grid-images', src: this.props.petImage }) : _react2.default.createElement('div', { className: 'feed-pet-row-col1 styles.petPage-grid-images' }),
+          _react2.default.createElement(_ProgressBar2.default, { className: 'progress-container feed-pet-row-col2', label: percentage + '%', variant: 'warning' }),
+          percentage <= 99 ? _react2.default.createElement(
             'h3',
-            { className: styles.feed - pet - row - col2 && styles.petPage - stats - title },
+            { className: 'feed-pet-row-col3 styles.petPage-stats-title' },
             _react2.default.createElement(
               'button',
               { className: 'button', onClick: function onClick() {
@@ -43763,10 +43763,11 @@ var FeedPet = function (_React$Component) {
             )
           ) : _react2.default.createElement(
             'h3',
-            { className: styles.feed - pet - row - col2 && styles.petPage - stats - title },
+            { className: 'feed-pet-row-col3 styles.petPage-stats-title' },
             'I\'m full!'
           )
-        )
+        ),
+        _react2.default.createElement('br', null)
       );
     }
   }]);

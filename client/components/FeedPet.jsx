@@ -3,7 +3,8 @@ import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { petHunger } from '../actions/petInfo'
 import { feedPetApi } from '../api/pets'
-import {format} from 'date-fns'
+import {format, differenceInHours} from 'date-fns'
+import ProgressBar from 'react-bootstrap/ProgressBar'
 
 class FeedPet extends React.Component {
     constructor(props) {
@@ -31,23 +32,33 @@ class FeedPet extends React.Component {
     }
 
       render() {
+ //to work out percentage of time elapsed since last fed
+ const timeNow = format(new Date)
+ const timeLastFed = format(this.props.lastFed)
+ const difference = differenceInHours(timeNow, timeLastFed)
+ const percentage = Math.floor((100 * difference) / 24)
 
         return (
         
            <div>
-            <h1 className={styles.title}>Feed {this.props.petName}</h1>
+            <h1 className='title'>Feed {this.props.petName}</h1>
              <br/><br/><br/>
-              <div className={styles.feed-pet-container}>    
-                 {this.props.petType ? <img className={styles.feed-pet-row-col1 && styles.petPage-grid-images} src={this.props.petImage}/> 
-                : <div className={styles.feed-pet-row-col1 && styles.petPage-grid-images}></div>}
+              <div className='feed-pet-container'>    
+                 {this.props.petType ? <img className='feed-pet-row-col1 petPage-grid-images' src={this.props.petImage}/> 
+                : <div className='feed-pet-row-col1 styles.petPage-grid-images'></div>}
 
-                {/* checks pet hunger status- if hungry show button if flase show 'i'm full' */}
-                {this.props.hunger === true ? 
-                <h3 className={styles.feed-pet-row-col2 && styles.petPage-stats-title}>
+                 <ProgressBar className='progress-container feed-pet-row-col2' label={`${percentage}%`} variant="warning"/>
+               
+                {percentage <= 99 ? 
+                <h3 className='feed-pet-row-col3 styles.petPage-stats-title'>
                 <button className='button' onClick={() => {this.feedPet(this.props.username)}}>Feed {this.props.petName}</button></h3> 
-                : <h3 className={styles.feed-pet-row-col2 && styles.petPage-stats-title}>I'm full!</h3>
+                : <h3 className='feed-pet-row-col3 styles.petPage-stats-title'>I'm full!</h3>
               }
+             
             </div>
+            <br/>
+                 
+                  
            </div>
         )
 
