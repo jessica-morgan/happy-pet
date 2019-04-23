@@ -632,12 +632,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "withRouter", function() { return __WEBPACK_IMPORTED_MODULE_2_react_router__["k"]; });
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "__RouterContext", function() { return __WEBPACK_IMPORTED_MODULE_2_react_router__["h"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_prop_types__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_prop_types__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_tiny_warning__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__babel_runtime_helpers_esm_extends__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_tiny_warning__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__babel_runtime_helpers_esm_extends__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__babel_runtime_helpers_esm_objectWithoutPropertiesLoose__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_tiny_invariant__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_tiny_invariant__ = __webpack_require__(33);
 
 
 
@@ -896,7 +896,7 @@ if (process.env.NODE_ENV !== "production") {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Provider__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Context__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Context__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__connect_connect__ = __webpack_require__(120);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Provider", function() { return __WEBPACK_IMPORTED_MODULE_0__components_Provider__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "connectAdvanced", function() { return __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__["a"]; });
@@ -985,7 +985,7 @@ module.exports = getISOYear
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var startOfWeek = __webpack_require__(20)
+var startOfWeek = __webpack_require__(22)
 
 /**
  * @category ISO Week Helpers
@@ -1796,6 +1796,83 @@ if (process.env.NODE_ENV !== 'production' && typeof isCrushed.name === 'string' 
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.petAge = exports.petCreated = exports.petHunger = exports.petImg = exports.petInfo = undefined;
+exports.getUsersPetInfo = getUsersPetInfo;
+exports.getPetImage = getPetImage;
+
+var _users = __webpack_require__(19);
+
+var _pets = __webpack_require__(20);
+
+//get petinfo via api and dispatch to petInfo action
+function getUsersPetInfo(username) {
+    return function (dispatch) {
+        (0, _users.getUsersPetApi)(username).then(function (res) {
+            return dispatch(petInfo(res[0].username, res[0].petType, res[0].petName, res[0].habitat, res[0].activity, res[0].fed, res[0].last_fed, res[0].petCreatedAt));
+        });
+    };
+}
+//returns image url according to pettype
+function getPetImage(pettype) {
+    return function (dispatch) {
+        (0, _pets.petImageApi)(pettype).then(function (res) {
+            return dispatch(petImg(res));
+        });
+    };
+}
+
+var petInfo = exports.petInfo = function petInfo(username, petType, petName, habitat, activity, fed, lastFed, petCreated) {
+    return {
+        type: 'PET_INFO',
+        username: username,
+        petType: petType,
+        petName: petName,
+        habitat: habitat,
+        activity: activity,
+        fed: fed,
+        lastFed: lastFed,
+        petCreated: petCreated
+    };
+};
+
+var petImg = exports.petImg = function petImg(petImgUrl) {
+    return {
+        type: 'PET_IMG',
+        petImgUrl: petImgUrl
+    };
+};
+
+var petHunger = exports.petHunger = function petHunger(bool) {
+    return {
+        type: 'PET_HUNGER',
+        bool: bool
+    };
+};
+
+var petCreated = exports.petCreated = function petCreated(date) {
+    return {
+        type: 'PET_CREATED',
+        date: date
+    };
+};
+
+var petAge = exports.petAge = function petAge(age) {
+    return {
+        type: 'PET_AGE',
+        age: age
+    };
+};
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var parse = __webpack_require__(0)
 
 /**
@@ -1825,7 +1902,7 @@ module.exports = addDays
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(0)
@@ -1856,7 +1933,7 @@ module.exports = addMilliseconds
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getISOYear = __webpack_require__(6)
@@ -1894,7 +1971,7 @@ module.exports = startOfISOYear
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(0)
@@ -1951,7 +2028,7 @@ module.exports = compareAsc
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
 var g;
@@ -1978,7 +2055,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -1989,7 +2066,7 @@ module.exports = g;
  */
 
 if (process.env.NODE_ENV !== 'production') {
-  var ReactIs = __webpack_require__(17);
+  var ReactIs = __webpack_require__(18);
 
   // By explicitly using `prop-types` you are opting into new development behavior.
   // http://fb.me/prop-types-in-prod
@@ -2004,7 +2081,7 @@ if (process.env.NODE_ENV !== 'production') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2019,7 +2096,7 @@ if (process.env.NODE_ENV === 'production') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2092,84 +2169,237 @@ function logoutUserApi(username) {
 }
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
-exports.petAge = exports.petCreated = exports.petHunger = exports.petImg = exports.petInfo = undefined;
-exports.getUsersPetInfo = getUsersPetInfo;
-exports.getPetImage = getPetImage;
+exports.getPetApi = getPetApi;
+exports.newpetApi = newpetApi;
+exports.petImageApi = petImageApi;
+exports.feedPetApi = feedPetApi;
 
-var _users = __webpack_require__(18);
+var _superagent = __webpack_require__(60);
 
-var _pets = __webpack_require__(33);
+var _superagent2 = _interopRequireDefault(_superagent);
 
-//get petinfo via api and dispatch to petInfo action
-function getUsersPetInfo(username) {
-    return function (dispatch) {
-        (0, _users.getUsersPetApi)(username).then(function (res) {
-            return dispatch(petInfo(res[0].username, res[0].petType, res[0].petName, res[0].habitat, res[0].activity, res[0].fed, res[0].last_fed, res[0].petCreatedAt));
-        });
-    };
-}
-//returns image url according to pettype
-function getPetImage(pettype) {
-    return function (dispatch) {
-        (0, _pets.petImageApi)(pettype).then(function (res) {
-            return dispatch(petImg(res));
-        });
-    };
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var url = 'http://localhost:3000/api/v1/pets';
+
+//gets all pets data
+function getPetApi() {
+  return _superagent2.default.get('' + url).then(function (res) {
+    return res.body;
+  }).catch(function (err) {
+    if (err) throw Error('Cannot get pets');
+  });
 }
 
-var petInfo = exports.petInfo = function petInfo(username, petType, petName, habitat, activity, fed, lastFed, petCreated) {
-    return {
-        type: 'PET_INFO',
-        username: username,
-        petType: petType,
-        petName: petName,
-        habitat: habitat,
-        activity: activity,
-        fed: fed,
-        lastFed: lastFed,
-        petCreated: petCreated
-    };
-};
+//posts new pet
+function newpetApi(ownername, pettype, petname, pethabitat, petactivity) {
+  return _superagent2.default.post(url + '/newpet/' + ownername).send({
+    owner: ownername,
+    petType: pettype,
+    petName: petname,
+    habitat: pethabitat,
+    activity: petactivity
+  }).then(function (res) {
+    return res.body;
+  }).catch(function (err) {
+    if (err) throw Error('Cannot create pet');
+  });
+}
 
-var petImg = exports.petImg = function petImg(petImgUrl) {
-    return {
-        type: 'PET_IMG',
-        petImgUrl: petImgUrl
-    };
-};
+//gets pet image by pet type
+function petImageApi(pettype) {
+  return _superagent2.default.get(url + '/petimage/' + pettype).then(function (res) {
+    return res.body[0].imageUrl;
+  }).catch(function (err) {
+    if (err) throw Error('Cannot create pet');
+  });
+}
 
-var petHunger = exports.petHunger = function petHunger(bool) {
-    return {
-        type: 'PET_HUNGER',
-        bool: bool
-    };
-};
-
-var petCreated = exports.petCreated = function petCreated(date) {
-    return {
-        type: 'PET_CREATED',
-        date: date
-    };
-};
-
-var petAge = exports.petAge = function petAge(age) {
-    return {
-        type: 'PET_AGE',
-        age: age
-    };
-};
+//posts pets fed status
+function feedPetApi(username, lastFed) {
+  return _superagent2.default.post(url + '/feedpet/' + username).send({
+    last_fed: lastFed,
+    fed: true
+  }).then(function (res) {
+    return res.body;
+  }).catch(function (err) {
+    if (err) throw Error('Cannot feed pet');
+  });
+}
 
 /***/ }),
-/* 20 */
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = {
+  addDays: __webpack_require__(12),
+  addHours: __webpack_require__(63),
+  addISOYears: __webpack_require__(64),
+  addMilliseconds: __webpack_require__(13),
+  addMinutes: __webpack_require__(66),
+  addMonths: __webpack_require__(24),
+  addQuarters: __webpack_require__(67),
+  addSeconds: __webpack_require__(68),
+  addWeeks: __webpack_require__(37),
+  addYears: __webpack_require__(69),
+  areRangesOverlapping: __webpack_require__(177),
+  closestIndexTo: __webpack_require__(178),
+  closestTo: __webpack_require__(179),
+  compareAsc: __webpack_require__(15),
+  compareDesc: __webpack_require__(38),
+  differenceInCalendarDays: __webpack_require__(23),
+  differenceInCalendarISOWeeks: __webpack_require__(180),
+  differenceInCalendarISOYears: __webpack_require__(70),
+  differenceInCalendarMonths: __webpack_require__(71),
+  differenceInCalendarQuarters: __webpack_require__(181),
+  differenceInCalendarWeeks: __webpack_require__(182),
+  differenceInCalendarYears: __webpack_require__(73),
+  differenceInDays: __webpack_require__(74),
+  differenceInHours: __webpack_require__(183),
+  differenceInISOYears: __webpack_require__(184),
+  differenceInMilliseconds: __webpack_require__(25),
+  differenceInMinutes: __webpack_require__(185),
+  differenceInMonths: __webpack_require__(39),
+  differenceInQuarters: __webpack_require__(186),
+  differenceInSeconds: __webpack_require__(40),
+  differenceInWeeks: __webpack_require__(187),
+  differenceInYears: __webpack_require__(188),
+  distanceInWords: __webpack_require__(76),
+  distanceInWordsStrict: __webpack_require__(192),
+  distanceInWordsToNow: __webpack_require__(193),
+  eachDay: __webpack_require__(194),
+  endOfDay: __webpack_require__(42),
+  endOfHour: __webpack_require__(195),
+  endOfISOWeek: __webpack_require__(196),
+  endOfISOYear: __webpack_require__(197),
+  endOfMinute: __webpack_require__(198),
+  endOfMonth: __webpack_require__(78),
+  endOfQuarter: __webpack_require__(199),
+  endOfSecond: __webpack_require__(200),
+  endOfToday: __webpack_require__(201),
+  endOfTomorrow: __webpack_require__(202),
+  endOfWeek: __webpack_require__(77),
+  endOfYear: __webpack_require__(203),
+  endOfYesterday: __webpack_require__(204),
+  format: __webpack_require__(205),
+  getDate: __webpack_require__(206),
+  getDay: __webpack_require__(207),
+  getDayOfYear: __webpack_require__(79),
+  getDaysInMonth: __webpack_require__(36),
+  getDaysInYear: __webpack_require__(208),
+  getHours: __webpack_require__(209),
+  getISODay: __webpack_require__(83),
+  getISOWeek: __webpack_require__(43),
+  getISOWeeksInYear: __webpack_require__(210),
+  getISOYear: __webpack_require__(6),
+  getMilliseconds: __webpack_require__(211),
+  getMinutes: __webpack_require__(212),
+  getMonth: __webpack_require__(213),
+  getOverlappingDaysInRanges: __webpack_require__(214),
+  getQuarter: __webpack_require__(72),
+  getSeconds: __webpack_require__(215),
+  getTime: __webpack_require__(216),
+  getYear: __webpack_require__(217),
+  isAfter: __webpack_require__(218),
+  isBefore: __webpack_require__(219),
+  isDate: __webpack_require__(35),
+  isEqual: __webpack_require__(220),
+  isFirstDayOfMonth: __webpack_require__(221),
+  isFriday: __webpack_require__(222),
+  isFuture: __webpack_require__(223),
+  isLastDayOfMonth: __webpack_require__(224),
+  isLeapYear: __webpack_require__(82),
+  isMonday: __webpack_require__(225),
+  isPast: __webpack_require__(226),
+  isSameDay: __webpack_require__(227),
+  isSameHour: __webpack_require__(84),
+  isSameISOWeek: __webpack_require__(86),
+  isSameISOYear: __webpack_require__(87),
+  isSameMinute: __webpack_require__(88),
+  isSameMonth: __webpack_require__(90),
+  isSameQuarter: __webpack_require__(91),
+  isSameSecond: __webpack_require__(93),
+  isSameWeek: __webpack_require__(44),
+  isSameYear: __webpack_require__(95),
+  isSaturday: __webpack_require__(228),
+  isSunday: __webpack_require__(229),
+  isThisHour: __webpack_require__(230),
+  isThisISOWeek: __webpack_require__(231),
+  isThisISOYear: __webpack_require__(232),
+  isThisMinute: __webpack_require__(233),
+  isThisMonth: __webpack_require__(234),
+  isThisQuarter: __webpack_require__(235),
+  isThisSecond: __webpack_require__(236),
+  isThisWeek: __webpack_require__(237),
+  isThisYear: __webpack_require__(238),
+  isThursday: __webpack_require__(239),
+  isToday: __webpack_require__(240),
+  isTomorrow: __webpack_require__(241),
+  isTuesday: __webpack_require__(242),
+  isValid: __webpack_require__(81),
+  isWednesday: __webpack_require__(243),
+  isWeekend: __webpack_require__(244),
+  isWithinRange: __webpack_require__(245),
+  isYesterday: __webpack_require__(246),
+  lastDayOfISOWeek: __webpack_require__(247),
+  lastDayOfISOYear: __webpack_require__(248),
+  lastDayOfMonth: __webpack_require__(249),
+  lastDayOfQuarter: __webpack_require__(250),
+  lastDayOfWeek: __webpack_require__(96),
+  lastDayOfYear: __webpack_require__(251),
+  max: __webpack_require__(252),
+  min: __webpack_require__(253),
+  parse: __webpack_require__(0),
+  setDate: __webpack_require__(254),
+  setDay: __webpack_require__(255),
+  setDayOfYear: __webpack_require__(256),
+  setHours: __webpack_require__(257),
+  setISODay: __webpack_require__(258),
+  setISOWeek: __webpack_require__(259),
+  setISOYear: __webpack_require__(65),
+  setMilliseconds: __webpack_require__(260),
+  setMinutes: __webpack_require__(261),
+  setMonth: __webpack_require__(97),
+  setQuarter: __webpack_require__(262),
+  setSeconds: __webpack_require__(263),
+  setYear: __webpack_require__(264),
+  startOfDay: __webpack_require__(8),
+  startOfHour: __webpack_require__(85),
+  startOfISOWeek: __webpack_require__(7),
+  startOfISOYear: __webpack_require__(14),
+  startOfMinute: __webpack_require__(89),
+  startOfMonth: __webpack_require__(265),
+  startOfQuarter: __webpack_require__(92),
+  startOfSecond: __webpack_require__(94),
+  startOfToday: __webpack_require__(266),
+  startOfTomorrow: __webpack_require__(267),
+  startOfWeek: __webpack_require__(22),
+  startOfYear: __webpack_require__(80),
+  startOfYesterday: __webpack_require__(268),
+  subDays: __webpack_require__(269),
+  subHours: __webpack_require__(270),
+  subISOYears: __webpack_require__(75),
+  subMilliseconds: __webpack_require__(271),
+  subMinutes: __webpack_require__(272),
+  subMonths: __webpack_require__(273),
+  subQuarters: __webpack_require__(274),
+  subSeconds: __webpack_require__(275),
+  subWeeks: __webpack_require__(276),
+  subYears: __webpack_require__(277)
+}
+
+
+/***/ }),
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(0)
@@ -2213,7 +2443,7 @@ module.exports = startOfWeek
 
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var startOfDay = __webpack_require__(8)
@@ -2260,7 +2490,7 @@ module.exports = differenceInCalendarDays
 
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(0)
@@ -2300,7 +2530,7 @@ module.exports = addMonths
 
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(0)
@@ -2335,7 +2565,7 @@ module.exports = differenceInMilliseconds
 
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2351,7 +2581,7 @@ module.exports = differenceInMilliseconds
 var printWarning = function() {};
 
 if (process.env.NODE_ENV !== 'production') {
-  var ReactPropTypesSecret = __webpack_require__(25);
+  var ReactPropTypesSecret = __webpack_require__(27);
   var loggedTypeFailures = {};
   var has = Function.call.bind(Object.prototype.hasOwnProperty);
 
@@ -2445,7 +2675,7 @@ module.exports = checkPropTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2464,7 +2694,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2476,7 +2706,7 @@ var ReactReduxContext = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createCont
 /* unused harmony default export */ var _unused_webpack_default_export = (ReactReduxContext);
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2500,7 +2730,7 @@ function _extends() {
 }
 
 /***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2521,7 +2751,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 }
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2549,7 +2779,7 @@ function warning(condition, message) {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2573,7 +2803,7 @@ function _extends() {
 }
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2596,7 +2826,7 @@ function invariant(condition, message) {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2743,236 +2973,6 @@ function persistReducer(config, baseReducer) {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.getPetApi = getPetApi;
-exports.newpetApi = newpetApi;
-exports.petImageApi = petImageApi;
-exports.feedPetApi = feedPetApi;
-
-var _superagent = __webpack_require__(60);
-
-var _superagent2 = _interopRequireDefault(_superagent);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var url = 'http://localhost:3000/api/v1/pets';
-
-//gets all pets data
-function getPetApi() {
-  return _superagent2.default.get('' + url).then(function (res) {
-    return res.body;
-  }).catch(function (err) {
-    if (err) throw Error('Cannot get pets');
-  });
-}
-
-//posts new pet
-function newpetApi(ownername, pettype, petname, pethabitat, petactivity) {
-  return _superagent2.default.post(url + '/newpet/' + ownername).send({
-    owner: ownername,
-    petType: pettype,
-    petName: petname,
-    habitat: pethabitat,
-    activity: petactivity
-  }).then(function (res) {
-    return res.body;
-  }).catch(function (err) {
-    if (err) throw Error('Cannot create pet');
-  });
-}
-
-//gets pet image by pet type
-function petImageApi(pettype) {
-  return _superagent2.default.get(url + '/petimage/' + pettype).then(function (res) {
-    return res.body[0].imageUrl;
-  }).catch(function (err) {
-    if (err) throw Error('Cannot create pet');
-  });
-}
-
-//posts pets fed status
-function feedPetApi(username, lastFed) {
-  return _superagent2.default.post(url + '/feedpet/' + username).send({
-    last_fed: lastFed,
-    fed: true
-  }).then(function (res) {
-    return res.body;
-  }).catch(function (err) {
-    if (err) throw Error('Cannot feed pet');
-  });
-}
-
-/***/ }),
-/* 34 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = {
-  addDays: __webpack_require__(11),
-  addHours: __webpack_require__(63),
-  addISOYears: __webpack_require__(64),
-  addMilliseconds: __webpack_require__(12),
-  addMinutes: __webpack_require__(66),
-  addMonths: __webpack_require__(22),
-  addQuarters: __webpack_require__(67),
-  addSeconds: __webpack_require__(68),
-  addWeeks: __webpack_require__(37),
-  addYears: __webpack_require__(69),
-  areRangesOverlapping: __webpack_require__(177),
-  closestIndexTo: __webpack_require__(178),
-  closestTo: __webpack_require__(179),
-  compareAsc: __webpack_require__(14),
-  compareDesc: __webpack_require__(38),
-  differenceInCalendarDays: __webpack_require__(21),
-  differenceInCalendarISOWeeks: __webpack_require__(180),
-  differenceInCalendarISOYears: __webpack_require__(70),
-  differenceInCalendarMonths: __webpack_require__(71),
-  differenceInCalendarQuarters: __webpack_require__(181),
-  differenceInCalendarWeeks: __webpack_require__(182),
-  differenceInCalendarYears: __webpack_require__(73),
-  differenceInDays: __webpack_require__(74),
-  differenceInHours: __webpack_require__(183),
-  differenceInISOYears: __webpack_require__(184),
-  differenceInMilliseconds: __webpack_require__(23),
-  differenceInMinutes: __webpack_require__(185),
-  differenceInMonths: __webpack_require__(39),
-  differenceInQuarters: __webpack_require__(186),
-  differenceInSeconds: __webpack_require__(40),
-  differenceInWeeks: __webpack_require__(187),
-  differenceInYears: __webpack_require__(188),
-  distanceInWords: __webpack_require__(76),
-  distanceInWordsStrict: __webpack_require__(192),
-  distanceInWordsToNow: __webpack_require__(193),
-  eachDay: __webpack_require__(194),
-  endOfDay: __webpack_require__(42),
-  endOfHour: __webpack_require__(195),
-  endOfISOWeek: __webpack_require__(196),
-  endOfISOYear: __webpack_require__(197),
-  endOfMinute: __webpack_require__(198),
-  endOfMonth: __webpack_require__(78),
-  endOfQuarter: __webpack_require__(199),
-  endOfSecond: __webpack_require__(200),
-  endOfToday: __webpack_require__(201),
-  endOfTomorrow: __webpack_require__(202),
-  endOfWeek: __webpack_require__(77),
-  endOfYear: __webpack_require__(203),
-  endOfYesterday: __webpack_require__(204),
-  format: __webpack_require__(205),
-  getDate: __webpack_require__(206),
-  getDay: __webpack_require__(207),
-  getDayOfYear: __webpack_require__(79),
-  getDaysInMonth: __webpack_require__(36),
-  getDaysInYear: __webpack_require__(208),
-  getHours: __webpack_require__(209),
-  getISODay: __webpack_require__(83),
-  getISOWeek: __webpack_require__(43),
-  getISOWeeksInYear: __webpack_require__(210),
-  getISOYear: __webpack_require__(6),
-  getMilliseconds: __webpack_require__(211),
-  getMinutes: __webpack_require__(212),
-  getMonth: __webpack_require__(213),
-  getOverlappingDaysInRanges: __webpack_require__(214),
-  getQuarter: __webpack_require__(72),
-  getSeconds: __webpack_require__(215),
-  getTime: __webpack_require__(216),
-  getYear: __webpack_require__(217),
-  isAfter: __webpack_require__(218),
-  isBefore: __webpack_require__(219),
-  isDate: __webpack_require__(35),
-  isEqual: __webpack_require__(220),
-  isFirstDayOfMonth: __webpack_require__(221),
-  isFriday: __webpack_require__(222),
-  isFuture: __webpack_require__(223),
-  isLastDayOfMonth: __webpack_require__(224),
-  isLeapYear: __webpack_require__(82),
-  isMonday: __webpack_require__(225),
-  isPast: __webpack_require__(226),
-  isSameDay: __webpack_require__(227),
-  isSameHour: __webpack_require__(84),
-  isSameISOWeek: __webpack_require__(86),
-  isSameISOYear: __webpack_require__(87),
-  isSameMinute: __webpack_require__(88),
-  isSameMonth: __webpack_require__(90),
-  isSameQuarter: __webpack_require__(91),
-  isSameSecond: __webpack_require__(93),
-  isSameWeek: __webpack_require__(44),
-  isSameYear: __webpack_require__(95),
-  isSaturday: __webpack_require__(228),
-  isSunday: __webpack_require__(229),
-  isThisHour: __webpack_require__(230),
-  isThisISOWeek: __webpack_require__(231),
-  isThisISOYear: __webpack_require__(232),
-  isThisMinute: __webpack_require__(233),
-  isThisMonth: __webpack_require__(234),
-  isThisQuarter: __webpack_require__(235),
-  isThisSecond: __webpack_require__(236),
-  isThisWeek: __webpack_require__(237),
-  isThisYear: __webpack_require__(238),
-  isThursday: __webpack_require__(239),
-  isToday: __webpack_require__(240),
-  isTomorrow: __webpack_require__(241),
-  isTuesday: __webpack_require__(242),
-  isValid: __webpack_require__(81),
-  isWednesday: __webpack_require__(243),
-  isWeekend: __webpack_require__(244),
-  isWithinRange: __webpack_require__(245),
-  isYesterday: __webpack_require__(246),
-  lastDayOfISOWeek: __webpack_require__(247),
-  lastDayOfISOYear: __webpack_require__(248),
-  lastDayOfMonth: __webpack_require__(249),
-  lastDayOfQuarter: __webpack_require__(250),
-  lastDayOfWeek: __webpack_require__(96),
-  lastDayOfYear: __webpack_require__(251),
-  max: __webpack_require__(252),
-  min: __webpack_require__(253),
-  parse: __webpack_require__(0),
-  setDate: __webpack_require__(254),
-  setDay: __webpack_require__(255),
-  setDayOfYear: __webpack_require__(256),
-  setHours: __webpack_require__(257),
-  setISODay: __webpack_require__(258),
-  setISOWeek: __webpack_require__(259),
-  setISOYear: __webpack_require__(65),
-  setMilliseconds: __webpack_require__(260),
-  setMinutes: __webpack_require__(261),
-  setMonth: __webpack_require__(97),
-  setQuarter: __webpack_require__(262),
-  setSeconds: __webpack_require__(263),
-  setYear: __webpack_require__(264),
-  startOfDay: __webpack_require__(8),
-  startOfHour: __webpack_require__(85),
-  startOfISOWeek: __webpack_require__(7),
-  startOfISOYear: __webpack_require__(13),
-  startOfMinute: __webpack_require__(89),
-  startOfMonth: __webpack_require__(265),
-  startOfQuarter: __webpack_require__(92),
-  startOfSecond: __webpack_require__(94),
-  startOfToday: __webpack_require__(266),
-  startOfTomorrow: __webpack_require__(267),
-  startOfWeek: __webpack_require__(20),
-  startOfYear: __webpack_require__(80),
-  startOfYesterday: __webpack_require__(268),
-  subDays: __webpack_require__(269),
-  subHours: __webpack_require__(270),
-  subISOYears: __webpack_require__(75),
-  subMilliseconds: __webpack_require__(271),
-  subMinutes: __webpack_require__(272),
-  subMonths: __webpack_require__(273),
-  subQuarters: __webpack_require__(274),
-  subSeconds: __webpack_require__(275),
-  subWeeks: __webpack_require__(276),
-  subYears: __webpack_require__(277)
-}
-
-
-/***/ }),
 /* 35 */
 /***/ (function(module, exports) {
 
@@ -3036,7 +3036,7 @@ module.exports = getDaysInMonth
 /* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var addDays = __webpack_require__(11)
+var addDays = __webpack_require__(12)
 
 /**
  * @category Week Helpers
@@ -3126,7 +3126,7 @@ module.exports = compareDesc
 
 var parse = __webpack_require__(0)
 var differenceInCalendarMonths = __webpack_require__(71)
-var compareAsc = __webpack_require__(14)
+var compareAsc = __webpack_require__(15)
 
 /**
  * @category Month Helpers
@@ -3168,7 +3168,7 @@ module.exports = differenceInMonths
 /* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var differenceInMilliseconds = __webpack_require__(23)
+var differenceInMilliseconds = __webpack_require__(25)
 
 /**
  * @category Second Helpers
@@ -3252,7 +3252,7 @@ module.exports = endOfDay
 
 var parse = __webpack_require__(0)
 var startOfISOWeek = __webpack_require__(7)
-var startOfISOYear = __webpack_require__(13)
+var startOfISOYear = __webpack_require__(14)
 
 var MILLISECONDS_IN_WEEK = 604800000
 
@@ -3290,7 +3290,7 @@ module.exports = getISOWeek
 /* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var startOfWeek = __webpack_require__(20)
+var startOfWeek = __webpack_require__(22)
 
 /**
  * @category Week Helpers
@@ -3380,17 +3380,17 @@ function _inheritsLoose(subClass, superClass) {
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony export (immutable) */ __webpack_exports__["a"] = connectAdvanced;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_esm_assertThisInitialized__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_esm_inheritsLoose__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_esm_extends__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__babel_runtime_helpers_esm_objectWithoutPropertiesLoose__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_esm_extends__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__babel_runtime_helpers_esm_objectWithoutPropertiesLoose__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_hoist_non_react_statics__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_hoist_non_react_statics___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_hoist_non_react_statics__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_invariant__ = __webpack_require__(119);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_is__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_is__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_is___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_react_is__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Context__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Context__ = __webpack_require__(28);
 
 
 
@@ -3602,7 +3602,7 @@ _ref) {
  * Copyright 2015, Yahoo! Inc.
  * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
  */
-var ReactIs = __webpack_require__(17);
+var ReactIs = __webpack_require__(18);
 var REACT_STATICS = {
     childContextTypes: true,
     contextType: true,
@@ -3856,14 +3856,14 @@ function _inheritsLoose(subClass, superClass) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_esm_inheritsLoose__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_tiny_warning__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_tiny_warning__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_history__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_tiny_invariant__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_tiny_invariant__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_path_to_regexp__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_path_to_regexp___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_path_to_regexp__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__babel_runtime_helpers_esm_extends__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__babel_runtime_helpers_esm_extends__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_react_is__ = __webpack_require__(140);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_react_is___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_react_is__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__babel_runtime_helpers_esm_objectWithoutPropertiesLoose__ = __webpack_require__(56);
@@ -4604,11 +4604,11 @@ if (process.env.NODE_ENV !== "production") {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return locationsAreEqual; });
 /* unused harmony export parsePath */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return createPath; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_esm_extends__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_esm_extends__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_resolve_pathname__ = __webpack_require__(136);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_value_equal__ = __webpack_require__(137);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_tiny_warning__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_tiny_invariant__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_tiny_warning__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_tiny_invariant__ = __webpack_require__(33);
 
 
 
@@ -6776,7 +6776,7 @@ exports.logOut = exports.loggedIn = undefined;
 exports.getUserLogIn = getUserLogIn;
 exports.logout = logout;
 
-var _users = __webpack_require__(18);
+var _users = __webpack_require__(19);
 
 function getUserLogIn(username, password) {
   return function (dispatch) {
@@ -6821,7 +6821,7 @@ var logOut = exports.logOut = function logOut(username) {
 /* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var addMilliseconds = __webpack_require__(12)
+var addMilliseconds = __webpack_require__(13)
 
 var MILLISECONDS_IN_HOUR = 3600000
 
@@ -6887,8 +6887,8 @@ module.exports = addISOYears
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(0)
-var startOfISOYear = __webpack_require__(13)
-var differenceInCalendarDays = __webpack_require__(21)
+var startOfISOYear = __webpack_require__(14)
+var differenceInCalendarDays = __webpack_require__(23)
 
 /**
  * @category ISO Week-Numbering Year Helpers
@@ -6928,7 +6928,7 @@ module.exports = setISOYear
 /* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var addMilliseconds = __webpack_require__(12)
+var addMilliseconds = __webpack_require__(13)
 
 var MILLISECONDS_IN_MINUTE = 60000
 
@@ -6960,7 +6960,7 @@ module.exports = addMinutes
 /* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var addMonths = __webpack_require__(22)
+var addMonths = __webpack_require__(24)
 
 /**
  * @category Quarter Helpers
@@ -6991,7 +6991,7 @@ module.exports = addQuarters
 /* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var addMilliseconds = __webpack_require__(12)
+var addMilliseconds = __webpack_require__(13)
 
 /**
  * @category Second Helpers
@@ -7021,7 +7021,7 @@ module.exports = addSeconds
 /* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var addMonths = __webpack_require__(22)
+var addMonths = __webpack_require__(24)
 
 /**
  * @category Year Helpers
@@ -7189,8 +7189,8 @@ module.exports = differenceInCalendarYears
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(0)
-var differenceInCalendarDays = __webpack_require__(21)
-var compareAsc = __webpack_require__(14)
+var differenceInCalendarDays = __webpack_require__(23)
+var compareAsc = __webpack_require__(15)
 
 /**
  * @category Day Helpers
@@ -7553,7 +7553,7 @@ module.exports = endOfMonth
 
 var parse = __webpack_require__(0)
 var startOfYear = __webpack_require__(80)
-var differenceInCalendarDays = __webpack_require__(21)
+var differenceInCalendarDays = __webpack_require__(23)
 
 /**
  * @category Day Helpers
@@ -7826,7 +7826,7 @@ module.exports = isSameISOWeek
 /* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var startOfISOYear = __webpack_require__(13)
+var startOfISOYear = __webpack_require__(14)
 
 /**
  * @category ISO Week-Numbering Year Helpers
@@ -8219,6 +8219,35 @@ module.exports = setMonth
 
 /***/ }),
 /* 98 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(3);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var LoadingView = function LoadingView() {
+  return _react2.default.createElement(
+    'div',
+    null,
+    'Loading'
+  );
+};
+
+exports.default = (0, _reactRouterDom.withRouter)(LoadingView);
+
+/***/ }),
+/* 99 */
 /***/ (function(module, exports) {
 
 function _interopRequireWildcard(obj) {
@@ -8249,7 +8278,7 @@ function _interopRequireWildcard(obj) {
 module.exports = _interopRequireWildcard;
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, exports) {
 
 function _extends() {
@@ -8273,7 +8302,7 @@ function _extends() {
 module.exports = _extends;
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, exports) {
 
 function _inheritsLoose(subClass, superClass) {
@@ -8283,35 +8312,6 @@ function _inheritsLoose(subClass, superClass) {
 }
 
 module.exports = _inheritsLoose;
-
-/***/ }),
-/* 101 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouterDom = __webpack_require__(3);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var LoadingView = function LoadingView() {
-  return _react2.default.createElement(
-    'div',
-    null,
-    'Loading'
-  );
-};
-
-exports.default = (0, _reactRouterDom.withRouter)(LoadingView);
 
 /***/ }),
 /* 102 */
@@ -8338,7 +8338,7 @@ var _App = __webpack_require__(162);
 
 var _App2 = _interopRequireDefault(_App);
 
-var _LoadingView = __webpack_require__(101);
+var _LoadingView = __webpack_require__(98);
 
 var _LoadingView2 = _interopRequireDefault(_LoadingView);
 
@@ -8415,7 +8415,7 @@ if (process.env.NODE_ENV !== "production") {
 'use strict';
 
 var _assign = __webpack_require__(9);
-var checkPropTypes = __webpack_require__(24);
+var checkPropTypes = __webpack_require__(26);
 
 // TODO: this is special because it gets imported during build.
 
@@ -10650,7 +10650,7 @@ exports.unstable_scheduleCallback=function(a,b){var c=-1!==k?k:exports.unstable_
 b=c.previous;b.next=c.previous=a;a.next=c;a.previous=b}return a};exports.unstable_cancelCallback=function(a){var b=a.next;if(null!==b){if(b===a)d=null;else{a===d&&(d=b);var c=a.previous;c.next=b;b.previous=c}a.next=a.previous=null}};exports.unstable_wrapCallback=function(a){var b=g;return function(){var c=g,f=k;g=b;k=exports.unstable_now();try{return a.apply(this,arguments)}finally{g=c,k=f,v()}}};exports.unstable_getCurrentPriorityLevel=function(){return g};
 exports.unstable_shouldYield=function(){return!e&&(null!==d&&d.expirationTime<l||w())};exports.unstable_continueExecution=function(){null!==d&&p()};exports.unstable_pauseExecution=function(){};exports.unstable_getFirstCallbackNode=function(){return d};
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(16)))
 
 /***/ }),
 /* 108 */
@@ -11357,7 +11357,7 @@ exports.unstable_getFirstCallbackNode = unstable_getFirstCallbackNode;
   })();
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(15)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(16)))
 
 /***/ }),
 /* 109 */
@@ -11383,7 +11383,7 @@ if (process.env.NODE_ENV !== "production") {
 
 var React = __webpack_require__(2);
 var _assign = __webpack_require__(9);
-var checkPropTypes = __webpack_require__(24);
+var checkPropTypes = __webpack_require__(26);
 var scheduler = __webpack_require__(46);
 var tracing = __webpack_require__(110);
 
@@ -33081,9 +33081,9 @@ exports.unstable_unsubscribe = unstable_unsubscribe;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_esm_inheritsLoose__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Context__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Context__ = __webpack_require__(28);
 
 
 
@@ -33449,11 +33449,11 @@ exports.isSuspense = isSuspense;
 
 
 
-var ReactIs = __webpack_require__(17);
+var ReactIs = __webpack_require__(18);
 var assign = __webpack_require__(9);
 
-var ReactPropTypesSecret = __webpack_require__(25);
-var checkPropTypes = __webpack_require__(24);
+var ReactPropTypesSecret = __webpack_require__(27);
+var checkPropTypes = __webpack_require__(26);
 
 var has = Function.call.bind(Object.prototype.hasOwnProperty);
 var printWarning = function() {};
@@ -34048,7 +34048,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
 
 
-var ReactPropTypesSecret = __webpack_require__(25);
+var ReactPropTypesSecret = __webpack_require__(27);
 
 function emptyFunction() {}
 function emptyFunctionWithReset() {}
@@ -34182,8 +34182,8 @@ module.exports = invariant;
 
 "use strict";
 /* unused harmony export createConnect */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_esm_extends__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_esm_objectWithoutPropertiesLoose__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_esm_extends__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_esm_objectWithoutPropertiesLoose__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_connectAdvanced__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_shallowEqual__ = __webpack_require__(121);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mapDispatchToProps__ = __webpack_require__(122);
@@ -34380,7 +34380,7 @@ if (typeof self !== 'undefined') {
 var result = Object(__WEBPACK_IMPORTED_MODULE_0__ponyfill_js__["a" /* default */])(root);
 /* harmony default export */ __webpack_exports__["a"] = (result);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(15), __webpack_require__(124)(module)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(16), __webpack_require__(124)(module)))
 
 /***/ }),
 /* 124 */
@@ -34488,7 +34488,7 @@ function whenMapStateToPropsIsMissing(mapStateToProps) {
 /* unused harmony export wrapMergePropsFunc */
 /* unused harmony export whenMergePropsIsFunction */
 /* unused harmony export whenMergePropsIsOmitted */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_esm_extends__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_esm_extends__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_verifyPlainObject__ = __webpack_require__(51);
 
 
@@ -34536,7 +34536,7 @@ function whenMergePropsIsOmitted(mergeProps) {
 /* WEBPACK VAR INJECTION */(function(process) {/* unused harmony export impureFinalPropsSelectorFactory */
 /* unused harmony export pureFinalPropsSelectorFactory */
 /* harmony export (immutable) */ __webpack_exports__["a"] = finalPropsSelectorFactory;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_esm_objectWithoutPropertiesLoose__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_esm_objectWithoutPropertiesLoose__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__verifySubselectors__ = __webpack_require__(130);
 
 
@@ -34687,7 +34687,7 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(16);
+var _propTypes = __webpack_require__(17);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -34891,7 +34891,7 @@ module.exports = function() {
   return global[key] = (global[key] || 0) + 1;
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(16)))
 
 /***/ }),
 /* 134 */
@@ -35989,7 +35989,7 @@ var persistor = exports.persistor = (0, _reduxPersist.persistStore)(store);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__persistReducer__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__persistReducer__ = __webpack_require__(34);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "persistReducer", function() { return __WEBPACK_IMPORTED_MODULE_0__persistReducer__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__persistCombineReducers__ = __webpack_require__(147);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "persistCombineReducers", function() { return __WEBPACK_IMPORTED_MODULE_1__persistCombineReducers__["a"]; });
@@ -36073,7 +36073,7 @@ function autoMergeLevel1(inboundState, originalState, reducedState, _ref) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = persistCombineReducers;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__persistReducer__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__persistReducer__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stateReconciler_autoMergeLevel2__ = __webpack_require__(148);
 
 
@@ -36143,7 +36143,7 @@ function isPlainEnoughObject(o) {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony export (immutable) */ __webpack_exports__["a"] = persistStore;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__persistReducer__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__persistReducer__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants__ = __webpack_require__(5);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -36766,15 +36766,15 @@ var _PetPage = __webpack_require__(175);
 
 var _PetPage2 = _interopRequireDefault(_PetPage);
 
-var _UserPage = __webpack_require__(284);
+var _UserPage = __webpack_require__(278);
 
 var _UserPage2 = _interopRequireDefault(_UserPage);
 
-var _LoadingView = __webpack_require__(101);
+var _LoadingView = __webpack_require__(98);
 
 var _LoadingView2 = _interopRequireDefault(_LoadingView);
 
-var _FeedPet = __webpack_require__(285);
+var _FeedPet = __webpack_require__(279);
 
 var _FeedPet2 = _interopRequireDefault(_FeedPet);
 
@@ -36824,7 +36824,7 @@ var _reactRouterDom = __webpack_require__(3);
 
 var _reactRedux = __webpack_require__(4);
 
-var _users = __webpack_require__(18);
+var _users = __webpack_require__(19);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -38221,7 +38221,7 @@ var _reactRedux = __webpack_require__(4);
 
 var _users = __webpack_require__(171);
 
-var _petInfo = __webpack_require__(19);
+var _petInfo = __webpack_require__(11);
 
 var _login = __webpack_require__(62);
 
@@ -38363,7 +38363,7 @@ exports.userData = undefined;
 exports.getUser = getUser;
 exports.getAcctCreated = getAcctCreated;
 
-var _users = __webpack_require__(18);
+var _users = __webpack_require__(19);
 
 function getUser(username) {
   return function (dispatch) {
@@ -38626,7 +38626,7 @@ var _reactRouterDom = __webpack_require__(3);
 
 var _reactRedux = __webpack_require__(4);
 
-var _pets = __webpack_require__(33);
+var _pets = __webpack_require__(20);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -38826,7 +38826,7 @@ exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapSt
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -38839,9 +38839,17 @@ var _reactRouterDom = __webpack_require__(3);
 
 var _reactRedux = __webpack_require__(4);
 
-var _petInfo = __webpack_require__(19);
+var _petInfo = __webpack_require__(11);
 
-var _dateFns = __webpack_require__(34);
+var _dateFns = __webpack_require__(21);
+
+var _ProgressBar = __webpack_require__(281);
+
+var _ProgressBar2 = _interopRequireDefault(_ProgressBar);
+
+var _HungerProgressBar = __webpack_require__(280);
+
+var _HungerProgressBar2 = _interopRequireDefault(_HungerProgressBar);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -38852,140 +38860,158 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var PetPage = function (_React$Component) {
-    _inherits(PetPage, _React$Component);
+  _inherits(PetPage, _React$Component);
 
-    function PetPage(props) {
-        _classCallCheck(this, PetPage);
+  function PetPage(props) {
+    _classCallCheck(this, PetPage);
 
-        var _this = _possibleConstructorReturn(this, (PetPage.__proto__ || Object.getPrototypeOf(PetPage)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (PetPage.__proto__ || Object.getPrototypeOf(PetPage)).call(this, props));
 
-        _this.state = {};
-        _this.checkLastFed = _this.checkLastFed.bind(_this);
-        return _this;
+    _this.state = {};
+    _this.checkLastFed = _this.checkLastFed.bind(_this);
+    return _this;
+  }
+
+  _createClass(PetPage, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      if (this.props.loggedin === true) {
+        this.props.history.push('/petpage');
+      } else {
+        this.props.history.push('/login');
+      }
     }
+  }, {
+    key: 'checkLastFed',
+    value: function checkLastFed() {
+      var currentDate = (0, _dateFns.format)(new Date());
+      console.log(currentDate);
+      var lastfed = (0, _dateFns.format)(this.props.lastFed);
+      console.log(lastfed);
+      var diff = (0, _dateFns.differenceInHours)(currentDate, lastfed);
+      console.log(diff);
+      if (diff > 24) {
+        //if time diff is more than 24 hours dispatch pethunger to true
+        this.props.dispatch((0, _petInfo.petHunger)(true));
+      } else {
+        //else dispatch false
+        this.props.dispatch((0, _petInfo.petHunger)(false));
+      }
+      this.props.history.push('/feedpet');
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
 
-    _createClass(PetPage, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            if (this.props.loggedin === true) {
-                this.props.history.push('/petpage');
-            } else {
-                this.props.history.push('/login');
-            }
-        }
-    }, {
-        key: 'checkLastFed',
-        value: function checkLastFed() {
-            var currentDate = (0, _dateFns.format)(new Date());
-            console.log(currentDate);
-            var lastfed = (0, _dateFns.format)(this.props.lastFed);
-            console.log(lastfed);
-            var diff = (0, _dateFns.differenceInHours)(currentDate, lastfed);
-            console.log(diff);
-            if (diff > 24) {
-                //if time diff is more than 24 hours dispatch pethunger to true
-                this.props.dispatch((0, _petInfo.petHunger)(true));
-            } else {
-                //else dispatch false
-                this.props.dispatch((0, _petInfo.petHunger)(false));
-            }
-            this.props.history.push('/feedpet');
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            var _this2 = this;
+      var timeNow = (0, _dateFns.format)(new Date());
+      var timeLastFed = (0, _dateFns.format)(this.props.lastFed);
+      var difference = (0, _dateFns.differenceInHours)(timeNow, timeLastFed);
 
-            return _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement(
-                    'h1',
-                    { className: 'title' },
-                    this.props.petName
-                ),
-                _react2.default.createElement('br', null),
-                _react2.default.createElement('br', null),
-                _react2.default.createElement('br', null),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'petPage-container' },
-                    this.props.petType ? _react2.default.createElement('img', { className: 'petPage-row-col1 petPage-grid-images', src: this.props.petImage }) : _react2.default.createElement('div', { className: 'petPage-row-col1 petPage-grid-images' }),
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'petPage-row-col10 petPage-stats-title' },
-                        _react2.default.createElement(
-                            'button',
-                            { className: 'button', onClick: function onClick() {
-                                    _this2.checkLastFed();
-                                } },
-                            'Feed ',
-                            this.props.petName
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'petPage-row-col2 petPage-stats-title' },
-                        'Owner:'
-                    ),
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'petPage-row-col3 landing-text' },
-                        this.props.username
-                    ),
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'petPage-row-col4 petPage-stats-title ' },
-                        'Habitat:'
-                    ),
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'petPage-row-col5 landing-text' },
-                        this.props.habitat
-                    ),
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'petPage-row-col6 petPage-stats-title ' },
-                        'Activity:'
-                    ),
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'petPage-row-col7 landing-text' },
-                        this.props.activity
-                    ),
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'petPage-row-col8 petPage-stats-title ' },
-                        'Age:'
-                    ),
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'petPage-row-col9 landing-text' },
-                        this.props.petAge,
-                        ' days old'
-                    )
-                )
-            );
-        }
-    }]);
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h1',
+          { className: 'title' },
+          this.props.petName
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'div',
+          { className: 'petPage-container' },
+          this.props.petType ? _react2.default.createElement('img', { className: 'petPage-row-col1 petPage-grid-images', src: this.props.petImage }) : _react2.default.createElement('div', { className: 'petPage-row-col1 petPage-grid-images' }),
+          _react2.default.createElement(
+            'h3',
+            { className: 'petPage-row-col10 petPage-stats-title' },
+            _react2.default.createElement(
+              'button',
+              { className: 'button', onClick: function onClick() {
+                  _this2.checkLastFed();
+                } },
+              'Feed ',
+              this.props.petName
+            )
+          ),
+          _react2.default.createElement(
+            'h3',
+            { className: 'petPage-row-col2 petPage-stats-title' },
+            'Owner:'
+          ),
+          _react2.default.createElement(
+            'h3',
+            { className: 'petPage-row-col3 landing-text' },
+            this.props.username
+          ),
+          _react2.default.createElement(
+            'h3',
+            { className: 'petPage-row-col4 petPage-stats-title ' },
+            'Habitat:'
+          ),
+          _react2.default.createElement(
+            'h3',
+            { className: 'petPage-row-col5 landing-text' },
+            this.props.habitat
+          ),
+          _react2.default.createElement(
+            'h3',
+            { className: 'petPage-row-col6 petPage-stats-title ' },
+            'Activity:'
+          ),
+          _react2.default.createElement(
+            'h3',
+            { className: 'petPage-row-col7 landing-text' },
+            this.props.activity
+          ),
+          _react2.default.createElement(
+            'h3',
+            { className: 'petPage-row-col8 petPage-stats-title ' },
+            'Age:'
+          ),
+          _react2.default.createElement(
+            'h3',
+            { className: 'petPage-row-col9 landing-text' },
+            this.props.petAge,
+            ' days old'
+          ),
+          _react2.default.createElement(
+            'h3',
+            { className: 'petPage-row-col11 petPage-stats-title ' },
+            'Hunger:'
+          ),
+          difference > 24 ? _react2.default.createElement(
+            'h3',
+            { className: 'petPage-row-col12 landing-text' },
+            _react2.default.createElement(_ProgressBar2.default, { now: 0, label: 'I\'m hungry!', variant: 'warning' })
+          ) : _react2.default.createElement(
+            'h3',
+            { className: 'petPage-row-col12 landing-text' },
+            _react2.default.createElement(_HungerProgressBar2.default, null)
+          )
+        )
+      );
+    }
+  }]);
 
-    return PetPage;
+  return PetPage;
 }(_react2.default.Component);
 
 function mapStateToProps(state) {
-    return {
-        loggedin: state.login.loggedin,
-        username: state.login.username,
-        petType: state.getPetInfo.petType,
-        petName: state.getPetInfo.petName,
-        habitat: state.getPetInfo.habitat,
-        activity: state.getPetInfo.activity,
-        petImage: state.getPetInfo.petImage,
-        fed: state.getPetInfo.fed,
-        lastFed: state.getPetInfo.lastFed,
-        petCreated: state.getPetInfo.petCreated,
-        petAge: state.getPetInfo.petAge
-    };
+  return {
+    loggedin: state.login.loggedin,
+    username: state.login.username,
+    petType: state.getPetInfo.petType,
+    petName: state.getPetInfo.petName,
+    habitat: state.getPetInfo.habitat,
+    activity: state.getPetInfo.activity,
+    petImage: state.getPetInfo.petImage,
+    fed: state.getPetInfo.fed,
+    lastFed: state.getPetInfo.lastFed,
+    petCreated: state.getPetInfo.petCreated,
+    petAge: state.getPetInfo.petAge
+  };
 }
 
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(PetPage));
@@ -39266,7 +39292,7 @@ module.exports = differenceInCalendarQuarters
 /* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var startOfWeek = __webpack_require__(20)
+var startOfWeek = __webpack_require__(22)
 
 var MILLISECONDS_IN_MINUTE = 60000
 var MILLISECONDS_IN_WEEK = 604800000
@@ -39324,7 +39350,7 @@ module.exports = differenceInCalendarWeeks
 /* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var differenceInMilliseconds = __webpack_require__(23)
+var differenceInMilliseconds = __webpack_require__(25)
 
 var MILLISECONDS_IN_HOUR = 3600000
 
@@ -39361,7 +39387,7 @@ module.exports = differenceInHours
 
 var parse = __webpack_require__(0)
 var differenceInCalendarISOYears = __webpack_require__(70)
-var compareAsc = __webpack_require__(14)
+var compareAsc = __webpack_require__(15)
 var subISOYears = __webpack_require__(75)
 
 /**
@@ -39407,7 +39433,7 @@ module.exports = differenceInISOYears
 /* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var differenceInMilliseconds = __webpack_require__(23)
+var differenceInMilliseconds = __webpack_require__(25)
 
 var MILLISECONDS_IN_MINUTE = 60000
 
@@ -39510,7 +39536,7 @@ module.exports = differenceInWeeks
 
 var parse = __webpack_require__(0)
 var differenceInCalendarYears = __webpack_require__(73)
-var compareAsc = __webpack_require__(14)
+var compareAsc = __webpack_require__(15)
 
 /**
  * @category Year Helpers
@@ -40893,7 +40919,7 @@ module.exports = getHours
 /* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var startOfISOYear = __webpack_require__(13)
+var startOfISOYear = __webpack_require__(14)
 var addWeeks = __webpack_require__(37)
 
 var MILLISECONDS_IN_WEEK = 604800000
@@ -42335,7 +42361,7 @@ module.exports = setDate
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(0)
-var addDays = __webpack_require__(11)
+var addDays = __webpack_require__(12)
 
 /**
  * @category Weekday Helpers
@@ -42446,7 +42472,7 @@ module.exports = setHours
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(0)
-var addDays = __webpack_require__(11)
+var addDays = __webpack_require__(12)
 var getISODay = __webpack_require__(83)
 
 /**
@@ -42805,7 +42831,7 @@ module.exports = startOfYesterday
 /* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var addDays = __webpack_require__(11)
+var addDays = __webpack_require__(12)
 
 /**
  * @category Day Helpers
@@ -42865,7 +42891,7 @@ module.exports = subHours
 /* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var addMilliseconds = __webpack_require__(12)
+var addMilliseconds = __webpack_require__(13)
 
 /**
  * @category Millisecond Helpers
@@ -42925,7 +42951,7 @@ module.exports = subMinutes
 /* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var addMonths = __webpack_require__(22)
+var addMonths = __webpack_require__(24)
 
 /**
  * @category Month Helpers
@@ -43078,26 +43104,431 @@ module.exports = subYears
 "use strict";
 
 
-var _interopRequireWildcard = __webpack_require__(98);
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(3);
+
+var _reactRedux = __webpack_require__(4);
+
+var _petInfo = __webpack_require__(11);
+
+var _dateFns = __webpack_require__(21);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var UserPage = function (_React$Component) {
+    _inherits(UserPage, _React$Component);
+
+    function UserPage(props) {
+        _classCallCheck(this, UserPage);
+
+        var _this = _possibleConstructorReturn(this, (UserPage.__proto__ || Object.getPrototypeOf(UserPage)).call(this, props));
+
+        _this.state = {};
+
+        return _this;
+    }
+
+    _createClass(UserPage, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            if (this.props.loggedin === true) {
+                this.props.history.push('/userpage');
+            } else {
+                this.props.history.push('/login');
+            }
+        }
+
+        //when click on pet page link calculate pets age using this.props.petCreated state.getPetInfo.petCreated
+
+    }, {
+        key: 'getPetAge',
+        value: function getPetAge() {
+            var created = (0, _dateFns.format)(this.props.petCreated);
+            var currentDate = (0, _dateFns.format)(new Date());
+            var age = (0, _dateFns.differenceInDays)(currentDate, created);
+            this.props.dispatch((0, _petInfo.petAge)(age));
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'h1',
+                    { className: 'title' },
+                    'Welcome to ',
+                    this.props.username,
+                    '\'s page!'
+                ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'user-info-container1' },
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'userPage-row-col1 landing-text' },
+                        'Username:'
+                    ),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'userPage-row-col4 userPage-text' },
+                        this.props.username
+                    ),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'userPage-row-col2 landing-text' },
+                        'Name:'
+                    ),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'userPage-row-col5 userPage-text' },
+                        this.props.firstname
+                    ),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'userPage-row-col9 landing-text' },
+                        'Status:'
+                    ),
+                    this.props.loggedin === true ? _react2.default.createElement(
+                        'h3',
+                        { className: 'userPage-row-col10 userPage-text' },
+                        'Online'
+                    ) : _react2.default.createElement(
+                        'h3',
+                        { className: 'userPage-row-col10 userPage-text' },
+                        'Offline'
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'user-info-container2' },
+                    this.props.pettype ? _react2.default.createElement(
+                        _reactRouterDom.Link,
+                        { to: '/petpage', className: 'userPage-row-col7', onClick: function onClick() {
+                                return _this2.getPetAge();
+                            } },
+                        _react2.default.createElement('img', { src: this.props.petimage, className: 'userPage-petimg' })
+                    ) : _react2.default.createElement('div', null),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'userPage-row-col8 landing-text' },
+                        'Visit ',
+                        this.props.petname,
+                        '\'s page'
+                    )
+                )
+            );
+        }
+    }]);
+
+    return UserPage;
+}(_react2.default.Component);
+
+function mapStateToProps(state) {
+    return {
+        username: state.login.username,
+        firstname: state.user.firstname,
+        acctCreated: state.user.createdAt,
+        acctAge: state.user.accountAge,
+        loggedin: state.login.loggedin,
+        pettype: state.getPetInfo.petType,
+        petname: state.getPetInfo.petName,
+        petimage: state.getPetInfo.petImage,
+        petCreated: state.getPetInfo.petCreated
+    };
+}
+
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(UserPage));
+
+/***/ }),
+/* 279 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(3);
+
+var _reactRedux = __webpack_require__(4);
+
+var _petInfo = __webpack_require__(11);
+
+var _pets = __webpack_require__(20);
+
+var _dateFns = __webpack_require__(21);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FeedPet = function (_React$Component) {
+    _inherits(FeedPet, _React$Component);
+
+    function FeedPet(props) {
+        _classCallCheck(this, FeedPet);
+
+        var _this = _possibleConstructorReturn(this, (FeedPet.__proto__ || Object.getPrototypeOf(FeedPet)).call(this, props));
+
+        _this.state = {};
+        _this.feedPet = _this.feedPet.bind(_this);
+        return _this;
+    }
+
+    _createClass(FeedPet, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            if (this.props.loggedin === true) {
+                this.props.history.push('/feedpet');
+            } else {
+                this.props.history.push('/login');
+            }
+        }
+    }, {
+        key: 'feedPet',
+        value: function feedPet() {
+            //get js date object
+            var currentDate = (0, _dateFns.format)(new Date());
+            var username = this.props.username;
+            //sends new last fed date to and changes fed to true in db, changes fed to true redux state
+            (0, _pets.feedPetApi)(username, currentDate) && this.props.dispatch((0, _petInfo.petHunger)(false));
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            var timeNow = (0, _dateFns.format)(new Date());
+            var timeLastFed = (0, _dateFns.format)(this.props.lastFed);
+            var difference = (0, _dateFns.differenceInHours)(timeNow, timeLastFed);
+
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'h1',
+                    { className: 'title' },
+                    'Feed ',
+                    this.props.petName
+                ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'feed-pet-container' },
+                    this.props.petType ? _react2.default.createElement('img', { className: 'feed-pet-row-col1 petPage-grid-images', src: this.props.petImage }) : _react2.default.createElement('div', { className: 'feed-pet-row-col1 styles.petPage-grid-images' }),
+                    _react2.default.createElement('br', null),
+                    _react2.default.createElement('br', null),
+                    difference < 24 ? _react2.default.createElement(
+                        'h3',
+                        { className: 'feed-pet-row-col2 petPage-stats-title' },
+                        _react2.default.createElement(
+                            'button',
+                            { className: 'button', onClick: function onClick() {
+                                    _this2.feedPet(_this2.props.username);
+                                } },
+                            'Feed ',
+                            this.props.petName
+                        )
+                    ) : _react2.default.createElement(
+                        'h3',
+                        { className: 'feed-pet-row-col2 petPage-stats-title' },
+                        'I\'m full!'
+                    )
+                )
+            );
+        }
+    }]);
+
+    return FeedPet;
+}(_react2.default.Component);
+
+function mapStateToProps(state) {
+    return {
+        loggedin: state.login.loggedin,
+        username: state.user.username,
+        petImage: state.getPetInfo.petImage,
+        petType: state.getPetInfo.petType,
+        petName: state.getPetInfo.petName,
+        fed: state.getPetInfo.fed,
+        lastFed: state.getPetInfo.lastFed,
+        hunger: state.getPetInfo.hunger
+    };
+}
+
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(FeedPet));
+
+/***/ }),
+/* 280 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(3);
+
+var _reactRedux = __webpack_require__(4);
+
+var _petInfo = __webpack_require__(11);
+
+var _pets = __webpack_require__(20);
+
+var _dateFns = __webpack_require__(21);
+
+var _ProgressBar = __webpack_require__(281);
+
+var _ProgressBar2 = _interopRequireDefault(_ProgressBar);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var HungerProgressBar = function (_React$Component) {
+    _inherits(HungerProgressBar, _React$Component);
+
+    function HungerProgressBar(props) {
+        _classCallCheck(this, HungerProgressBar);
+
+        var _this = _possibleConstructorReturn(this, (HungerProgressBar.__proto__ || Object.getPrototypeOf(HungerProgressBar)).call(this, props));
+
+        _this.state = {};
+        _this.feedPet = _this.feedPet.bind(_this);
+        return _this;
+    }
+
+    _createClass(HungerProgressBar, [{
+        key: 'petFull',
+        value: function petFull() {
+            //get js date object
+            var currentDate = (0, _dateFns.format)(new Date());
+            var username = this.props.username;
+            //sends new last fed date to and changes fed to true in db, changes fed to true redux state
+            (0, _pets.feedPetApi)(username, currentDate) && this.props.dispatch((0, _petInfo.petHunger)(false));
+            this.props.history.push('/feedpet');
+        }
+    }, {
+        key: 'feedPet',
+        value: function feedPet() {
+            var currentTime = (0, _dateFns.format)(new Date());
+            var user = this.props.username;
+            (0, _pets.feedPetApi)(user, currentTime);
+            this.props.history.push('/feedpet');
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+
+            var timeNow = (0, _dateFns.format)(new Date());
+            var timeLastFed = (0, _dateFns.format)(this.props.lastFed);
+            var difference = (0, _dateFns.differenceInHours)(timeNow, timeLastFed);
+
+            return _react2.default.createElement(
+                'div',
+                null,
+                difference >= 12 ? _react2.default.createElement(
+                    'h3',
+                    { className: 'feed-pet-row-col3 petPage-stats-title' },
+                    _react2.default.createElement(_ProgressBar2.default, { className: 'progress-container feed-pet-row-col2', now: 50, label: 'I\'m good!', variant: 'warning' })
+                ) : _react2.default.createElement(
+                    'h3',
+                    { className: 'feed-pet-row-col3 petPage-stats-title' },
+                    _react2.default.createElement(_ProgressBar2.default, { className: 'progress-container feed-pet-row-col2', now: 100, label: 'I\'m full!', variant: 'danger' })
+                )
+            );
+        }
+    }]);
+
+    return HungerProgressBar;
+}(_react2.default.Component);
+
+function mapStateToProps(state) {
+    return {
+        loggedin: state.login.loggedin,
+        username: state.user.username,
+        petImage: state.getPetInfo.petImage,
+        petType: state.getPetInfo.petType,
+        petName: state.getPetInfo.petName,
+        fed: state.getPetInfo.fed,
+        lastFed: state.getPetInfo.lastFed,
+        hunger: state.getPetInfo.hunger
+    };
+}
+
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(HungerProgressBar));
+
+/***/ }),
+/* 281 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireWildcard = __webpack_require__(99);
 
 var _interopRequireDefault = __webpack_require__(45);
 
 exports.__esModule = true;
 exports.default = void 0;
 
-var _extends2 = _interopRequireDefault(__webpack_require__(99));
+var _extends2 = _interopRequireDefault(__webpack_require__(100));
 
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(__webpack_require__(279));
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(__webpack_require__(282));
 
-var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(100));
+var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(101));
 
-var _classnames = _interopRequireDefault(__webpack_require__(280));
+var _classnames = _interopRequireDefault(__webpack_require__(283));
 
 var _react = _interopRequireWildcard(__webpack_require__(2));
 
-var _ThemeProvider = __webpack_require__(281);
+var _ThemeProvider = __webpack_require__(284);
 
-var _ElementChildren = __webpack_require__(283);
+var _ElementChildren = __webpack_require__(286);
 
 var ROUND_PRECISION = 1000;
 /**
@@ -43239,7 +43670,7 @@ exports.default = _default;
 module.exports = exports["default"];
 
 /***/ }),
-/* 279 */
+/* 282 */
 /***/ (function(module, exports) {
 
 function _objectWithoutPropertiesLoose(source, excluded) {
@@ -43260,7 +43691,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 module.exports = _objectWithoutPropertiesLoose;
 
 /***/ }),
-/* 280 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -43319,13 +43750,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 
 /***/ }),
-/* 281 */
+/* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _interopRequireWildcard = __webpack_require__(98);
+var _interopRequireWildcard = __webpack_require__(99);
 
 var _interopRequireDefault = __webpack_require__(45);
 
@@ -43334,11 +43765,11 @@ exports.useBootstrapPrefix = useBootstrapPrefix;
 exports.createBootstrapComponent = createBootstrapComponent;
 exports.default = exports.ThemeConsumer = void 0;
 
-var _extends2 = _interopRequireDefault(__webpack_require__(99));
+var _extends2 = _interopRequireDefault(__webpack_require__(100));
 
-var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(100));
+var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(101));
 
-var _forwardRef = _interopRequireDefault(__webpack_require__(282));
+var _forwardRef = _interopRequireDefault(__webpack_require__(285));
 
 var _react = _interopRequireWildcard(__webpack_require__(2));
 
@@ -43411,7 +43842,7 @@ var _default = ThemeProvider;
 exports.default = _default;
 
 /***/ }),
-/* 282 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43447,7 +43878,7 @@ function forwardRef(renderFn, _temp) {
 }
 
 /***/ }),
-/* 283 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43490,305 +43921,6 @@ function forEach(children, func) {
     if (_react.default.isValidElement(child)) func(child, index++);
   });
 }
-
-/***/ }),
-/* 284 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouterDom = __webpack_require__(3);
-
-var _reactRedux = __webpack_require__(4);
-
-var _petInfo = __webpack_require__(19);
-
-var _dateFns = __webpack_require__(34);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var UserPage = function (_React$Component) {
-    _inherits(UserPage, _React$Component);
-
-    function UserPage(props) {
-        _classCallCheck(this, UserPage);
-
-        var _this = _possibleConstructorReturn(this, (UserPage.__proto__ || Object.getPrototypeOf(UserPage)).call(this, props));
-
-        _this.state = {};
-
-        return _this;
-    }
-
-    _createClass(UserPage, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            if (this.props.loggedin === true) {
-                this.props.history.push('/userpage');
-            } else {
-                this.props.history.push('/login');
-            }
-        }
-
-        //when click on pet page link calculate pets age using this.props.petCreated state.getPetInfo.petCreated
-
-    }, {
-        key: 'getPetAge',
-        value: function getPetAge() {
-            var created = (0, _dateFns.format)(this.props.petCreated);
-            var currentDate = (0, _dateFns.format)(new Date());
-            var age = (0, _dateFns.differenceInDays)(currentDate, created);
-            this.props.dispatch((0, _petInfo.petAge)(age));
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            var _this2 = this;
-
-            return _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement(
-                    'h1',
-                    { className: 'title' },
-                    'Welcome to ',
-                    this.props.username,
-                    '\'s page!'
-                ),
-                _react2.default.createElement('br', null),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'user-info-container1' },
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'userPage-row-col1 landing-text' },
-                        'Username:'
-                    ),
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'userPage-row-col4 userPage-text' },
-                        this.props.username
-                    ),
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'userPage-row-col2 landing-text' },
-                        'Name:'
-                    ),
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'userPage-row-col5 userPage-text' },
-                        this.props.firstname
-                    ),
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'userPage-row-col9 landing-text' },
-                        'Status:'
-                    ),
-                    this.props.loggedin === true ? _react2.default.createElement(
-                        'h3',
-                        { className: 'userPage-row-col10 userPage-text' },
-                        'Online'
-                    ) : _react2.default.createElement(
-                        'h3',
-                        { className: 'userPage-row-col10 userPage-text' },
-                        'Offline'
-                    )
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'user-info-container2' },
-                    this.props.pettype ? _react2.default.createElement(
-                        _reactRouterDom.Link,
-                        { to: '/petpage', className: 'userPage-row-col7', onClick: function onClick() {
-                                return _this2.getPetAge();
-                            } },
-                        _react2.default.createElement('img', { src: this.props.petimage, className: 'userPage-petimg' })
-                    ) : _react2.default.createElement('div', null),
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'userPage-row-col8 landing-text' },
-                        'Visit ',
-                        this.props.petname,
-                        '\'s page'
-                    )
-                )
-            );
-        }
-    }]);
-
-    return UserPage;
-}(_react2.default.Component);
-
-function mapStateToProps(state) {
-    return {
-        username: state.login.username,
-        firstname: state.user.firstname,
-        acctCreated: state.user.createdAt,
-        acctAge: state.user.accountAge,
-        loggedin: state.login.loggedin,
-        pettype: state.getPetInfo.petType,
-        petname: state.getPetInfo.petName,
-        petimage: state.getPetInfo.petImage,
-        petCreated: state.getPetInfo.petCreated
-    };
-}
-
-exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(UserPage));
-
-/***/ }),
-/* 285 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouterDom = __webpack_require__(3);
-
-var _reactRedux = __webpack_require__(4);
-
-var _petInfo = __webpack_require__(19);
-
-var _pets = __webpack_require__(33);
-
-var _dateFns = __webpack_require__(34);
-
-var _ProgressBar = __webpack_require__(278);
-
-var _ProgressBar2 = _interopRequireDefault(_ProgressBar);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var FeedPet = function (_React$Component) {
-  _inherits(FeedPet, _React$Component);
-
-  function FeedPet(props) {
-    _classCallCheck(this, FeedPet);
-
-    var _this = _possibleConstructorReturn(this, (FeedPet.__proto__ || Object.getPrototypeOf(FeedPet)).call(this, props));
-
-    _this.state = {};
-    _this.feedPet = _this.feedPet.bind(_this);
-    return _this;
-  }
-
-  _createClass(FeedPet, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      if (this.props.loggedin === true) {
-        this.props.history.push('/feedpet');
-      } else {
-        this.props.history.push('/login');
-      }
-    }
-  }, {
-    key: 'feedPet',
-    value: function feedPet() {
-      //get js date object
-      var currentDate = (0, _dateFns.format)(new Date());
-      var username = this.props.username;
-      //sends new last fed date to and changes fed to true in db, changes fed to true redux state
-      (0, _pets.feedPetApi)(username, currentDate) && this.props.dispatch((0, _petInfo.petHunger)(false));
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      //to work out percentage of time elapsed since last fed
-      var timeNow = (0, _dateFns.format)(new Date());
-      var timeLastFed = (0, _dateFns.format)(this.props.lastFed);
-      var difference = (0, _dateFns.differenceInHours)(timeNow, timeLastFed);
-      var percentage = Math.floor(100 * difference / 24);
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'h1',
-          { className: 'title' },
-          'Feed ',
-          this.props.petName
-        ),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'div',
-          { className: 'feed-pet-container' },
-          this.props.petType ? _react2.default.createElement('img', { className: 'feed-pet-row-col1 petPage-grid-images', src: this.props.petImage }) : _react2.default.createElement('div', { className: 'feed-pet-row-col1 styles.petPage-grid-images' }),
-          _react2.default.createElement(_ProgressBar2.default, { className: 'progress-container feed-pet-row-col2', label: percentage + '%', variant: 'warning' }),
-          percentage <= 99 ? _react2.default.createElement(
-            'h3',
-            { className: 'feed-pet-row-col3 styles.petPage-stats-title' },
-            _react2.default.createElement(
-              'button',
-              { className: 'button', onClick: function onClick() {
-                  _this2.feedPet(_this2.props.username);
-                } },
-              'Feed ',
-              this.props.petName
-            )
-          ) : _react2.default.createElement(
-            'h3',
-            { className: 'feed-pet-row-col3 styles.petPage-stats-title' },
-            'I\'m full!'
-          )
-        ),
-        _react2.default.createElement('br', null)
-      );
-    }
-  }]);
-
-  return FeedPet;
-}(_react2.default.Component);
-
-function mapStateToProps(state) {
-  return {
-    loggedin: state.login.loggedin,
-    username: state.user.username,
-    petImage: state.getPetInfo.petImage,
-    petType: state.getPetInfo.petType,
-    petName: state.getPetInfo.petName,
-    fed: state.getPetInfo.fed,
-    lastFed: state.getPetInfo.lastFed,
-    hunger: state.getPetInfo.hunger
-  };
-}
-
-exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(FeedPet));
 
 /***/ })
 /******/ ]);

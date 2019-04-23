@@ -3,7 +3,8 @@ import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { petHunger } from '../actions/petInfo'
 import {format, differenceInHours} from 'date-fns'
-
+import ProgressBar from 'react-bootstrap/ProgressBar'
+import HungerProgressBar from './HungerProgressBar'
 
 class PetPage extends React.Component {
     constructor(props) {
@@ -42,9 +43,13 @@ class PetPage extends React.Component {
     
 
       render() {
-       
+ 
+    const timeNow = format(new Date)
+    const timeLastFed = format(this.props.lastFed)
+    const difference = differenceInHours(timeNow, timeLastFed)
+
         return (
-        
+          
             <div>
                 <h1 className='title'>{this.props.petName}</h1>
              <br/><br/><br/>
@@ -76,7 +81,17 @@ class PetPage extends React.Component {
                 Age:
                 </h3>
                 <h3 className='petPage-row-col9 landing-text'>{this.props.petAge} days old</h3>
-
+                <h3 className='petPage-row-col11 petPage-stats-title '>
+                Hunger:
+                </h3>
+                {difference > 24 ? 
+                <h3 className='petPage-row-col12 landing-text'> 
+                <ProgressBar now={0} label="I'm hungry!" variant="warning"/>
+                </h3> 
+                :  <h3 className='petPage-row-col12 landing-text'> 
+                <HungerProgressBar/>
+                </h3>
+                }
             </div>
            </div>
         )

@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 import { petHunger } from '../actions/petInfo'
 import { feedPetApi } from '../api/pets'
 import {format, differenceInHours} from 'date-fns'
-import ProgressBar from 'react-bootstrap/ProgressBar'
 
 class FeedPet extends React.Component {
     constructor(props) {
@@ -32,12 +31,11 @@ class FeedPet extends React.Component {
     }
 
       render() {
- //to work out percentage of time elapsed since last fed
- const timeNow = format(new Date)
- const timeLastFed = format(this.props.lastFed)
- const difference = differenceInHours(timeNow, timeLastFed)
- const percentage = Math.floor((100 * difference) / 24)
-
+ 
+        const timeNow = format(new Date)
+        const timeLastFed = format(this.props.lastFed)
+        const difference = differenceInHours(timeNow, timeLastFed)
+ 
         return (
         
            <div>
@@ -46,19 +44,15 @@ class FeedPet extends React.Component {
               <div className='feed-pet-container'>    
                  {this.props.petType ? <img className='feed-pet-row-col1 petPage-grid-images' src={this.props.petImage}/> 
                 : <div className='feed-pet-row-col1 styles.petPage-grid-images'></div>}
-
-                 <ProgressBar className='progress-container feed-pet-row-col2' label={`${percentage}%`} variant="warning"/>
-               
-                {percentage <= 99 ? 
-                <h3 className='feed-pet-row-col3 styles.petPage-stats-title'>
-                <button className='button' onClick={() => {this.feedPet(this.props.username)}}>Feed {this.props.petName}</button></h3> 
-                : <h3 className='feed-pet-row-col3 styles.petPage-stats-title'>I'm full!</h3>
-              }
-             
-            </div>
-            <br/>
-                 
+                  <br/>
                   
+                  <br/>
+
+                  {difference < 24 ? <h3 className='feed-pet-row-col2 petPage-stats-title'>
+                   <button className='button' onClick={() => {this.feedPet(this.props.username)}}>Feed {this.props.petName}</button></h3> 
+                   : <h3 className='feed-pet-row-col2 petPage-stats-title'>I'm full!</h3>}
+
+            </div>
            </div>
         )
 
