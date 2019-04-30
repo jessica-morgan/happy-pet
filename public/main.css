@@ -1,26 +1,44 @@
+body {
+ background-color: rgb(56, 122, 124);
+ font-family: 'Anaheim', sans-serif;
+}
+
 .button {
-    color: rgb(255, 91, 25);
-    background-color: rgb(254, 253, 255);
-    fill-opacity: 0%;
-    text-align: center;
-    display: block;
-    text-decoration: none;
-    border-radius: 15px 15px 15px 15px;
-    border-color: rgb(255, 85, 33);
-    border-style: solid;
-    opacity: 0.5;
     font-size: 18px;
-    font-family: 'Muli', sans-serif;
+    font-family: 'Anaheim', sans-serif;
+    text-align: center;
     margin-left: auto;
     margin-right: auto;
 }
 
 .landing-text {
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
-    font-size: 18px;
-    color: rgb(83, 64, 54);
-    opacity: 0.7;
+    font-family: 'Anaheim', sans-serif;
+    font-size: 14px;
+    color: rgb(255, 255, 255);
+}
+
+.landing-container {
+  display: grid;
+  grid-gap: 40px;
+  justify-content: space-evenly;
+  width: 40px;
+  height: 70px;
+  margin-left: 40px;
+  margin-top: 30px;
+}
+
+.landing-row-col1 {
+  grid-column: 1;
+  grid-row: 1;
+  grid-auto-columns: min-content;
+  grid-auto-rows: min-content;
+}
+
+.landing-row-col2 {
+  grid-column: 1;
+  grid-row: 2;
+  grid-auto-columns: min-content;
+  grid-auto-rows: min-content;
 }
 
 .title {
@@ -38,7 +56,7 @@
     font-family: 'Poppins', sans-serif;
     text-align: center;
     font-size: 15px;
-    color: rgb(83, 64, 54);
+    color: rgb(250, 248, 248);
     opacity: 0.7;
     display: block;
     margin-left: auto;
@@ -46,14 +64,51 @@
     margin-top: -28px;
 }
 
-.input-fields {
-    font-family: 'Poppins', sans-serif;
-    width: 200px;
-    height: 25px;
-    display: block;
-    border-radius: 8px 8px 8px 8px;
-    margin-left: auto;
-    margin-right: auto;
+.register-container {
+  display: grid;
+  grid-gap: 25px;
+  justify-content: space-evenly;
+  width: 200px;
+  height: 25px;
+  margin-left: auto;
+  margin-right: auto;
+
+  /* float: left; */
+}
+
+.input-fields-row-col1 {
+  grid-column: 1 / span 2;
+  grid-row: 1;
+  grid-auto-columns: min-content;
+  grid-auto-rows: min-content;
+}
+
+.input-fields-row-col2 {
+  grid-column: 1 / span 2;
+  grid-row: 2;
+  grid-auto-columns: min-content;
+  grid-auto-rows: min-content;
+}
+
+.input-fields-row-col3 {
+  grid-column: 1 / span 2;
+  grid-row: 3;
+  grid-auto-columns: min-content;
+  grid-auto-rows: min-content;
+}
+
+.input-fields-row-col4 {
+  grid-column: 1 / span 2;
+  grid-row: 4;
+  grid-auto-columns: min-content;
+  grid-auto-rows: min-content;
+}
+
+.input-fields-row-col5 {
+  grid-column: 1 / span 2;
+  grid-row: 5;
+  grid-auto-columns: min-content;
+  grid-auto-rows: min-content;
 }
 
   .input-container {

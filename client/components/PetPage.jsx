@@ -84,6 +84,7 @@ class PetPage extends React.Component {
                 <h3 className='petPage-row-col11 petPage-stats-title '>
                 Hunger:
                 </h3>
+                {/* if difference in hours since now and last fed is greater than 24 show empty hunger bar else show progress bar component */}
                 {difference > 24 ? 
                 <h3 className='petPage-row-col12 landing-text'> 
                 <ProgressBar now={0} label="I'm hungry!" variant="warning"/>

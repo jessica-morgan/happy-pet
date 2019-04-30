@@ -2,7 +2,8 @@ import React from 'react'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { getUserLogIn } from '../actions/login'
-
+import Button from '@react95/core/Button'
+import Input from '@react95/core/Input'
 
 class Login extends React.Component {
     constructor(props) {
@@ -33,17 +34,18 @@ class Login extends React.Component {
     } 
 
     return (
-    
-        <div>
-           <input className='input-fields' type='text' id='username' name='username' placeholder='username' value={this.state.username} onChange={this.handleChange}/>
-           <br/>
-            <input className='input-fields' type='password' id='password' name='password' placeholder='password' value={this.state.password} onChange={this.handleChange}/>
-            <br/>
-            <div>
-              <button className='button' onClick = {() => {this.checkLogInDetails(this.state.username, this.state.password)}}>
-              Login</button>
-            </div>
+      <div>
+          <br/><br/><br/>
+          <h3 style={{fontSize: '40px',textDecoration: 'bold', textAlign: 'center', fontFamily: 'Coda, cursive', textShadow: '4px 4px grey', color: 'rgb(63, 69, 74)'}}>Login</h3>
+          <br/>
+        <div className='register-container'>
+           <Input className='input-fields-row-col1' type='text' id='username' name='username' placeholder='username' value={this.state.username} onChange={this.handleChange}/>
+
+            <Input className='input-fields-row-col2' type='password' id='password' name='password' placeholder='password' value={this.state.password} onChange={this.handleChange}/>
             
+              <Button className='input-fields-row-col3' onClick = {() => {this.checkLogInDetails(this.state.username, this.state.password)}}>
+              Login</Button>
+            </div>
         </div>
     )
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link, withRouter} from 'react-router-dom'
+import Button from '@react95/core/Button'
 
 class LandingPage extends React.Component {
     constructor(props) {
@@ -22,17 +23,19 @@ class LandingPage extends React.Component {
         return (
         
         <div>
-          <div>
+          <div className="landing-container">
   
-          <h3 className='landing-text'>Don't have an account? Please visit the registration page</h3>
-          <br/>
-            <Link style={{textDecoration: 'none'}} to='/register'><button className='button'>Register</button></Link>
-            </div>
-            <br/>
-            <div>
-                <h3 className='landing-text'>Already have an account?</h3>
-                <br/>
-            <Link style={{textDecoration: 'none'}} to='/login'><button className='button'>Login</button></Link>
+            <Link style={{textDecoration: 'none'}} className='landing-row-col1' to='/register'><Button>Register</Button>
+             <br/>
+              <h3 className='landing-text'>Don't have an account?</h3>
+              </Link>
+            
+             <br/>
+            
+             <Link style={{textDecoration: 'none'}} className='landing-row-col2' to='/login'><Button>Login</Button>
+             <br/>
+             <h3 className='landing-text'>Already have an account?</h3>
+             </Link>
             </div>
         </div>
         )

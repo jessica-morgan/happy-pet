@@ -12,6 +12,7 @@ class FeedPet extends React.Component {
 
         }
         this.feedPet = this.feedPet.bind(this)
+        
       }
 
       componentDidMount () {
@@ -22,12 +23,18 @@ class FeedPet extends React.Component {
       } 
       }
 
-    feedPet() {
+    petFull() {
       //get js date object
      let currentDate = format(new Date())
      let username = this.props.username
      //sends new last fed date to and changes fed to true in db, changes fed to true redux state
      feedPetApi(username, currentDate) && this.props.dispatch(petHunger(false))
+    }
+
+    feedPet() {
+     let currentTime = format(new Date())
+     let user = this.props.username
+     feedPetApi(user, currentTime)
     }
 
       render() {

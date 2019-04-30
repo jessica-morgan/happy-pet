@@ -1,8 +1,9 @@
 import React from 'react'
-import {Redirect, Link, withRouter} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {makeNewUserApi} from '../api/users'
-// import { newUser } from '../actions/register'
+import Button from '@react95/core/Button'
+import Input from '@react95/core/Input'
 
 class Register extends React.Component {
     constructor(props) {
@@ -41,18 +42,22 @@ class Register extends React.Component {
       render() {
 
         return (
-        
-            <div>
-               <input className='input-fields' type='text' id='username' name='username' placeholder='username' value={this.state.username} onChange={this.handleChange}/>
+          <div>
+          <br/><br/><br/>
+          <h3 style={{fontSize: '40px',textDecoration: 'bold', textAlign: 'center', fontFamily: 'Coda, cursive', textShadow: '4px 4px grey', color: 'rgb(63, 69, 74)'}}>Register</h3>
+          <br/>
+            <div className='register-container'>
+               <Input className='input-fields-row-col1' type='text' id='username' name='username' placeholder='username' value={this.state.username} onChange={this.handleChange}/>
                <br/>
-               <input className='input-fields' type='text' id='firstname' name='firstname' placeholder='name' value={this.state.name} onChange={this.handleChange}/>
+               <Input className='input-fields-row-col2' type='text' id='firstname' name='firstname' placeholder='name' value={this.state.name} onChange={this.handleChange}/>
                 <br/>
-                <input className='input-fields' type='text' id='email' name='email' placeholder='email' value={this.state.email} onChange={this.handleChange}/>
+                <Input className='input-fields-row-col3' type='text' id='email' name='email' placeholder='email' value={this.state.email} onChange={this.handleChange}/>
                 <br/>
-                <input className='input-fields' type='password' id='password' name='password' placeholder='password' value={this.state.password} onChange={this.handleChange}/>
+                <Input className='input-fields-row-col4' type='password' id='password' name='password' placeholder='password' value={this.state.password} onChange={this.handleChange}/>
                 <br/>
-               <Link style={{textDecoration: 'none'}} to='/login'><button className='button' onClick={() => this.handleSubmit()}>Submit</button></Link>
+               <Link className='input-fields-row-col5' style={{textDecoration: 'none'}} to='/login'><Button style={{fontSize: '14px'}} onClick={() => this.handleSubmit()}>Submit</Button></Link>
             </div>
+           </div>
         )
 
       }     
