@@ -45,6 +45,10 @@ class Home extends React.Component {
         this.props.dispatch(logout(this.props.userN))
       }
 
+      redirect() {
+        this.context.history.push('/')
+      }
+
       render() {
    
         return (
@@ -70,7 +74,7 @@ class Home extends React.Component {
                   <h3 className='landing-text'>User page</h3></Link>
 
                  {/* the history.push isn't working but logs user out */}
-                 <Link style={{textDecoration: 'none'}} className='home-row-col3' to='/'>
+                 <Link style={{textDecoration: 'none'}} className='home-row-col3' to='/' onClick={() => this.redirect()}>
               <img src='/images/logoutIcon.png' style={{width: '58px', height: '60px'}} onClick={() => {this.logoutUser()}}/>
            <h3 className='landing-text'>Logout</h3></Link>
         <br/><br/>
