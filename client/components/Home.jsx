@@ -1,6 +1,10 @@
 import React from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
+import Button from '@react95/core/Button'
+import { Tabs, Tab } from '@react95/core/Tabs'
+import Fieldset from '@react95/core/Fieldset'
+import Input from '@react95/core/Input'
 import { getUser } from '../actions/users'
 import { getUsersPetInfo, getPetImage } from '../actions/petInfo'
 import { logout } from '../actions/login'
@@ -21,7 +25,7 @@ class Home extends React.Component {
         if (this.props.loggedIn  === true) {
           this.props.history.push('/home')
       } else {
-          this.props.history.push('/login')
+          this.props.history.push('/')
       } 
     }
       //event handler gets user info from db dispatch to redux
@@ -45,26 +49,39 @@ class Home extends React.Component {
    
         return (
         
-            <div>
-                <div>
-                 <br/><br/>
-                  <h3 style={{fontSize: '40px',textDecoration: 'bold', textAlign: 'center', fontFamily: 'Coda, cursive', textShadow: '4px 4px grey', color: 'rgb(63, 69, 74)'}}>Welcome {this.props.userN}</h3>
-                 <br/>
-                </div>
+            <div style={{marginLeft: 10}}>
+              
+         <Tabs
+          style={{ width: '90vw'}}
+           defaultActiveTab="Home">
+
+           <Tab title="Home">
+            <Fieldset legend="Welcome" style={{ marginBottom: '1em', height: '80vh' }}>
+             <br/>
+              {/* HAPPY PET TITLE */}
+
+              <h3 style={{textAlign: 'center'}}>Hi {this.props.userN}!</h3>
+               <br/><br/>
 
                 <div className='home-container'>
-                    <Link style={{textDecoration: 'none'}} className='home-row-col1' to='/createpet'><img src='/images/lightBulbIcon.png' style={{width: '58px', height: '70px'}}/>
+                   <Link style={{textDecoration: 'none'}} className='home-row-col1' to='/createpet'><img src='/images/lightBulbIcon.png' style={{width: '58px', height: '70px'}}/>
                     <h3 className='landing-text'>Create a pet</h3></Link>
-                    <Link style={{textDecoration: 'none'}} className='home-row-col2' to='/userpage'><img src='/images/userPageIcon.png' style={{width: '58px', height: '70px'}} onClick={() => {this.handleClickUserInfo(); this.handleClickPetInfo(); this.handleClickPetImage()}}/>
-                    <h3 className='landing-text'>User page</h3></Link>
+                   <Link style={{textDecoration: 'none'}} className='home-row-col2' to='/userpage'><img src='/images/userPageIcon.png' style={{width: '58px', height: '70px'}} onClick={() => {this.handleClickUserInfo(); this.handleClickPetInfo(); this.handleClickPetImage()}}/>
+                  <h3 className='landing-text'>User page</h3></Link>
 
                  {/* the history.push isn't working but logs user out */}
-                 <Link style={{textDecoration: 'none'}} className='home-row-col3' to='/login'>
-              <img src='/images/logoutIcon.png' style={{width: '58px', height: '60px'}} onClick={() => {this.logoutUser(); this.props.history.push('/login')}}/>
-              <h3 className='landing-text'>Logout</h3></Link>
+                 <Link style={{textDecoration: 'none'}} className='home-row-col3' to='/'>
+              <img src='/images/logoutIcon.png' style={{width: '58px', height: '60px'}} onClick={() => {this.logoutUser()}}/>
+           <h3 className='landing-text'>Logout</h3></Link>
+        <br/><br/>
+       </div>
+      </Fieldset>
+     </Tab>
 
-              </div>
-            </div>
+
+               
+    </Tabs>
+   </div>
         )
 
       } 

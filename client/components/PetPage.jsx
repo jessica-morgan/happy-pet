@@ -19,7 +19,7 @@ class PetPage extends React.Component {
         if (this.props.loggedin  === true) {
           this.props.history.push('/petpage')
       } else {
-          this.props.history.push('/login')
+          this.props.history.push('/')
       } 
     }
 

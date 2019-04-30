@@ -1,35 +1,28 @@
 import React from 'react'
-import {withRouter} from 'react-router-dom'
+import {withRouter, Router} from 'react-router-dom'
 import {connect} from 'react-redux'
-import { petHunger } from '../actions/petInfo'
 import { feedPetApi } from '../api/pets'
-import {format, differenceInHours} from 'date-fns'
+import {format} from 'date-fns'
 
 class FeedPet extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-
+          hunger: false,
+          username: ''
         }
-        this.feedPet = this.feedPet.bind(this)
-        
+        this.feedPet = this.feedPet.bind(this) 
+        this.refresh = this.refresh.bind(this)
       }
 
       componentDidMount () {
         if (this.props.loggedin  === true) {
+          console.log('hello')
           this.props.history.push('/feedpet')
       } else {
-          this.props.history.push('/login')
-      } 
-      }
-
-    petFull() {
-      //get js date object
-     let currentDate = format(new Date())
-     let username = this.props.username
-     //sends new last fed date to and changes fed to true in db, changes fed to true redux state
-     feedPetApi(username, currentDate) && this.props.dispatch(petHunger(false))
-    }
+          this.props.history.push('/')
+    } 
+   }
 
     feedPet() {
      let currentTime = format(new Date())
@@ -37,11 +30,12 @@ class FeedPet extends React.Component {
      feedPetApi(user, currentTime)
     }
 
+    refresh() {
+      this.setState({ state: this.state });
+    }
+
       render() {
- 
-        const timeNow = format(new Date)
-        const timeLastFed = format(this.props.lastFed)
-        const difference = differenceInHours(timeNow, timeLastFed)
+       
  
         return (
         
@@ -55,11 +49,11 @@ class FeedPet extends React.Component {
                   
                   <br/>
 
-                  {difference < 24 ? <h3 className='feed-pet-row-col2 petPage-stats-title'>
-                   <button className='button' onClick={() => {this.feedPet(this.props.username)}}>Feed {this.props.petName}</button></h3> 
+                  {this.props.hunger ? <h3 className='feed-pet-row-col2 petPage-stats-title'>
+                   <button className='button' onClick={() => {this.feedPet(this.props.username); this.refresh()}}>Feed {this.props.petName}</button></h3> 
                    : <h3 className='feed-pet-row-col2 petPage-stats-title'>I'm full!</h3>}
 
-            </div>
+               </div>
            </div>
         )
 

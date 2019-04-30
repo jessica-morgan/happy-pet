@@ -17,7 +17,7 @@ class UserPage extends React.Component {
         if (this.props.loggedin  === true) {
           this.props.history.push('/userpage')
       } else {
-          this.props.history.push('/login')
+          this.props.history.push('/')
       } 
     }
 

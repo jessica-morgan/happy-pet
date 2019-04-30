@@ -22,7 +22,7 @@ class CreatePet extends React.Component {
         if (this.props.loggedIn  === true) {
           this.props.history.push('/createpet')
       } else {
-          this.props.history.push('/login')
+          this.props.history.push('/')
       } 
     }
 

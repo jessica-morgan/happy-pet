@@ -59,24 +59,24 @@ class LandingPage extends React.Component {
 
       render() {
    
-          //if user is already logged in redirect to home page
+    //if user is already logged in redirect to home page
     if (this.props.loggedIn  === true) {
       this.props.history.push('/home')
     } 
 
         return (
           <div>
-        {/* <h3 className='header'>Happy Pet</h3> */}
-        <br/>
-        <h3 style={{fontSize: '40px',textDecoration: 'bold', textAlign: 'center', fontFamily: 'Coda, cursive', textShadow: '4px 4px grey', color: 'rgb(63, 69, 74)'}}>Happy Pet</h3>
-        <br/>
-        <div style={{marginLeft: 360, marginTop: 20}}>
+        {/* <br/> */}
+        {/* CHANGE TITLE FONT */}
+        {/* <h3 style={{fontSize: '40px',textDecoration: 'bold', textAlign: 'center', fontFamily: 'Coda, cursive', textShadow: '4px 4px grey', color: 'rgb(63, 69, 74)'}}>Happy Pet</h3> */}
+        {/* <br/> */}
+        <div style={{marginLeft: 10}}>
           <Tabs
-          style={{ width: 550, }}
+          style={{ width: '90vw'}}
           defaultActiveTab="Login">
 
           <Tab title="Login">
-           <Fieldset legend="Login to Happy Pet" style={{ marginBottom: '1em' }}>
+           <Fieldset legend="Login to Happy Pet" style={{ marginBottom: '1em', height: '80vh' }}>
             <br/><br/>
              <Input type='text' id='loginUsername' name='loginUsername' placeholder='username' value={this.state.loginUsername} onChange={this.handleChange}/>
               <br/>
@@ -91,7 +91,7 @@ class LandingPage extends React.Component {
        </Tab>
 
       <Tab title="Register" >
-       <Fieldset legend="Create A New Account" style={{ marginBottom: '1em' }}>
+       <Fieldset legend="Create A New Account" style={{ marginBottom: '1em',  height: '80vh' }}>
        <Input className='input-fields-row-col1' type='text' id='username' name='username' placeholder='username' value={this.state.username} onChange={this.handleInput}/>
          <br/><br/>
           <Input type='text' id='firstname' name='firstname' placeholder='name' value={this.state.name} onChange={this.handleInput}/>
