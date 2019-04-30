@@ -65,14 +65,11 @@ class LandingPage extends React.Component {
     } 
 
         return (
-          <div>
-        {/* <br/> */}
-        {/* CHANGE TITLE FONT */}
-        {/* <h3 style={{fontSize: '40px',textDecoration: 'bold', textAlign: 'center', fontFamily: 'Coda, cursive', textShadow: '4px 4px grey', color: 'rgb(63, 69, 74)'}}>Happy Pet</h3> */}
-        {/* <br/> */}
-        <div style={{marginLeft: 10}}>
+      <div>
+    
+        <div style={{marginLeft: '25vw'}}>
           <Tabs
-          style={{ width: '90vw'}}
+          style={{ width: '50vw'}}
           defaultActiveTab="Login">
 
           <Tab title="Login">

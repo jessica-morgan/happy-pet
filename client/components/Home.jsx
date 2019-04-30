@@ -53,19 +53,17 @@ class Home extends React.Component {
    
         return (
         
-            <div style={{marginLeft: 10}}>
+            <div style={{marginLeft: '25vw', fontFamily: "'Bonbon', cursive"}}>
               
          <Tabs
-          style={{ width: '90vw'}}
-           defaultActiveTab="Home">
+          style={{ width: '70vw'}}
+          defaultActiveTab="Home">
 
            <Tab title="Home">
-            <Fieldset legend="Welcome" style={{ marginBottom: '1em', height: '80vh' }}>
-             <br/>
-              {/* HAPPY PET TITLE */}
-
-              <h3 style={{textAlign: 'center'}}>Hi {this.props.userN}!</h3>
-               <br/><br/>
+            <Fieldset legend='Happy Pet' className='happy-pet-title' style={{ marginBottom: '1em', height: '80vh' }}>
+              <br/>
+              <h2 className='welcome'>Hi {this.props.userN}!</h2>
+              <br/>
 
                 <div className='home-container'>
                    <Link style={{textDecoration: 'none'}} className='home-row-col1' to='/createpet'><img src='/images/lightBulbIcon.png' style={{width: '58px', height: '70px'}}/>

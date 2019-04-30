@@ -4,7 +4,7 @@ export function getUser (username) {
     return function (dispatch) {
       getUserApi(username)
         .then(res => {
-             return dispatch(userData(res[0].username, res[0].firstname, res[0].loggedin,)) 
+             return dispatch(userData(res[0].username, res[0].firstname, res[0].loggedin, res[0].created_at)) 
             })
     }
   }
@@ -20,12 +20,13 @@ export function getAcctCreated (username) {
 }
 
 
-export const userData = (username, firstname, loggedin) => {
+export const userData = (username, firstname, loggedin, date) => {
     return {
         type: 'USER_DATA',
         username,
         firstname,
-        loggedin
+        loggedin,
+        date
     }
 }
 

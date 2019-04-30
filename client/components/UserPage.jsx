@@ -9,8 +9,7 @@ class UserPage extends React.Component {
         super(props)
         this.state = {
 
-        }
-      
+        } 
       }   
 
       componentDidMount () {
@@ -30,6 +29,8 @@ class UserPage extends React.Component {
     }
 
       render() {
+
+       const accountCreated = format(this.props.acctCreated, 'MMMM/YYYY')
  
         return (
         
@@ -42,9 +43,11 @@ class UserPage extends React.Component {
                  <h3 className='userPage-row-col4 userPage-text'>{this.props.username}</h3>
                  <h3 className='userPage-row-col2 landing-text'>Name:</h3>
                  <h3 className='userPage-row-col5 userPage-text'>{this.props.firstname}</h3>
-                 <h3 className='userPage-row-col9 landing-text'>Status:</h3>
-                 {this.props.loggedin === true ? <h3 className='userPage-row-col10 userPage-text'>Online</h3> 
-                 : <h3 className='userPage-row-col10 userPage-text'>Offline</h3>}
+                 <h3 className='userPage-row-col9 landing-text'>Joined:</h3>
+                 <h3 className='userPage-row-col10 userPage-text'>{accountCreated}</h3>
+                 <h3 className='userPage-row-col11 landing-text'>Status:</h3>
+                 {this.props.loggedin === true ? <h3 className='userPage-row-col12 userPage-text'>Online</h3> 
+                 : <h3 className='userPage-row-col12 userPage-text'>Offline</h3>}
                 </div>
 
                  <div className='user-info-container2'>
@@ -63,8 +66,7 @@ function mapStateToProps (state) {
     return {
         username: state.login.username,
         firstname: state.user.firstname,
-        acctCreated: state.user.createdAt,
-        acctAge: state.user.accountAge,
+        acctCreated: state.user.acctCreated,
         loggedin: state.login.loggedin,
         pettype: state.getPetInfo.petType,
         petname: state.getPetInfo.petName,

@@ -1,7 +1,8 @@
 const initialUserState = [{
   username: '',
   firstname: '',
-  loggedin: false
+  loggedin: false,
+  acctCreated: ''
 }]
 
 export const user = (state = initialUserState, action) => {
@@ -10,7 +11,8 @@ export const user = (state = initialUserState, action) => {
         return {
            username: action.username,
            firstname: action.firstname,
-           loggedin: action.loggedin
+           loggedin: action.loggedin,
+           acctCreated: action.date
         }
         default:
         return state

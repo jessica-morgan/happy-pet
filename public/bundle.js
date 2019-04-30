@@ -39596,7 +39596,8 @@ Object.defineProperty(exports, "__esModule", {
 var initialUserState = [{
   username: '',
   firstname: '',
-  loggedin: false
+  loggedin: false,
+  acctCreated: ''
 }];
 
 var user = exports.user = function user() {
@@ -39608,7 +39609,8 @@ var user = exports.user = function user() {
       return {
         username: action.username,
         firstname: action.firstname,
-        loggedin: action.loggedin
+        loggedin: action.loggedin,
+        acctCreated: action.date
       };
     default:
       return state;
@@ -39799,27 +39801,26 @@ var Home = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { style: { marginLeft: 10 } },
+        { style: { marginLeft: '25vw', fontFamily: "'Bonbon', cursive" } },
         _react2.default.createElement(
           _Tabs.Tabs,
           {
-            style: { width: '90vw' },
+            style: { width: '70vw' },
             defaultActiveTab: 'Home' },
           _react2.default.createElement(
             _Tabs.Tab,
             { title: 'Home' },
             _react2.default.createElement(
               _Fieldset2.default,
-              { legend: 'Welcome', style: { marginBottom: '1em', height: '80vh' } },
+              { legend: 'Happy Pet', className: 'happy-pet-title', style: { marginBottom: '1em', height: '80vh' } },
               _react2.default.createElement('br', null),
               _react2.default.createElement(
-                'h3',
-                { style: { textAlign: 'center' } },
+                'h2',
+                { className: 'welcome' },
                 'Hi ',
                 this.props.userN,
                 '!'
               ),
-              _react2.default.createElement('br', null),
               _react2.default.createElement('br', null),
               _react2.default.createElement(
                 'div',
@@ -40628,7 +40629,7 @@ var _users = __webpack_require__(19);
 function getUser(username) {
   return function (dispatch) {
     (0, _users.getUserApi)(username).then(function (res) {
-      return dispatch(userData(res[0].username, res[0].firstname, res[0].loggedin));
+      return dispatch(userData(res[0].username, res[0].firstname, res[0].loggedin, res[0].created_at));
     });
   };
 }
@@ -40642,12 +40643,13 @@ function getAcctCreated(username) {
   };
 }
 
-var userData = exports.userData = function userData(username, firstname, loggedin) {
+var userData = exports.userData = function userData(username, firstname, loggedin, date) {
   return {
     type: 'USER_DATA',
     username: username,
     firstname: firstname,
-    loggedin: loggedin
+    loggedin: loggedin,
+    date: date
   };
 };
 
@@ -41938,11 +41940,11 @@ var LandingPage = function (_React$Component) {
         null,
         _react2.default.createElement(
           'div',
-          { style: { marginLeft: 10 } },
+          { style: { marginLeft: '25vw' } },
           _react2.default.createElement(
             _Tabs.Tabs,
             {
-              style: { width: '90vw' },
+              style: { width: '50vw' },
               defaultActiveTab: 'Login' },
             _react2.default.createElement(
               _Tabs.Tab,
@@ -47019,7 +47021,6 @@ var UserPage = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (UserPage.__proto__ || Object.getPrototypeOf(UserPage)).call(this, props));
 
         _this.state = {};
-
         return _this;
     }
 
@@ -47047,6 +47048,8 @@ var UserPage = function (_React$Component) {
         key: 'render',
         value: function render() {
             var _this2 = this;
+
+            var accountCreated = (0, _dateFns.format)(this.props.acctCreated, 'MMMM/YYYY');
 
             return _react2.default.createElement(
                 'div',
@@ -47085,15 +47088,25 @@ var UserPage = function (_React$Component) {
                     _react2.default.createElement(
                         'h3',
                         { className: 'userPage-row-col9 landing-text' },
+                        'Joined:'
+                    ),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'userPage-row-col10 userPage-text' },
+                        accountCreated
+                    ),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'userPage-row-col11 landing-text' },
                         'Status:'
                     ),
                     this.props.loggedin === true ? _react2.default.createElement(
                         'h3',
-                        { className: 'userPage-row-col10 userPage-text' },
+                        { className: 'userPage-row-col12 userPage-text' },
                         'Online'
                     ) : _react2.default.createElement(
                         'h3',
-                        { className: 'userPage-row-col10 userPage-text' },
+                        { className: 'userPage-row-col12 userPage-text' },
                         'Offline'
                     )
                 ),
@@ -47126,8 +47139,7 @@ function mapStateToProps(state) {
     return {
         username: state.login.username,
         firstname: state.user.firstname,
-        acctCreated: state.user.createdAt,
-        acctAge: state.user.accountAge,
+        acctCreated: state.user.acctCreated,
         loggedin: state.login.loggedin,
         pettype: state.getPetInfo.petType,
         petname: state.getPetInfo.petName,
