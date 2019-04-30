@@ -47,19 +47,23 @@ class Home extends React.Component {
         
             <div>
                 <div>
-                <h3 className='landing-text'>Welcome {this.props.registeredName}</h3>
+                 <br/><br/>
+                  <h3 style={{fontSize: '40px',textDecoration: 'bold', textAlign: 'center', fontFamily: 'Coda, cursive', textShadow: '4px 4px grey', color: 'rgb(63, 69, 74)'}}>Welcome {this.props.userN}</h3>
+                 <br/>
                 </div>
 
-                <div>
-                    <Link style={{textDecoration: 'none'}} to='/createpet'><button className='button'>Create a pet</button></Link>
-                </div>
-                    <Link style={{textDecoration: 'none'}} to='/userpage'><button className='button' onClick={() => {this.handleClickUserInfo(); this.handleClickPetInfo(); this.handleClickPetImage()}}>User page</button></Link>
+                <div className='home-container'>
+                    <Link style={{textDecoration: 'none'}} className='home-row-col1' to='/createpet'><img src='/images/lightBulbIcon.png' style={{width: '58px', height: '70px'}}/>
+                    <h3 className='landing-text'>Create a pet</h3></Link>
+                    <Link style={{textDecoration: 'none'}} className='home-row-col2' to='/userpage'><img src='/images/userPageIcon.png' style={{width: '58px', height: '70px'}} onClick={() => {this.handleClickUserInfo(); this.handleClickPetInfo(); this.handleClickPetImage()}}/>
+                    <h3 className='landing-text'>User page</h3></Link>
 
                  {/* the history.push isn't working but logs user out */}
-              <button className='button' onClick={() => {this.logoutUser(); this.props.history.push('/login')}}>Logout</button>
+                 <Link style={{textDecoration: 'none'}} className='home-row-col3' to='/login'>
+              <img src='/images/logoutIcon.png' style={{width: '58px', height: '60px'}} onClick={() => {this.logoutUser(); this.props.history.push('/login')}}/>
+              <h3 className='landing-text'>Logout</h3></Link>
 
-
-
+              </div>
             </div>
         )
 

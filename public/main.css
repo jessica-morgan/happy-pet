@@ -1,6 +1,18 @@
 body {
- background-color: rgb(56, 122, 124);
+ background-color: rgb(71, 147, 150);
  font-family: 'Anaheim', sans-serif;
+}
+
+.header {
+  width: auto;
+  height: 20px;
+  background: rgb(4, 53, 143);
+  font-family: 'Anaheim', sans-serif;
+  font-size: 14px;
+  color: rgb(160, 158, 158);
+  border-style: solid;
+  border-color: rgb(180, 178, 178);
+  border-width: 2px;
 }
 
 .button {
@@ -72,8 +84,6 @@ body {
   height: 25px;
   margin-left: auto;
   margin-right: auto;
-
-  /* float: left; */
 }
 
 .input-fields-row-col1 {
@@ -199,6 +209,41 @@ body {
     grid-auto-columns: min-content;
     grid-auto-rows: min-content;
     text-decoration: none;
+  }
+
+  .home-container {
+    display: grid;
+    grid-gap: 20px;
+    justify-content: space-evenly;
+    margin-left: 20px;
+    margin-top: auto;
+    float: left;
+  }
+
+  .home-row-col1 {
+    grid-column: 1;
+    grid-row: 1;
+    grid-auto-columns: min-content;
+    grid-auto-rows: min-content;
+    text-decoration: none;
+  }
+
+  .home-row-col2 {
+    grid-column: 1;
+    grid-row: 2;
+    grid-auto-columns: min-content;
+    grid-auto-rows: min-content;
+    text-decoration: none;
+  }
+
+  .home-row-col3 {
+    grid-column: 1;
+    grid-row: 3;
+    grid-auto-columns: min-content;
+    grid-auto-rows: min-content;
+    text-decoration: none;
+    width: 58px;
+    height: 60px;
   }
 
   .createpet-container {
