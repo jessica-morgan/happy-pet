@@ -10,16 +10,17 @@ export function getUsersPetInfo (username) {
         })
     }
 }
-//returns image url according to pettype
+
+// returns image url according to pettype
 export function getPetImage (pettype) {
     return function(dispatch) {
         petImageApi(pettype)
         .then(res => {
+            console.log(res)
             return dispatch(petImg(res))
         })
     }
 }
-
 
 export const petInfo = (username, petType, petName, habitat, activity, fed, lastFed, petCreated) => {
     return {

@@ -69,35 +69,36 @@ class LandingPage extends React.Component {
     
         <div style={{marginLeft: '25vw'}}>
           <Tabs
-          style={{ width: '50vw'}}
+          style={{ width: '50vw', fontSize: '13px'}}
           defaultActiveTab="Login">
 
           <Tab title="Login">
-           <Fieldset legend="Login to Happy Pet" style={{ marginBottom: '1em', height: '80vh' }}>
+          <Fieldset legend='Happy Pet' className='happy-pet-title' style={{ marginBottom: '1em', height: '80vh' }}>
             <br/><br/>
-             <Input type='text' id='loginUsername' name='loginUsername' placeholder='username' value={this.state.loginUsername} onChange={this.handleChange}/>
+             <Input className='landing-text' type='text' id='loginUsername' name='loginUsername' placeholder='username' value={this.state.loginUsername} onChange={this.handleChange}/>
               <br/>
                <br/>
-                <Input type='password' id='password' name='password' placeholder='password' value={this.state.password} onChange={this.handleChange}/>
-               <br/><br/><br/>
-            <Button onClick = {() => {this.checkLogInDetails(this.state.loginUsername, this.state.password)}}>
-           Login
-          </Button>
+                <Input className='landing-text' type='password' id='password' name='password' placeholder='password' value={this.state.password} onChange={this.handleChange}/>
+               <br/><br/>
+           <Link className='landing-text' style={{textDecoration: 'none'}}> <Button onClick = {() => {this.checkLogInDetails(this.state.loginUsername, this.state.password)}}>
+            Login
+          </Button></Link>
          <br/><br/><br/>
         </Fieldset>
        </Tab>
 
       <Tab title="Register" >
-       <Fieldset legend="Create A New Account" style={{ marginBottom: '1em',  height: '80vh' }}>
-       <Input className='input-fields-row-col1' type='text' id='username' name='username' placeholder='username' value={this.state.username} onChange={this.handleInput}/>
+      <Fieldset legend='Happy Pet' className='happy-pet-title' style={{ marginBottom: '1em', height: '80vh' }}>
+       <br/>
+       <Input className='input-fields-row-col1 landing-text' type='text' id='username' name='username' placeholder='username' value={this.state.username} onChange={this.handleInput}/>
          <br/><br/>
-          <Input type='text' id='firstname' name='firstname' placeholder='name' value={this.state.name} onChange={this.handleInput}/>
+          <Input className='landing-text' type='text' id='firstname' name='firstname' placeholder='name' value={this.state.name} onChange={this.handleInput}/>
            <br/><br/>
-            <Input type='text' id='email' name='email' placeholder='email' value={this.state.email} onChange={this.handleInput}/>
+            <Input className='landing-text' type='text' id='email' name='email' placeholder='email' value={this.state.email} onChange={this.handleInput}/>
              <br/><br/>
-            <Input type='password' id='password' name='password' placeholder='password' value={this.state.password} onChange={this.handleInput}/>
+            <Input className='landing-text' type='password' id='password' name='password' placeholder='password' value={this.state.password} onChange={this.handleInput}/>
           <br/><br/>       
-        <Link style={{textDecoration: 'none'}} to='/login'><Button style={{fontSize: '14px'}} onClick={() => this.handleSubmit()}>Submit</Button></Link>
+        <Link className='landing-text' style={{textDecoration: 'none'}} to='/login'><Button style={{fontSize: '14px'}} onClick={() => this.handleSubmit()}>Submit</Button></Link>
        <br/><br/>
       </Fieldset>
      </Tab>

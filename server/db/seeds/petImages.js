@@ -7,19 +7,19 @@ exports.seed = function(knex, Promise) {
       return knex('petImages').insert([
         {
           petType: 'cat',
-          imageUrl: '/images/catpet.png'
+          imageUrl: '/images/catPetIcon.png'
         },
         {
-          petType: 'dog',
-          imageUrl: '/images/dogpet.png'
+          petType: 'mouse',
+          imageUrl: '/images/mousePetIcon.png'
         },
         {
-          petType: 'tiger',
-          imageUrl: 'images/tigerpet.png'
+          petType: 'monkey',
+          imageUrl: 'images/mokeyPetIcon.png'
         },
         {
-          petType: 'giraffe',
-          imageUrl: '/images/giraffe.png'
+          petType: 'bunny',
+          imageUrl: '/images/bunnyPetIcon.png'
         }
       ]);
     });

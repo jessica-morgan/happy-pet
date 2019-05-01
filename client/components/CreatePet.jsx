@@ -53,10 +53,10 @@ class CreatePet extends React.Component {
                 {/* pets to choose from */}
                 <div className='createpet-container'>
                 <h3 className='row-col1 landing-text'>Choose your pet</h3>
-                <img id='dog' className='row-col2 grid-images' src='/images/dogpet.png' onClick={() => {this.setPetImage('/images/dogpet.png')}}/>
-                <img id='giraffe' className='row-col3 grid-images' src='/images/giraffepet.png' onClick={() => {this.setPetImage('/images/giraffepet.png')}}/>
-                <img id='cat' className='row-col4 grid-images' src='images/catpet.png' onClick={() => {this.setPetImage('images/catpet.png')}}/>
-                <img id='tiger' className='row-col5 grid-images' src='/images/tigerpet.png' onClick={() => {this.setPetImage('images/tigerpet.png')}}/>
+                <img id='monkey' className='row-col2 grid-images' src='/images/monkeyPetIcon.png' onClick={() => {this.setPetImage('/images/monkeyPetIcon.png')}}/>
+                <img id='mouse' className='row-col3 grid-images' src='/images/mousePetIcon.png' onClick={() => {this.setPetImage('/images/mousePetIcon.png')}}/>
+                <img id='cat' className='row-col4 grid-images' src='images/catPetIcon.png' onClick={() => {this.setPetImage('images/catPetIcon.png')}}/>
+                <img id='bunny' className='row-col5 grid-images' src='/images/bunnyPetIcon.png' onClick={() => {this.setPetImage('images/bunnyPetIcon.png')}}/>
                   {/* shows chosen pet */}
                  <img className='row-col6 chosen-pet' src={this.state.petImageUrl}/> 
             </div>             

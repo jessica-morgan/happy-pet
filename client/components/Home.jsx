@@ -53,27 +53,31 @@ class Home extends React.Component {
    
         return (
         
-            <div style={{marginLeft: '25vw', fontFamily: "'Bonbon', cursive"}}>
+            <div style={{marginLeft: '25vw', fontFamily: "'Caveat Brush', cursive"}}>
               
          <Tabs
-          style={{ width: '70vw'}}
+          style={{ width: '70vw', fontSize: '13px'}}
           defaultActiveTab="Home">
 
            <Tab title="Home">
             <Fieldset legend='Happy Pet' className='happy-pet-title' style={{ marginBottom: '1em', height: '80vh' }}>
-              <br/>
+              
               <h2 className='welcome'>Hi {this.props.userN}!</h2>
               <br/>
 
                 <div className='home-container'>
-                   <Link style={{textDecoration: 'none'}} className='home-row-col1' to='/createpet'><img src='/images/lightBulbIcon.png' style={{width: '58px', height: '70px'}}/>
+                   <Link style={{textDecoration: 'none'}} className='home-row-col1' to='/createpet'><img src='/images/createPetIcon.png' style={{width: '58px', height: '50px'}}/>
                     <h3 className='landing-text'>Create a pet</h3></Link>
-                   <Link style={{textDecoration: 'none'}} className='home-row-col2' to='/userpage'><img src='/images/userPageIcon.png' style={{width: '58px', height: '70px'}} onClick={() => {this.handleClickUserInfo(); this.handleClickPetInfo(); this.handleClickPetImage()}}/>
+
+                   <Link style={{textDecoration: 'none'}} className='home-row-col2' to='/userpage'><img src='/images/userPageIcon.png' style={{width: '58px', height: '57px'}} onClick={() => {this.handleClickUserInfo(); this.handleClickPetInfo(); this.handleClickPetImage()}}/>
                   <h3 className='landing-text'>User page</h3></Link>
 
+                  <Link style={{textDecoration: 'none'}} className='home-row-col3' to='/userpage'><img src='/images/petPageIcon.png' style={{width: '58px', height: '57px'}} onClick={() => {this.handleClickUserInfo(); this.handleClickPetInfo(); this.handleClickPetImage()}}/>
+                  <h3 className='landing-text'>Pet page</h3></Link>
+
                  {/* the history.push isn't working but logs user out */}
-                 <Link style={{textDecoration: 'none'}} className='home-row-col3' to='/' onClick={() => this.redirect()}>
-              <img src='/images/logoutIcon.png' style={{width: '58px', height: '60px'}} onClick={() => {this.logoutUser()}}/>
+                 <Link style={{textDecoration: 'none'}} className='home-row-col4' to='/' onClick={() => this.redirect()}>
+              <img src='/images/logoutIcon.png' style={{width: '58px', height: '50px'}} onClick={() => {this.logoutUser()}}/>
            <h3 className='landing-text'>Logout</h3></Link>
         <br/><br/>
        </div>

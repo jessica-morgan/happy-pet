@@ -1,10 +1,9 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import { petHunger } from '../actions/petInfo'
-import { feedPetApi } from '../api/pets'
 import {format, differenceInHours} from 'date-fns'
-import ProgressBar from 'react-bootstrap/ProgressBar'
+// import ProgressBar from 'react-bootstrap/ProgressBar'
+import ProgressBar from '@react95/core/ProgressBar'
 
 class HungerProgressBar extends React.Component {
     constructor(props) {
@@ -28,11 +27,11 @@ class HungerProgressBar extends React.Component {
               {/* if difference in hours since now and last fed is >= 12 show hunger at 50% */}
                {difference >= 12 ? 
                 <h3 className='feed-pet-row-col3 petPage-stats-title'>
-                 <ProgressBar className='progress-container feed-pet-row-col2' now={50} label="I'm good!" variant="warning"/></h3>
+                 <ProgressBar className='progress-container feed-pet-row-col2' percent={50}/></h3>
                 :
                 // else show it at 100%
                 <h3 className='feed-pet-row-col3 petPage-stats-title'>
-                <ProgressBar className='progress-container feed-pet-row-col2' now={100} label="I'm full!" variant="danger"/>
+                <ProgressBar className='progress-container feed-pet-row-col2' percent={100}/>
                 </h3>
                }
               

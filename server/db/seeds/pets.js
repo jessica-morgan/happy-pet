@@ -13,7 +13,7 @@ exports.seed = function(knex, Promise) {
         activity: 'Eating',
         fed: false,
         last_fed: 'Fri Apr 19 2019 14:16:55 GMT+1200 (New Zealand Standard Time)',
-        image: '/images/catpet.png',
+        image: '/images/catPetIcon.png',
         petCreatedAt: '2019-04-11 14:09:10'
       }
      ]);
