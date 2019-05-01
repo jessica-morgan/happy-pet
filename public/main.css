@@ -1,6 +1,6 @@
 body {
  background-color: rgb(105, 165, 153);
- font-family: Verdana, Arial, Helvetica, sans-serif;;
+ /* font-family: Verdana, Arial, Helvetica, sans-serif; */
 }
 
 /* width */
@@ -24,7 +24,7 @@ body {
 }
 
 .landing-text {
-    font-family: Verdana, Arial, Helvetica, sans-serif;;
+    font-family: 'Times New Roman', Times, serif;
     font-size: 1.2vw;
     color: rgb(3, 3, 3);
 }
@@ -54,7 +54,7 @@ body {
 }
 
 .title {
-    font-family: Verdana, Arial, Helvetica, sans-serif;;
+    font-family: 'Times New Roman', Times, serif;
     text-align: center;
     font-size: 30px;
     color: rgb(83, 64, 54);
@@ -65,12 +65,10 @@ body {
 }
 
 .createpet-text {
-    font-family: Verdana, Arial, Helvetica, sans-serif;;
-    text-align: center;
-    font-size: 13px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.2vw;
     color: rgb(0, 0, 0);
     display: block;
-    margin-top: -2vh;
 }
 
 .register-container {
@@ -120,22 +118,13 @@ body {
 
   .input-container {
     display: grid;
-    grid-gap: 5vh;
+    grid-gap: 2vh;
     justify-content: space-evenly;
-    padding-right: 4vw;
+    margin-top: 40vh;
+    margin-left: 34vw;
     }
 
-  .petInfo-text-container {
-    width: 70px;
-    height: 30px;
-    font-family: Verdana, Arial, Helvetica, sans-serif;;
-    text-align: center;
-    font-size: 18px;
-    color: rgb(83, 64, 54);
-    opacity: 0.7;
-  }
-
-  /* .input-rowcol1 {
+   .input-rowcol1 {
     grid-column: 1;
     grid-row: 1;
     grid-auto-columns: min-content;
@@ -175,15 +164,16 @@ body {
     grid-row: 3;
     grid-auto-columns: min-content;
     grid-auto-rows: min-content;
-  } */
+  }
 
   .input-rowcol7 {
     grid-column: 1 / span 2;
     grid-row: 1;
     grid-auto-columns: min-content;
     grid-auto-rows: min-content;
-    width: 135px;
-    height: 25px;
+    width: 19vw;
+    height: 3.2vh;
+    margin-top: 0vh;
   }
 
   .input-rowcol8 {
@@ -191,8 +181,9 @@ body {
     grid-row: 2;
     grid-auto-columns: min-content;
     grid-auto-rows: min-content;
-    width: 135px;
-    height: 25px;
+    width: 19vw;
+    height: 3.2vh;
+    margin-top: 0vh;
   }
 
   .input-rowcol9 {
@@ -200,8 +191,9 @@ body {
     grid-row: 3;
     grid-auto-columns: min-content;
     grid-auto-rows: min-content;
-    width: 135px;
-    height: 25px;
+    width: 19vw;
+    height: 3.2vh;
+    margin-top: 0vh;
   }
 
   .input-rowcol10 {
@@ -262,18 +254,41 @@ body {
     grid-gap: 0.5vw;
     justify-content: space-evenly;
     float: left;
-    margin-left: 3vw;
+    margin-left: 1vw;
+    margin-top: 37vh;
+    margin-left: 8vw;
   }
 
   .grid-images {
-      width: 12vw;
-      height: 14vh;
+    width: 10vw;
+    height: 14vh;
+  }
+
+  .chosen-pet-container{
+    display: block;
+    justify-content: space-evenly;
+    float: left;
+    margin-left: -20vw;
   }
 
   .chosen-pet {
-    width: 240px;
-    height: 210px;
+    width: 20vw;
+    height: 33vh;
   }
+
+.petinfo-container{
+  display: grid;
+  grid-gap: 1vw;
+  justify-content: space-evenly;
+  float: left;
+  margin-left: 10vw;
+  margin-top: 9vh;
+}
+
+
+.petInfo-text-container {
+    
+}
 
   .row-col1 {
     grid-column: 1 / span 2;
@@ -416,7 +431,7 @@ body {
 }
 
 .petPage-stats-title {
-  font-family: Verdana, Arial, Helvetica, sans-serif;;
+  font-family: 'Times New Roman', Times, serif;
   text-align: center;
   font-size: 18px;
   color: rgb(36, 30, 27);
@@ -473,7 +488,7 @@ body {
 }
 
 .userPage-text {
-  font-family: Verdana, Arial, Helvetica, sans-serif;;
+  font-family: 'Times New Roman', Times, serif;
   text-align: center;
   font-size: 15px;
   color: rgb(83, 64, 54);
@@ -579,7 +594,7 @@ padding-left: 30px;
 .progress-container {
   width: 170px;
   height: 18px;
-  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 @keyframes title{

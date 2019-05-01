@@ -50,8 +50,7 @@ class LandingPage extends React.Component {
 
     //dispatch this info to redux register 
     handleSubmit(){
-      //destructring- takes this.state and gets the properties username, password and email, making
-      //them available as variables so we can use them as parameters
+      //destructring- takes this.state and gets the properties username, password and email
       const {username, firstname, email, password} = this.state
       //this posts new user to database from registration form
       makeNewUserApi(username, firstname, email, password)
