@@ -5582,7 +5582,7 @@ function feedPetApi(username, lastFed) {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -5599,6 +5599,24 @@ var _petInfo = __webpack_require__(36);
 
 var _dateFns = __webpack_require__(20);
 
+var _Tabs = __webpack_require__(34);
+
+var _Fieldset = __webpack_require__(35);
+
+var _Fieldset2 = _interopRequireDefault(_Fieldset);
+
+var _PetPage = __webpack_require__(49);
+
+var _PetPage2 = _interopRequireDefault(_PetPage);
+
+var _Home = __webpack_require__(67);
+
+var _Home2 = _interopRequireDefault(_Home);
+
+var _CreatePet = __webpack_require__(72);
+
+var _CreatePet2 = _interopRequireDefault(_CreatePet);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -5608,139 +5626,271 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var UserPage = function (_React$Component) {
-    _inherits(UserPage, _React$Component);
+  _inherits(UserPage, _React$Component);
 
-    function UserPage(props) {
-        _classCallCheck(this, UserPage);
+  function UserPage(props) {
+    _classCallCheck(this, UserPage);
 
-        var _this = _possibleConstructorReturn(this, (UserPage.__proto__ || Object.getPrototypeOf(UserPage)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (UserPage.__proto__ || Object.getPrototypeOf(UserPage)).call(this, props));
 
-        _this.state = {};
-        return _this;
+    _this.state = {
+      createPetPageClicked: false,
+      petPageClicked: false
+    };
+    _this.logoutUser = _this.logoutUser.bind(_this);
+    _this.handleClickIcon = _this.handleClickIcon.bind(_this);
+    _this.redirect = _this.redirect.bind(_this);
+    return _this;
+  }
+
+  _createClass(UserPage, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      if (this.props.loggedin === true) {
+        this.props.history.push('/userpage');
+      } else {
+        this.props.history.push('/');
+      }
     }
 
-    _createClass(UserPage, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            if (this.props.loggedin === true) {
-                this.props.history.push('/userpage');
-            } else {
-                this.props.history.push('/');
-            }
-        }
+    //when click on pet page link calculate pets age using this.props.petCreated state.getPetInfo.petCreated
 
-        //when click on pet page link calculate pets age using this.props.petCreated state.getPetInfo.petCreated
+  }, {
+    key: 'getPetAge',
+    value: function getPetAge() {
+      var created = (0, _dateFns.format)(this.props.petCreated);
+      var currentDate = (0, _dateFns.format)(new Date());
+      var age = (0, _dateFns.differenceInDays)(currentDate, created);
+      this.props.dispatch((0, _petInfo.petAge)(age));
+    }
+  }, {
+    key: 'logoutUser',
+    value: function logoutUser() {
+      this.props.dispatch(logout(this.props.userN));
+    }
+  }, {
+    key: 'redirect',
+    value: function redirect() {
+      this.context.history.push('/');
+    }
+  }, {
+    key: 'handleClickIcon',
+    value: function handleClickIcon(icon) {
+      if (icon === 'createPetPage') {
+        this.setState({ createPetPageClicked: true });
+      } else if (icon === 'petPage') {
+        this.setState({ petPageClicked: true });
+      }this.state;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
 
-    }, {
-        key: 'getPetAge',
-        value: function getPetAge() {
-            var created = (0, _dateFns.format)(this.props.petCreated);
-            var currentDate = (0, _dateFns.format)(new Date());
-            var age = (0, _dateFns.differenceInDays)(currentDate, created);
-            this.props.dispatch((0, _petInfo.petAge)(age));
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            var _this2 = this;
+      var accountCreated = (0, _dateFns.format)(this.props.acctCreated, 'MMMM/YYYY');
 
-            var accountCreated = (0, _dateFns.format)(this.props.acctCreated, 'MMMM/YYYY');
-
-            return _react2.default.createElement(
-                'div',
-                null,
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'div',
+          { className: 'home-container' },
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { style: { textDecoration: 'none' }, className: 'home-row-col1' },
+            _react2.default.createElement('img', { src: '/images/createPetIcon.png', style: { width: '6vw', height: '9vh' }, onClick: function onClick() {
+                _this2.handleClickIcon('createPetPage');
+              } }),
+            _react2.default.createElement(
+              'h3',
+              { className: 'landing-text' },
+              'Create a pet'
+            )
+          ),
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { style: { textDecoration: 'none' }, className: 'home-row-col2' },
+            _react2.default.createElement('img', { src: '/images/userPageIcon.png', style: { width: '6vw', height: '9vh' } }),
+            _react2.default.createElement(
+              'h3',
+              { className: 'landing-text' },
+              'User page'
+            )
+          ),
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { style: { textDecoration: 'none' }, className: 'home-row-col3' },
+            _react2.default.createElement('img', { src: '/images/petPageIcon.png', style: { width: '6vw', height: '9vh' }, onClick: function onClick() {
+                _this2.handleClickIcon('petPage');
+              } }),
+            _react2.default.createElement(
+              'h3',
+              { className: 'landing-text' },
+              'Pet page'
+            )
+          ),
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { style: { textDecoration: 'none' }, className: 'home-row-col4', to: '/', onClick: function onClick() {
+                return _this2.redirect();
+              } },
+            _react2.default.createElement('img', { src: '/images/logoutIcon.png', style: { width: '6vw', height: '9vh' }, onClick: function onClick() {
+                _this2.logoutUser();
+              } }),
+            _react2.default.createElement(
+              'h3',
+              { className: 'landing-text' },
+              'Logout'
+            )
+          ),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement('br', null)
+        ),
+        _react2.default.createElement(
+          'div',
+          { style: { marginLeft: '25vw', fontFamily: "'Caveat Brush', cursive", marginTop: '2.5vh' } },
+          _react2.default.createElement(
+            _Tabs.Tabs,
+            {
+              style: { width: '70vw' },
+              defaultActiveTab: 'User Page' },
+            _react2.default.createElement(
+              _Tabs.Tab,
+              { title: 'Home' },
+              _react2.default.createElement(
+                _Fieldset2.default,
+                { style: { marginBottom: '1em', height: '80vh' } },
+                _react2.default.createElement(_Home2.default, null)
+              )
+            ),
+            _react2.default.createElement(
+              _Tabs.Tab,
+              { title: 'User Page' },
+              _react2.default.createElement(
+                _Fieldset2.default,
+                { legend: 'Happy Pet', className: 'happy-pet-title', style: { marginBottom: '1em', height: '80vh' } },
                 _react2.default.createElement(
-                    'h1',
-                    { className: 'title' },
-                    'Welcome to ',
-                    this.props.username,
-                    '\'s page!'
+                  'h3',
+                  { className: 'title', style: { textAlign: 'center' } },
+                  'Welcome to ',
+                  this.props.username,
+                  '\'s page!'
                 ),
                 _react2.default.createElement('br', null),
                 _react2.default.createElement(
-                    'div',
-                    { className: 'user-info-container1' },
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'userPage-row-col1 landing-text' },
-                        'Username:'
-                    ),
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'userPage-row-col4 userPage-text' },
-                        this.props.username
-                    ),
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'userPage-row-col2 landing-text' },
-                        'Name:'
-                    ),
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'userPage-row-col5 userPage-text' },
-                        this.props.firstname
-                    ),
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'userPage-row-col9 landing-text' },
-                        'Joined:'
-                    ),
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'userPage-row-col10 userPage-text' },
-                        accountCreated
-                    ),
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'userPage-row-col11 landing-text' },
-                        'Status:'
-                    ),
-                    this.props.loggedin === true ? _react2.default.createElement(
-                        'h3',
-                        { className: 'userPage-row-col12 userPage-text' },
-                        'Online'
-                    ) : _react2.default.createElement(
-                        'h3',
-                        { className: 'userPage-row-col12 userPage-text' },
-                        'Offline'
-                    )
+                  'div',
+                  { className: 'user-info-container1' },
+                  _react2.default.createElement(
+                    'h3',
+                    { className: 'userPage-row-col1 userpage-text' },
+                    'Username:'
+                  ),
+                  _react2.default.createElement(
+                    'h3',
+                    { style: { color: 'rgb(92, 92, 92)' }, className: 'userPage-row-col4 userpage-text' },
+                    this.props.username
+                  ),
+                  _react2.default.createElement(
+                    'h3',
+                    { className: 'userPage-row-col2 userpage-text' },
+                    'Name:'
+                  ),
+                  _react2.default.createElement(
+                    'h3',
+                    { style: { color: 'rgb(92, 92, 92)' }, className: 'userPage-row-col5 userpage-text' },
+                    this.props.firstname
+                  ),
+                  _react2.default.createElement(
+                    'h3',
+                    { className: 'userPage-row-col9 userpage-text' },
+                    'Joined:'
+                  ),
+                  _react2.default.createElement(
+                    'h3',
+                    { style: { color: 'rgb(92, 92, 92)' }, className: 'userPage-row-col10 userpage-text' },
+                    accountCreated
+                  ),
+                  _react2.default.createElement(
+                    'h3',
+                    { className: 'userPage-row-col11 userpage-text' },
+                    'Status:'
+                  ),
+                  this.props.loggedin === true ? _react2.default.createElement(
+                    'h3',
+                    { style: { color: 'rgb(92, 92, 92)' }, className: 'userPage-row-col12 userpage-text' },
+                    'Online'
+                  ) : _react2.default.createElement(
+                    'h3',
+                    { style: { color: 'rgb(92, 92, 92)' }, className: 'userPage-row-col12 userpage-text' },
+                    'Offline'
+                  )
                 ),
                 _react2.default.createElement(
-                    'div',
-                    { className: 'user-info-container2' },
-                    this.props.pettype ? _react2.default.createElement(
-                        _reactRouterDom.Link,
-                        { to: '/petpage', className: 'userPage-row-col7', onClick: function onClick() {
-                                return _this2.getPetAge();
-                            } },
-                        _react2.default.createElement('img', { src: this.props.petimage, className: 'userPage-petimg' })
-                    ) : _react2.default.createElement('div', null),
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'userPage-row-col8 landing-text' },
-                        'Visit ',
-                        this.props.petname,
-                        '\'s page'
-                    )
+                  'div',
+                  { className: 'user-info-container2' },
+                  this.props.pettype ? _react2.default.createElement(
+                    _reactRouterDom.Link,
+                    { to: '/petpage', className: 'userPage-row-col7', onClick: function onClick() {
+                        return _this2.getPetAge();
+                      } },
+                    _react2.default.createElement('img', { src: this.props.petimage, className: 'userPage-petimg' })
+                  ) : _react2.default.createElement('div', null),
+                  _react2.default.createElement(
+                    'h3',
+                    { className: 'userPage-row-col8 userpage-text' },
+                    'Visit ',
+                    this.props.petname,
+                    '\'s page'
+                  )
                 )
-            );
-        }
-    }]);
+              )
+            ),
+            this.state.createPetPageClicked ? _react2.default.createElement(
+              _Tabs.Tab,
+              { title: 'Create A Pet' },
+              _react2.default.createElement(
+                _Fieldset2.default,
+                { className: 'happy-pet-title', legend: 'Happy Pet', style: { marginBottom: '1em', height: '80vh' } },
+                _react2.default.createElement(_CreatePet2.default, null)
+              )
+            ) : _react2.default.createElement(
+              _Tabs.Tab,
+              null,
+              _react2.default.createElement('div', null)
+            ),
+            this.state.petPageClicked ? _react2.default.createElement(
+              _Tabs.Tab,
+              { title: 'PetPage' },
+              _react2.default.createElement(
+                _Fieldset2.default,
+                { className: 'happy-pet-title', legend: 'Happy Pet', style: { marginBottom: '1em', height: '80vh' } },
+                _react2.default.createElement(_PetPage2.default, null)
+              )
+            ) : _react2.default.createElement(
+              _Tabs.Tab,
+              null,
+              _react2.default.createElement(_Fieldset2.default, { style: { marginBottom: '1em', height: '80vh' } })
+            )
+          )
+        )
+      );
+    }
+  }]);
 
-    return UserPage;
+  return UserPage;
 }(_react2.default.Component);
 
 function mapStateToProps(state) {
-    return {
-        username: state.login.username,
-        firstname: state.user.firstname,
-        acctCreated: state.user.acctCreated,
-        loggedin: state.login.loggedin,
-        pettype: state.getPetInfo.petType,
-        petname: state.getPetInfo.petName,
-        petimage: state.getPetInfo.petImage,
-        petCreated: state.getPetInfo.petCreated
-    };
+  return {
+    username: state.login.username,
+    firstname: state.user.firstname,
+    acctCreated: state.user.acctCreated,
+    loggedin: state.login.loggedin,
+    pettype: state.getPetInfo.petType,
+    petname: state.getPetInfo.petName,
+    petimage: state.getPetInfo.petImage,
+    petCreated: state.getPetInfo.petCreated
+  };
 }
 
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(UserPage));
@@ -8916,7 +9066,7 @@ var Home = function (_React$Component) {
           _react2.default.createElement(
             _reactRouterDom.Link,
             { style: { textDecoration: 'none' }, className: 'home-row-col1' },
-            _react2.default.createElement('img', { src: '/images/createPetIcon.png', style: { width: '6vw', height: '8vh' }, onClick: function onClick() {
+            _react2.default.createElement('img', { src: '/images/createPetIcon.png', style: { width: '6vw', height: '9vh' }, onClick: function onClick() {
                 return _this2.handleClickIcon('createPetPage');
               } }),
             _react2.default.createElement(
@@ -10398,18 +10548,18 @@ var CreatePet = function (_React$Component) {
           _react2.default.createElement(
             _reactRouterDom.Link,
             { style: { textDecoration: 'none' }, className: 'home-row-col1' },
-            _react2.default.createElement('img', { src: '/images/homeIcon.png', style: { width: '6vw', height: '9vh' } }),
+            _react2.default.createElement('img', { src: '/images/createPetIcon.png', style: { width: '6vw', height: '9vh' } }),
             _react2.default.createElement(
               'h3',
               { className: 'landing-text' },
-              'Home'
+              'Create a pet'
             )
           ),
           _react2.default.createElement(
             _reactRouterDom.Link,
             { style: { textDecoration: 'none' }, className: 'home-row-col2' },
             _react2.default.createElement('img', { src: '/images/userPageIcon.png', style: { width: '6vw', height: '9vh' }, onClick: function onClick() {
-                _this2.handleClickUserInfo();_this2.handleClickPetInfo();_this2.handleClickPetImage();_this2.handleClickIcon('userPage');
+                _this2.handleClickIcon('userPage');
               } }),
             _react2.default.createElement(
               'h3',
@@ -10421,7 +10571,7 @@ var CreatePet = function (_React$Component) {
             _reactRouterDom.Link,
             { style: { textDecoration: 'none' }, className: 'home-row-col3' },
             _react2.default.createElement('img', { src: '/images/petPageIcon.png', style: { width: '6vw', height: '9vh' }, onClick: function onClick() {
-                _this2.handleClickUserInfo();_this2.handleClickPetInfo();_this2.handleClickPetImage();_this2.handleClickIcon('petPage');
+                _this2.handleClickIcon('petPage');
               } }),
             _react2.default.createElement(
               'h3',
@@ -10578,34 +10728,13 @@ var CreatePet = function (_React$Component) {
                 )
               )
             ),
-            this.state.homeClicked ? _react2.default.createElement(
-              _Tabs.Tab,
-              { title: 'Home' },
-              _react2.default.createElement(
-                _Fieldset2.default,
-                { className: 'happy-pet-title', legend: 'Happy Pet', style: { marginBottom: '1em', height: '80vh' } },
-                _react2.default.createElement(
-                  'div',
-                  null,
-                  _react2.default.createElement(_Home2.default, null)
-                )
-              )
-            ) : _react2.default.createElement(
-              _Tabs.Tab,
-              null,
-              _react2.default.createElement(_Fieldset2.default, { style: { marginBottom: '1em', height: '80vh' } })
-            ),
             this.state.userPageClicked ? _react2.default.createElement(
               _Tabs.Tab,
               { title: 'User Page' },
               _react2.default.createElement(
                 _Fieldset2.default,
                 { className: 'happy-pet-title', legend: 'Happy Pet', style: { marginBottom: '1em', height: '80vh' } },
-                _react2.default.createElement(
-                  'div',
-                  null,
-                  _react2.default.createElement(_UserPage2.default, null)
-                )
+                _react2.default.createElement(_UserPage2.default, null)
               )
             ) : _react2.default.createElement(
               _Tabs.Tab,
@@ -10618,11 +10747,7 @@ var CreatePet = function (_React$Component) {
               _react2.default.createElement(
                 _Fieldset2.default,
                 { className: 'happy-pet-title', legend: 'Happy Pet', style: { marginBottom: '1em', height: '80vh' } },
-                _react2.default.createElement(
-                  'div',
-                  null,
-                  _react2.default.createElement(_PetPage2.default, null)
-                )
+                _react2.default.createElement(_PetPage2.default, null)
               )
             ) : _react2.default.createElement(
               _Tabs.Tab,

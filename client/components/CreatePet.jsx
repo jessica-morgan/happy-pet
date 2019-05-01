@@ -78,13 +78,13 @@ class CreatePet extends React.Component {
             <div>
 
                   <div className='home-container'>
-                  <Link style={{textDecoration: 'none'}} className='home-row-col1'><img src='/images/homeIcon.png' style={{width: '6vw', height: '9vh'}}/>
-                  <h3 className='landing-text'>Home</h3></Link>
+                  <Link style={{textDecoration: 'none'}} className='home-row-col1'><img src='/images/createPetIcon.png' style={{width: '6vw', height: '9vh'}}/>
+                  <h3 className='landing-text'>Create a pet</h3></Link>
 
-                  <Link style={{textDecoration: 'none'}} className='home-row-col2'><img src='/images/userPageIcon.png' style={{width: '6vw', height: '9vh'}} onClick={() => {this.handleClickUserInfo(); this.handleClickPetInfo(); this.handleClickPetImage(); this.handleClickIcon('userPage')}}/>
+                  <Link style={{textDecoration: 'none'}} className='home-row-col2'><img src='/images/userPageIcon.png' style={{width: '6vw', height: '9vh'}} onClick={() => {this.handleClickIcon('userPage')}}/>
                 <h3 className='landing-text'>User page</h3></Link>
 
-                <Link style={{textDecoration: 'none'}} className='home-row-col3'><img src='/images/petPageIcon.png' style={{width: '6vw', height: '9vh'}} onClick={() => {this.handleClickUserInfo(); this.handleClickPetInfo(); this.handleClickPetImage(); this.handleClickIcon('petPage')}}/>
+                <Link style={{textDecoration: 'none'}} className='home-row-col3'><img src='/images/petPageIcon.png' style={{width: '6vw', height: '9vh'}} onClick={() => {this.handleClickIcon('petPage')}}/>
                 <h3 className='landing-text'>Pet page</h3></Link>
 
                 <Link style={{textDecoration: 'none'}} className='home-row-col4' to='/' onClick={() => this.redirect()}>
@@ -132,7 +132,6 @@ class CreatePet extends React.Component {
                   <h3 className='input-rowcol1 createpet-text'>
                 Name:
                 </h3>
-                {/* RESTYLE THESE COLUMNS */}
                 {this.state.petName.length > 0 ? <h3 className='input-rowcol2 createpet-text petInfo-text-container'> {this.state.petName}</h3>
                 : <div className='input-rowcol2 createpet-text petInfo-text-container'></div>}
                 <h3 className='input-rowcol3 createpet-text'>
@@ -166,26 +165,13 @@ class CreatePet extends React.Component {
                   </div>
             </Fieldset>
            </Tab>
-              
-               {this.state.homeClicked ? 
-               <Tab title='Home'>
-               <Fieldset className='happy-pet-title' legend='Happy Pet' style={{ marginBottom: '1em', height: '80vh' }}>
-                <div>
-                 <Home/>
-                 </div>
-               </Fieldset>
-               </Tab> 
-               : <Tab>
-                 <Fieldset style={{ marginBottom: '1em', height: '80vh' }}>
-                  </Fieldset>
-               </Tab>}
      
                {this.state.userPageClicked ? 
                <Tab title='User Page'>
                <Fieldset className='happy-pet-title' legend='Happy Pet' style={{ marginBottom: '1em', height: '80vh' }}>
-                 <div>
+                
                  <UserPage/>
-                 </div>
+               
                </Fieldset>
                </Tab> 
                : <Tab>
@@ -196,9 +182,9 @@ class CreatePet extends React.Component {
                {this.state.petPageClicked ? 
                <Tab title='PetPage'>
                <Fieldset className='happy-pet-title' legend='Happy Pet' style={{ marginBottom: '1em', height: '80vh' }}>
-                <div>
+              
                   <PetPage/>
-                  </div>
+                
                  </Fieldset>
                 </Tab> 
                 : <Tab>

@@ -69,7 +69,7 @@ class Home extends React.Component {
         return (
         <div>
           <div className='home-container'>
-          <Link style={{textDecoration: 'none'}} className='home-row-col1'><img src='/images/createPetIcon.png' style={{width: '6vw', height: '8vh'}} onClick={() => this.handleClickIcon('createPetPage')}/>
+          <Link style={{textDecoration: 'none'}} className='home-row-col1'><img src='/images/createPetIcon.png' style={{width: '6vw', height: '9vh'}} onClick={() => this.handleClickIcon('createPetPage')}/>
            <h3 className='landing-text'>Create a pet</h3></Link>
 
           <Link style={{textDecoration: 'none'}} className='home-row-col2'><img src='/images/userPageIcon.png' style={{width: '6vw', height: '9vh'}} onClick={() => {this.handleClickUserInfo(); this.handleClickPetInfo(); this.handleClickPetImage(); this.handleClickIcon('userPage')}}/>
@@ -99,9 +99,7 @@ class Home extends React.Component {
 
        </Fieldset>
       </Tab>
-         
-          {/*(and take the icon away from the desktop?) */}
-          {/* components are not rendering in tabs atm- tab will appear but when clicked on just redirects to page route */}
+      
           {this.state.createPetClicked ? 
           <Tab title='Create A Pet'>
           <Fieldset className='happy-pet-title' legend='Happy Pet' style={{ marginBottom: '1em', height: '80vh' }}>
