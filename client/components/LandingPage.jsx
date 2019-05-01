@@ -67,7 +67,7 @@ class LandingPage extends React.Component {
         return (
       <div>
     
-        <div style={{marginLeft: '25vw'}}>
+        <div style={{marginLeft: '25vw', marginTop: '2.5vh'}}>
           <Tabs
           style={{ width: '50vw', fontSize: '13px'}}
           defaultActiveTab="Login">

@@ -2,6 +2,8 @@ import React from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { newpetApi} from '../api/pets'
+import Input from '@react95/core/Input'
+import Button from '@react95/core/Button'
 
 class CreatePet extends React.Component {
     constructor(props) {
@@ -48,11 +50,11 @@ class CreatePet extends React.Component {
         return (
         
             <div>
-                <h1 className='title'>Create a pet!</h1>
+                <h1 className='happy-pet-title'>Create a pet!</h1>
                 <br/>
                 {/* pets to choose from */}
                 <div className='createpet-container'>
-                <h3 className='row-col1 landing-text'>Choose your pet</h3>
+                <h3 className='row-col1 createpet-text'>Choose your pet</h3>
                 <img id='monkey' className='row-col2 grid-images' src='/images/monkeyPetIcon.png' onClick={() => {this.setPetImage('/images/monkeyPetIcon.png')}}/>
                 <img id='mouse' className='row-col3 grid-images' src='/images/mousePetIcon.png' onClick={() => {this.setPetImage('/images/mousePetIcon.png')}}/>
                 <img id='cat' className='row-col4 grid-images' src='images/catPetIcon.png' onClick={() => {this.setPetImage('images/catPetIcon.png')}}/>
@@ -62,35 +64,20 @@ class CreatePet extends React.Component {
             </div>             
 
             {/* where inputted name, habitat and activity are shown */}
-            <div className='input-container'>
-                <h3 className='input-rowcol1 landing-text'>
-                Name:
-                </h3>
-                {this.state.petName.length > 0 ? <h3 className='input-rowcol2 petInfo-text-container'> {this.state.petName}</h3>
-                : <div className='input-rowcol2 petInfo-text-container'></div>}
-                <h3 className='input-rowcol3 landing-text'>
-                Habitat:
-                </h3>
-                {this.state.habitat.length > 0 ? <h3 className='input-rowcol4 petInfo-text-container'> {this.state.habitat}</h3>
-                : <div className='input-rowcol4 petInfo-text-container'></div>}
-                <h3 className='input-rowcol5 landing-text'>
-                Activity:
-                </h3>
-                {this.state.activity.length > 0 ? <h3 className='input-rowcol6 petInfo-text-container'> {this.state.activity}</h3>
-                : <div className='input-rowcol6 petInfo-text-container'></div>}
+             <div className='input-container'>
               
                 {/* inputs for name, habitat and activity */}
                 <h3 className='input-rowcol7 createpet-text'>Give your pet a name:</h3>
-                    <input style={{marginTop: '15px'}} className='input-rowcol7 input-fields' type='text' name='petName' id='petName' onChange={this.handleChange}/>
+                    <Input style={{marginTop: '3vh'}} className='input-rowcol7' type='text' name='petName' id='petName' onChange={this.handleChange}/>
                     <br/>
                     <h3 className='input-rowcol8 createpet-text'>Where does your pet live?</h3>
-                    <input style={{marginTop: '15px'}} className='input-rowcol8 input-fields' type='text' name='habitat' id='habitat' onChange={this.handleChange}/>
+                    <Input style={{marginTop: '3vh'}} className='input-rowcol8' type='text' name='habitat' id='habitat' onChange={this.handleChange}/>
                     <br/>
                     <h3 className='input-rowcol9 createpet-text'>What does your pet like to do?</h3>
-                    <input style={{marginTop: '15px'}} className='input-rowcol9 input-fields' type='text' name='activity' id='activity'onChange={this.handleChange}/>
-                    <br/>
+                    <Input style={{marginTop: '3vh'}} className='input-rowcol9' type='text' name='activity' id='activity'onChange={this.handleChange}/>
+                  
                     <Link className='input-rowcol10' to='/home'>
-                    <button className='button' onClick={() => {this.handleSubmit(this.state)}}>Enter</button>
+                    <Button onClick={() => {this.handleSubmit(this.state)}}>Enter</Button>
                     </Link>       
                 </div>
               

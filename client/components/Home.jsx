@@ -4,21 +4,28 @@ import {connect} from 'react-redux'
 import Button from '@react95/core/Button'
 import { Tabs, Tab } from '@react95/core/Tabs'
 import Fieldset from '@react95/core/Fieldset'
-import Input from '@react95/core/Input'
 import { getUser } from '../actions/users'
 import { getUsersPetInfo, getPetImage } from '../actions/petInfo'
 import { logout } from '../actions/login'
+import CreatePet from './CreatePet'
+import UserPage from './UserPage'
+import PetPage from './PetPage'
 
 class Home extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
- 
+            createPetClicked: false,
+            userPageClicked: false,
+            petPageClicked: false
         }
         this.handleClickUserInfo = this.handleClickUserInfo.bind(this)
         this.handleClickPetInfo = this.handleClickPetInfo.bind(this)
         this.handleClickPetImage = this.handleClickPetImage.bind(this)
-        this.logoutUser = this.logoutUser.bind(this)   
+        this.logoutUser = this.logoutUser.bind(this) 
+        this.handleCreatePetClick = this.handleCreatePetClick.bind(this)
+        this.handleUserPageClick = this.handleUserPageClick.bind(this)
+        this.handlePetPageClick = this.handlePetPageClick.bind(this)  
       }
 
       componentDidMount () {
@@ -41,6 +48,18 @@ class Home extends React.Component {
         this.props.dispatch(getPetImage(this.props.pettype))
       }
 
+      handleCreatePetClick() {
+        this.setState({createPetClicked: true})
+      }
+
+      handleUserPageClick() {
+        this.setState({userPageClicked: true})
+      }
+
+      handlePetPageClick() {
+        this.setState({petPageClicked: true})
+      }
+
       logoutUser() {
         this.props.dispatch(logout(this.props.userN))
       }
@@ -52,41 +71,67 @@ class Home extends React.Component {
       render() {
    
         return (
-        
-            <div style={{marginLeft: '25vw', fontFamily: "'Caveat Brush', cursive"}}>
+        <div>
+          <div className='home-container'>
+          <Link style={{textDecoration: 'none'}} className='home-row-col1'><img src='/images/createPetIcon.png' style={{width: '58px', height: '50px'}} onClick={() => this.handleCreatePetClick()}/>
+           <h3 className='landing-text'>Create a pet</h3></Link>
+
+          <Link style={{textDecoration: 'none'}} className='home-row-col2'><img src='/images/userPageIcon.png' style={{width: '58px', height: '57px'}} onClick={() => {this.handleClickUserInfo(); this.handleClickPetInfo(); this.handleClickPetImage(); this.handleUserPageClick()}}/>
+         <h3 className='landing-text'>User page</h3></Link>
+
+         <Link style={{textDecoration: 'none'}} className='home-row-col3'><img src='/images/petPageIcon.png' style={{width: '58px', height: '57px'}} onClick={() => {this.handleClickUserInfo(); this.handleClickPetInfo(); this.handleClickPetImage(); this.handlePetPageClick()}}/>
+         <h3 className='landing-text'>Pet page</h3></Link>
+
+        <Link style={{textDecoration: 'none'}} className='home-row-col4' to='/' onClick={() => this.redirect()}>
+          <img src='/images/logoutIcon.png' style={{width: '58px', height: '50px'}} onClick={() => {this.logoutUser()}}/>
+        <h3 className='landing-text'>Logout</h3></Link>
+        <br/><br/>
+        </div>
+          
+          <div style={{marginLeft: '25vw', fontFamily: "'Caveat Brush', cursive", marginTop: '2.5vh'}}>
               
          <Tabs
           style={{ width: '70vw', fontSize: '13px'}}
           defaultActiveTab="Home">
 
            <Tab title="Home">
-            <Fieldset legend='Happy Pet' className='happy-pet-title' style={{ marginBottom: '1em', height: '80vh' }}>
+            <Fieldset style={{ marginBottom: '1em', height: '80vh' }}>
               
-              <h2 className='welcome'>Hi {this.props.userN}!</h2>
-              <br/>
+            <h3 style={{fontSize: '7vw', textAlign: 'center', marginTop: '10vh'}} className='happy-pet-title'>Happy Pet</h3>
+              <h2 style={{marginTop: '12vh'}} className='welcome'>Hi {this.props.userN}!</h2>
+              <h2 style={{fontSize: '1.5vw', marginTop: '3vh'}} className='welcome'>Get started by clicking an icon on the left</h2>
 
-                <div className='home-container'>
-                   <Link style={{textDecoration: 'none'}} className='home-row-col1' to='/createpet'><img src='/images/createPetIcon.png' style={{width: '58px', height: '50px'}}/>
-                    <h3 className='landing-text'>Create a pet</h3></Link>
+       </Fieldset>
+      </Tab>
+         
+          {/*(and take the icon away from the desktop?) */}
+          {/* components are not rendering in tabs atm- tab will appear but when clicked on just redirects to page route */}
+          {this.state.createPetClicked ? 
+          <Tab title='Create A Pet'>
+          <Fieldset className='happy-pet-title' legend='Happy Pet' style={{ marginBottom: '1em', height: '80vh' }}>
+            <CreatePet/>
+          </Fieldset>
+          </Tab> 
+          : <Tab></Tab>}
 
-                   <Link style={{textDecoration: 'none'}} className='home-row-col2' to='/userpage'><img src='/images/userPageIcon.png' style={{width: '58px', height: '57px'}} onClick={() => {this.handleClickUserInfo(); this.handleClickPetInfo(); this.handleClickPetImage()}}/>
-                  <h3 className='landing-text'>User page</h3></Link>
+          {this.state.userPageClicked ? 
+          <Tab title='User Page'>
+          <Fieldset className='happy-pet-title' legend='Happy Pet' style={{ marginBottom: '1em', height: '80vh' }}>
+            <UserPage/>
+          </Fieldset>
+          </Tab> 
+          : <Tab></Tab>}
 
-                  <Link style={{textDecoration: 'none'}} className='home-row-col3' to='/userpage'><img src='/images/petPageIcon.png' style={{width: '58px', height: '57px'}} onClick={() => {this.handleClickUserInfo(); this.handleClickPetInfo(); this.handleClickPetImage()}}/>
-                  <h3 className='landing-text'>Pet page</h3></Link>
+          {this.state.petPageClicked ? 
+          <Tab title='PetPage'>
+          <Fieldset className='happy-pet-title' legend='Happy Pet' style={{ marginBottom: '1em', height: '80vh' }}>
+            <PetPage/>
+          </Fieldset>
+          </Tab> 
+          : <Tab></Tab>}
 
-                 {/* the history.push isn't working but logs user out */}
-                 <Link style={{textDecoration: 'none'}} className='home-row-col4' to='/' onClick={() => this.redirect()}>
-              <img src='/images/logoutIcon.png' style={{width: '58px', height: '50px'}} onClick={() => {this.logoutUser()}}/>
-           <h3 className='landing-text'>Logout</h3></Link>
-        <br/><br/>
-       </div>
-      </Fieldset>
-     </Tab>
-
-
-               
     </Tabs>
+   </div>
    </div>
         )
 

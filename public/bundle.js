@@ -39557,15 +39557,23 @@ var _Fieldset = __webpack_require__(66);
 
 var _Fieldset2 = _interopRequireDefault(_Fieldset);
 
-var _Input = __webpack_require__(67);
-
-var _Input2 = _interopRequireDefault(_Input);
-
 var _users = __webpack_require__(184);
 
 var _petInfo = __webpack_require__(34);
 
 var _login = __webpack_require__(70);
+
+var _CreatePet = __webpack_require__(192);
+
+var _CreatePet2 = _interopRequireDefault(_CreatePet);
+
+var _UserPage = __webpack_require__(305);
+
+var _UserPage2 = _interopRequireDefault(_UserPage);
+
+var _PetPage = __webpack_require__(193);
+
+var _PetPage2 = _interopRequireDefault(_PetPage);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -39583,11 +39591,18 @@ var Home = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this, props));
 
-    _this.state = {};
+    _this.state = {
+      createPetClicked: false,
+      userPageClicked: false,
+      petPageClicked: false
+    };
     _this.handleClickUserInfo = _this.handleClickUserInfo.bind(_this);
     _this.handleClickPetInfo = _this.handleClickPetInfo.bind(_this);
     _this.handleClickPetImage = _this.handleClickPetImage.bind(_this);
     _this.logoutUser = _this.logoutUser.bind(_this);
+    _this.handleCreatePetClick = _this.handleCreatePetClick.bind(_this);
+    _this.handleUserPageClick = _this.handleUserPageClick.bind(_this);
+    _this.handlePetPageClick = _this.handlePetPageClick.bind(_this);
     return _this;
   }
 
@@ -39620,6 +39635,21 @@ var Home = function (_React$Component) {
       this.props.dispatch((0, _petInfo.getPetImage)(this.props.pettype));
     }
   }, {
+    key: 'handleCreatePetClick',
+    value: function handleCreatePetClick() {
+      this.setState({ createPetClicked: true });
+    }
+  }, {
+    key: 'handleUserPageClick',
+    value: function handleUserPageClick() {
+      this.setState({ userPageClicked: true });
+    }
+  }, {
+    key: 'handlePetPageClick',
+    value: function handlePetPageClick() {
+      this.setState({ petPageClicked: true });
+    }
+  }, {
     key: 'logoutUser',
     value: function logoutUser() {
       this.props.dispatch((0, _login.logout)(this.props.userN));
@@ -39636,81 +39666,123 @@ var Home = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { style: { marginLeft: '25vw', fontFamily: "'Caveat Brush', cursive" } },
+        null,
         _react2.default.createElement(
-          _Tabs.Tabs,
-          {
-            style: { width: '70vw', fontSize: '13px' },
-            defaultActiveTab: 'Home' },
+          'div',
+          { className: 'home-container' },
           _react2.default.createElement(
-            _Tabs.Tab,
-            { title: 'Home' },
+            _reactRouterDom.Link,
+            { style: { textDecoration: 'none' }, className: 'home-row-col1' },
+            _react2.default.createElement('img', { src: '/images/createPetIcon.png', style: { width: '58px', height: '50px' }, onClick: function onClick() {
+                return _this2.handleCreatePetClick();
+              } }),
             _react2.default.createElement(
-              _Fieldset2.default,
-              { legend: 'Happy Pet', className: 'happy-pet-title', style: { marginBottom: '1em', height: '80vh' } },
-              _react2.default.createElement(
-                'h2',
-                { className: 'welcome' },
-                'Hi ',
-                this.props.userN,
-                '!'
-              ),
-              _react2.default.createElement('br', null),
-              _react2.default.createElement(
-                'div',
-                { className: 'home-container' },
-                _react2.default.createElement(
-                  _reactRouterDom.Link,
-                  { style: { textDecoration: 'none' }, className: 'home-row-col1', to: '/createpet' },
-                  _react2.default.createElement('img', { src: '/images/createPetIcon.png', style: { width: '58px', height: '50px' } }),
-                  _react2.default.createElement(
-                    'h3',
-                    { className: 'landing-text' },
-                    'Create a pet'
-                  )
-                ),
-                _react2.default.createElement(
-                  _reactRouterDom.Link,
-                  { style: { textDecoration: 'none' }, className: 'home-row-col2', to: '/userpage' },
-                  _react2.default.createElement('img', { src: '/images/userPageIcon.png', style: { width: '58px', height: '57px' }, onClick: function onClick() {
-                      _this2.handleClickUserInfo();_this2.handleClickPetInfo();_this2.handleClickPetImage();
-                    } }),
-                  _react2.default.createElement(
-                    'h3',
-                    { className: 'landing-text' },
-                    'User page'
-                  )
-                ),
-                _react2.default.createElement(
-                  _reactRouterDom.Link,
-                  { style: { textDecoration: 'none' }, className: 'home-row-col3', to: '/userpage' },
-                  _react2.default.createElement('img', { src: '/images/petPageIcon.png', style: { width: '58px', height: '57px' }, onClick: function onClick() {
-                      _this2.handleClickUserInfo();_this2.handleClickPetInfo();_this2.handleClickPetImage();
-                    } }),
-                  _react2.default.createElement(
-                    'h3',
-                    { className: 'landing-text' },
-                    'Pet page'
-                  )
-                ),
-                _react2.default.createElement(
-                  _reactRouterDom.Link,
-                  { style: { textDecoration: 'none' }, className: 'home-row-col4', to: '/', onClick: function onClick() {
-                      return _this2.redirect();
-                    } },
-                  _react2.default.createElement('img', { src: '/images/logoutIcon.png', style: { width: '58px', height: '50px' }, onClick: function onClick() {
-                      _this2.logoutUser();
-                    } }),
-                  _react2.default.createElement(
-                    'h3',
-                    { className: 'landing-text' },
-                    'Logout'
-                  )
-                ),
-                _react2.default.createElement('br', null),
-                _react2.default.createElement('br', null)
-              )
+              'h3',
+              { className: 'landing-text' },
+              'Create a pet'
             )
+          ),
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { style: { textDecoration: 'none' }, className: 'home-row-col2' },
+            _react2.default.createElement('img', { src: '/images/userPageIcon.png', style: { width: '58px', height: '57px' }, onClick: function onClick() {
+                _this2.handleClickUserInfo();_this2.handleClickPetInfo();_this2.handleClickPetImage();_this2.handleUserPageClick();
+              } }),
+            _react2.default.createElement(
+              'h3',
+              { className: 'landing-text' },
+              'User page'
+            )
+          ),
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { style: { textDecoration: 'none' }, className: 'home-row-col3' },
+            _react2.default.createElement('img', { src: '/images/petPageIcon.png', style: { width: '58px', height: '57px' }, onClick: function onClick() {
+                _this2.handleClickUserInfo();_this2.handleClickPetInfo();_this2.handleClickPetImage();_this2.handlePetPageClick();
+              } }),
+            _react2.default.createElement(
+              'h3',
+              { className: 'landing-text' },
+              'Pet page'
+            )
+          ),
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { style: { textDecoration: 'none' }, className: 'home-row-col4', to: '/', onClick: function onClick() {
+                return _this2.redirect();
+              } },
+            _react2.default.createElement('img', { src: '/images/logoutIcon.png', style: { width: '58px', height: '50px' }, onClick: function onClick() {
+                _this2.logoutUser();
+              } }),
+            _react2.default.createElement(
+              'h3',
+              { className: 'landing-text' },
+              'Logout'
+            )
+          ),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement('br', null)
+        ),
+        _react2.default.createElement(
+          'div',
+          { style: { marginLeft: '25vw', fontFamily: "'Caveat Brush', cursive", marginTop: '2.5vh' } },
+          _react2.default.createElement(
+            _Tabs.Tabs,
+            {
+              style: { width: '70vw', fontSize: '13px' },
+              defaultActiveTab: 'Home' },
+            _react2.default.createElement(
+              _Tabs.Tab,
+              { title: 'Home' },
+              _react2.default.createElement(
+                _Fieldset2.default,
+                { style: { marginBottom: '1em', height: '80vh' } },
+                _react2.default.createElement(
+                  'h3',
+                  { style: { fontSize: '7vw', textAlign: 'center', marginTop: '10vh' }, className: 'happy-pet-title' },
+                  'Happy Pet'
+                ),
+                _react2.default.createElement(
+                  'h2',
+                  { style: { marginTop: '12vh' }, className: 'welcome' },
+                  'Hi ',
+                  this.props.userN,
+                  '!'
+                ),
+                _react2.default.createElement(
+                  'h2',
+                  { style: { fontSize: '1.5vw', marginTop: '3vh' }, className: 'welcome' },
+                  'Get started by clicking an icon on the left'
+                )
+              )
+            ),
+            this.state.createPetClicked ? _react2.default.createElement(
+              _Tabs.Tab,
+              { title: 'Create A Pet' },
+              _react2.default.createElement(
+                _Fieldset2.default,
+                { className: 'happy-pet-title', legend: 'Happy Pet', style: { marginBottom: '1em', height: '80vh' } },
+                _react2.default.createElement(_CreatePet2.default, null)
+              )
+            ) : _react2.default.createElement(_Tabs.Tab, null),
+            this.state.userPageClicked ? _react2.default.createElement(
+              _Tabs.Tab,
+              { title: 'User Page' },
+              _react2.default.createElement(
+                _Fieldset2.default,
+                { className: 'happy-pet-title', legend: 'Happy Pet', style: { marginBottom: '1em', height: '80vh' } },
+                _react2.default.createElement(_UserPage2.default, null)
+              )
+            ) : _react2.default.createElement(_Tabs.Tab, null),
+            this.state.petPageClicked ? _react2.default.createElement(
+              _Tabs.Tab,
+              { title: 'PetPage' },
+              _react2.default.createElement(
+                _Fieldset2.default,
+                { className: 'happy-pet-title', legend: 'Happy Pet', style: { marginBottom: '1em', height: '80vh' } },
+                _react2.default.createElement(_PetPage2.default, null)
+              )
+            ) : _react2.default.createElement(_Tabs.Tab, null)
           )
         )
       );
@@ -41786,7 +41858,7 @@ var LandingPage = function (_React$Component) {
         null,
         _react2.default.createElement(
           'div',
-          { style: { marginLeft: '25vw' } },
+          { style: { marginLeft: '25vw', marginTop: '2.5vh' } },
           _react2.default.createElement(
             _Tabs.Tabs,
             {
@@ -41998,7 +42070,7 @@ exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapSt
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -42013,6 +42085,14 @@ var _reactRedux = __webpack_require__(5);
 
 var _pets = __webpack_require__(35);
 
+var _Input = __webpack_require__(67);
+
+var _Input2 = _interopRequireDefault(_Input);
+
+var _Button = __webpack_require__(63);
+
+var _Button2 = _interopRequireDefault(_Button);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -42024,181 +42104,147 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var CreatePet = function (_React$Component) {
-    _inherits(CreatePet, _React$Component);
+  _inherits(CreatePet, _React$Component);
 
-    function CreatePet(props) {
-        _classCallCheck(this, CreatePet);
+  function CreatePet(props) {
+    _classCallCheck(this, CreatePet);
 
-        var _this = _possibleConstructorReturn(this, (CreatePet.__proto__ || Object.getPrototypeOf(CreatePet)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (CreatePet.__proto__ || Object.getPrototypeOf(CreatePet)).call(this, props));
 
-        _this.state = {
-            petType: '',
-            petName: '',
-            habitat: '',
-            activity: '',
-            petImageUrl: ''
-        };
-        _this.setPetImage = _this.setPetImage.bind(_this);
-        _this.handleChange = _this.handleChange.bind(_this);
-        _this.handleSubmit = _this.handleSubmit.bind(_this);
-        return _this;
+    _this.state = {
+      petType: '',
+      petName: '',
+      habitat: '',
+      activity: '',
+      petImageUrl: ''
+    };
+    _this.setPetImage = _this.setPetImage.bind(_this);
+    _this.handleChange = _this.handleChange.bind(_this);
+    _this.handleSubmit = _this.handleSubmit.bind(_this);
+    return _this;
+  }
+
+  _createClass(CreatePet, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      if (this.props.loggedIn === true) {
+        this.props.history.push('/createpet');
+      } else {
+        this.props.history.push('/');
+      }
     }
+  }, {
+    key: 'setPetImage',
+    value: function setPetImage(imgurl) {
+      this.setState({ petImageUrl: imgurl });
+    }
+  }, {
+    key: 'handleChange',
+    value: function handleChange(event) {
+      //sets state with pet info input
+      this.setState(_defineProperty({}, event.target.name, event.target.value));
+    }
+  }, {
+    key: 'handleSubmit',
+    value: function handleSubmit() {
+      //dispatch component state to redux petinfo
+      var owner = this.props.ownerName;
+      var _state = this.state,
+          petType = _state.petType,
+          petName = _state.petName,
+          habitat = _state.habitat,
+          activity = _state.activity;
 
-    _createClass(CreatePet, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            if (this.props.loggedIn === true) {
-                this.props.history.push('/createpet');
-            } else {
-                this.props.history.push('/');
-            }
-        }
-    }, {
-        key: 'setPetImage',
-        value: function setPetImage(imgurl) {
-            this.setState({ petImageUrl: imgurl });
-        }
-    }, {
-        key: 'handleChange',
-        value: function handleChange(event) {
-            //sets state with pet info input
-            this.setState(_defineProperty({}, event.target.name, event.target.value));
-        }
-    }, {
-        key: 'handleSubmit',
-        value: function handleSubmit() {
-            //dispatch component state to redux petinfo
-            var owner = this.props.ownerName;
-            var _state = this.state,
-                petType = _state.petType,
-                petName = _state.petName,
-                habitat = _state.habitat,
-                activity = _state.activity;
+      (0, _pets.newpetApi)(owner, petType, petName, habitat, activity);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
 
-            (0, _pets.newpetApi)(owner, petType, petName, habitat, activity);
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            var _this2 = this;
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h1',
+          { className: 'happy-pet-title' },
+          'Create a pet!'
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'div',
+          { className: 'createpet-container' },
+          _react2.default.createElement(
+            'h3',
+            { className: 'row-col1 createpet-text' },
+            'Choose your pet'
+          ),
+          _react2.default.createElement('img', { id: 'monkey', className: 'row-col2 grid-images', src: '/images/monkeyPetIcon.png', onClick: function onClick() {
+              _this2.setPetImage('/images/monkeyPetIcon.png');
+            } }),
+          _react2.default.createElement('img', { id: 'mouse', className: 'row-col3 grid-images', src: '/images/mousePetIcon.png', onClick: function onClick() {
+              _this2.setPetImage('/images/mousePetIcon.png');
+            } }),
+          _react2.default.createElement('img', { id: 'cat', className: 'row-col4 grid-images', src: 'images/catPetIcon.png', onClick: function onClick() {
+              _this2.setPetImage('images/catPetIcon.png');
+            } }),
+          _react2.default.createElement('img', { id: 'bunny', className: 'row-col5 grid-images', src: '/images/bunnyPetIcon.png', onClick: function onClick() {
+              _this2.setPetImage('images/bunnyPetIcon.png');
+            } }),
+          _react2.default.createElement('img', { className: 'row-col6 chosen-pet', src: this.state.petImageUrl })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'input-container' },
+          _react2.default.createElement(
+            'h3',
+            { className: 'input-rowcol7 createpet-text' },
+            'Give your pet a name:'
+          ),
+          _react2.default.createElement(_Input2.default, { style: { marginTop: '3vh' }, className: 'input-rowcol7', type: 'text', name: 'petName', id: 'petName', onChange: this.handleChange }),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'h3',
+            { className: 'input-rowcol8 createpet-text' },
+            'Where does your pet live?'
+          ),
+          _react2.default.createElement(_Input2.default, { style: { marginTop: '3vh' }, className: 'input-rowcol8', type: 'text', name: 'habitat', id: 'habitat', onChange: this.handleChange }),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'h3',
+            { className: 'input-rowcol9 createpet-text' },
+            'What does your pet like to do?'
+          ),
+          _react2.default.createElement(_Input2.default, { style: { marginTop: '3vh' }, className: 'input-rowcol9', type: 'text', name: 'activity', id: 'activity', onChange: this.handleChange }),
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { className: 'input-rowcol10', to: '/home' },
+            _react2.default.createElement(
+              _Button2.default,
+              { onClick: function onClick() {
+                  _this2.handleSubmit(_this2.state);
+                } },
+              'Enter'
+            )
+          )
+        )
+      );
+    }
+  }]);
 
-            return _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement(
-                    'h1',
-                    { className: 'title' },
-                    'Create a pet!'
-                ),
-                _react2.default.createElement('br', null),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'createpet-container' },
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'row-col1 landing-text' },
-                        'Choose your pet'
-                    ),
-                    _react2.default.createElement('img', { id: 'monkey', className: 'row-col2 grid-images', src: '/images/monkeyPetIcon.png', onClick: function onClick() {
-                            _this2.setPetImage('/images/monkeyPetIcon.png');
-                        } }),
-                    _react2.default.createElement('img', { id: 'mouse', className: 'row-col3 grid-images', src: '/images/mousePetIcon.png', onClick: function onClick() {
-                            _this2.setPetImage('/images/mousePetIcon.png');
-                        } }),
-                    _react2.default.createElement('img', { id: 'cat', className: 'row-col4 grid-images', src: 'images/catPetIcon.png', onClick: function onClick() {
-                            _this2.setPetImage('images/catPetIcon.png');
-                        } }),
-                    _react2.default.createElement('img', { id: 'bunny', className: 'row-col5 grid-images', src: '/images/bunnyPetIcon.png', onClick: function onClick() {
-                            _this2.setPetImage('images/bunnyPetIcon.png');
-                        } }),
-                    _react2.default.createElement('img', { className: 'row-col6 chosen-pet', src: this.state.petImageUrl })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'input-container' },
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'input-rowcol1 landing-text' },
-                        'Name:'
-                    ),
-                    this.state.petName.length > 0 ? _react2.default.createElement(
-                        'h3',
-                        { className: 'input-rowcol2 petInfo-text-container' },
-                        ' ',
-                        this.state.petName
-                    ) : _react2.default.createElement('div', { className: 'input-rowcol2 petInfo-text-container' }),
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'input-rowcol3 landing-text' },
-                        'Habitat:'
-                    ),
-                    this.state.habitat.length > 0 ? _react2.default.createElement(
-                        'h3',
-                        { className: 'input-rowcol4 petInfo-text-container' },
-                        ' ',
-                        this.state.habitat
-                    ) : _react2.default.createElement('div', { className: 'input-rowcol4 petInfo-text-container' }),
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'input-rowcol5 landing-text' },
-                        'Activity:'
-                    ),
-                    this.state.activity.length > 0 ? _react2.default.createElement(
-                        'h3',
-                        { className: 'input-rowcol6 petInfo-text-container' },
-                        ' ',
-                        this.state.activity
-                    ) : _react2.default.createElement('div', { className: 'input-rowcol6 petInfo-text-container' }),
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'input-rowcol7 createpet-text' },
-                        'Give your pet a name:'
-                    ),
-                    _react2.default.createElement('input', { style: { marginTop: '15px' }, className: 'input-rowcol7 input-fields', type: 'text', name: 'petName', id: 'petName', onChange: this.handleChange }),
-                    _react2.default.createElement('br', null),
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'input-rowcol8 createpet-text' },
-                        'Where does your pet live?'
-                    ),
-                    _react2.default.createElement('input', { style: { marginTop: '15px' }, className: 'input-rowcol8 input-fields', type: 'text', name: 'habitat', id: 'habitat', onChange: this.handleChange }),
-                    _react2.default.createElement('br', null),
-                    _react2.default.createElement(
-                        'h3',
-                        { className: 'input-rowcol9 createpet-text' },
-                        'What does your pet like to do?'
-                    ),
-                    _react2.default.createElement('input', { style: { marginTop: '15px' }, className: 'input-rowcol9 input-fields', type: 'text', name: 'activity', id: 'activity', onChange: this.handleChange }),
-                    _react2.default.createElement('br', null),
-                    _react2.default.createElement(
-                        _reactRouterDom.Link,
-                        { className: 'input-rowcol10', to: '/home' },
-                        _react2.default.createElement(
-                            'button',
-                            { className: 'button', onClick: function onClick() {
-                                    _this2.handleSubmit(_this2.state);
-                                } },
-                            'Enter'
-                        )
-                    )
-                )
-            );
-        }
-    }]);
-
-    return CreatePet;
+  return CreatePet;
 }(_react2.default.Component);
 
 function mapStateToProps(state) {
-    return {
-        loggedIn: state.login.loggedin,
-        ownerName: state.login.username,
-        petType: state.getPetInfo.petType,
-        petName: state.getPetInfo.petName,
-        habitat: state.getPetInfo.habitat,
-        activity: state.getPetInfo.activity,
-        petImage: state.getPetInfo.petImgUrl
-    };
+  return {
+    loggedIn: state.login.loggedin,
+    ownerName: state.login.username,
+    petType: state.getPetInfo.petType,
+    petName: state.getPetInfo.petName,
+    habitat: state.getPetInfo.habitat,
+    activity: state.getPetInfo.activity,
+    petImage: state.getPetInfo.petImgUrl
+  };
 }
 
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(CreatePet));
