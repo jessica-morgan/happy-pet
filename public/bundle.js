@@ -4591,18 +4591,18 @@ var Home = function (_React$Component) {
               'User page'
             )
           ),
-          _react2.default.createElement(
+          this.props.petType ? _react2.default.createElement(
             _reactRouterDom.Link,
             { style: { textDecoration: 'none' }, className: 'home-row-col3' },
             _react2.default.createElement('img', { src: '/images/petPageIcon.png', style: { width: '6vw', height: '9vh' }, onClick: function onClick() {
-                _this2.handleClickUserInfo();_this2.handleClickPetInfo();_this2.handleClickPetImage();_this2.getPetAge();_this2.handleClickIcon('petPage');
+                _this2.handleClickIcon('petPage');
               } }),
             _react2.default.createElement(
               'h3',
               { className: 'landing-text' },
               'Pet page'
             )
-          ),
+          ) : _react2.default.createElement('div', { style: { width: '6vw', height: '9vh' } }),
           _react2.default.createElement(
             _reactRouterDom.Link,
             { style: { textDecoration: 'none' }, className: 'home-row-col4', to: '/', onClick: function onClick() {
@@ -4643,7 +4643,7 @@ var Home = function (_React$Component) {
                   'h2',
                   { style: { marginTop: '12vh' }, className: 'welcome' },
                   'Hi ',
-                  this.props.userN,
+                  this.props.username,
                   '!'
                 ),
                 _react2.default.createElement(
@@ -5215,7 +5215,7 @@ var CreatePet = function (_React$Component) {
               'User page'
             )
           ),
-          _react2.default.createElement(
+          this.props.petType ? _react2.default.createElement(
             _reactRouterDom.Link,
             { style: { textDecoration: 'none' }, className: 'home-row-col3' },
             _react2.default.createElement('img', { src: '/images/petPageIcon.png', style: { width: '6vw', height: '9vh' }, onClick: function onClick() {
@@ -5226,7 +5226,7 @@ var CreatePet = function (_React$Component) {
               { className: 'landing-text' },
               'Pet page'
             )
-          ),
+          ) : _react2.default.createElement('div', { style: { width: '6vw', height: '9vh' } }),
           _react2.default.createElement(
             _reactRouterDom.Link,
             { style: { textDecoration: 'none' }, className: 'home-row-col4', to: '/', onClick: function onClick() {
@@ -5560,7 +5560,7 @@ var UserPage = function (_React$Component) {
               'User page'
             )
           ),
-          _react2.default.createElement(
+          this.props.petType ? _react2.default.createElement(
             _reactRouterDom.Link,
             { style: { textDecoration: 'none' }, className: 'home-row-col3' },
             _react2.default.createElement('img', { src: '/images/petPageIcon.png', style: { width: '6vw', height: '9vh' }, onClick: function onClick() {
@@ -5571,7 +5571,7 @@ var UserPage = function (_React$Component) {
               { className: 'landing-text' },
               'Pet page'
             )
-          ),
+          ) : _react2.default.createElement('div', { style: { width: '6vw', height: '9vh' } }),
           _react2.default.createElement(
             _reactRouterDom.Link,
             { style: { textDecoration: 'none' }, className: 'home-row-col4', to: '/', onClick: function onClick() {
@@ -5906,16 +5906,18 @@ var PetPage = function (_React$Component) {
               'User page'
             )
           ),
-          _react2.default.createElement(
+          this.props.petType ? _react2.default.createElement(
             _reactRouterDom.Link,
             { style: { textDecoration: 'none' }, className: 'home-row-col3' },
-            _react2.default.createElement('img', { src: '/images/petPageIcon.png', style: { width: '6vw', height: '9vh' } }),
+            _react2.default.createElement('img', { src: '/images/petPageIcon.png', style: { width: '6vw', height: '9vh' }, onClick: function onClick() {
+                _this2.handleClickIcon('petPage');
+              } }),
             _react2.default.createElement(
               'h3',
               { className: 'landing-text' },
               'Pet page'
             )
-          ),
+          ) : _react2.default.createElement('div', { style: { width: '6vw', height: '9vh' } }),
           _react2.default.createElement(
             _reactRouterDom.Link,
             { style: { textDecoration: 'none' }, className: 'home-row-col4', to: '/', onClick: function onClick() {
@@ -12540,16 +12542,18 @@ var FeedPet = function (_React$Component) {
               'User page'
             )
           ),
-          _react2.default.createElement(
+          this.props.petType ? _react2.default.createElement(
             _reactRouterDom.Link,
             { style: { textDecoration: 'none' }, className: 'home-row-col3' },
-            _react2.default.createElement('img', { src: '/images/petPageIcon.png', style: { width: '6vw', height: '9vh' } }),
+            _react2.default.createElement('img', { src: '/images/petPageIcon.png', style: { width: '6vw', height: '9vh' }, onClick: function onClick() {
+                _this2.handleClickIcon('petPage');
+              } }),
             _react2.default.createElement(
               'h3',
               { className: 'landing-text' },
               'Pet page'
             )
-          ),
+          ) : _react2.default.createElement('div', { style: { width: '6vw', height: '9vh' } }),
           _react2.default.createElement(
             _reactRouterDom.Link,
             { style: { textDecoration: 'none' }, className: 'home-row-col4', to: '/', onClick: function onClick() {
@@ -47371,16 +47375,16 @@ var LandingPage = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (LandingPage.__proto__ || Object.getPrototypeOf(LandingPage)).call(this, props));
 
-    _this.state = _defineProperty({
-      username: '',
-      firstname: '',
+    _this.state = {
+      registerUsername: '',
+      registerFirstname: '',
       email: '',
-      password: '',
-      loginUsername: ''
-    }, 'password', '');
+      registerPassword: '',
+      loginUsername: '',
+      password: ''
+    };
     _this.handleChange = _this.handleChange.bind(_this);
     _this.checkLogInDetails = _this.checkLogInDetails.bind(_this);
-    _this.handleChange = _this.handleInput.bind(_this);
     _this.handleSubmit = _this.handleSubmit.bind(_this);
     return _this;
   }
@@ -47408,14 +47412,6 @@ var LandingPage = function (_React$Component) {
       this.props.dispatch((0, _login.getUserLogIn)(username, password));
     }
 
-    //get account create and pet created here
-
-  }, {
-    key: 'handleInput',
-    value: function handleInput(event) {
-      this.setState(_defineProperty({}, event.target.name, event.target.value));
-    }
-
     //dispatch this info to redux register 
 
   }, {
@@ -47423,13 +47419,13 @@ var LandingPage = function (_React$Component) {
     value: function handleSubmit() {
       //destructring- takes this.state and gets the properties username, password and email
       var _state = this.state,
-          username = _state.username,
-          firstname = _state.firstname,
+          registerUsername = _state.registerUsername,
+          registerFirstname = _state.registerFirstname,
           email = _state.email,
-          password = _state.password;
+          registerPassword = _state.registerPassword;
       //this posts new user to database from registration form
 
-      (0, _users.makeNewUserApi)(username, firstname, email, password);
+      (0, _users.makeNewUserApi)(registerUsername, registerFirstname, email, registerPassword);
     }
   }, {
     key: 'render',
@@ -47490,16 +47486,16 @@ var LandingPage = function (_React$Component) {
                 _Fieldset2.default,
                 { legend: 'Happy Pet', className: 'happy-pet-title', style: { marginBottom: '1em', height: '80vh' } },
                 _react2.default.createElement('br', null),
-                _react2.default.createElement(_Input2.default, { className: 'input-fields-row-col1 landing-text', type: 'text', id: 'username', name: 'username', placeholder: 'username', value: this.state.username, onChange: this.handleInput }),
+                _react2.default.createElement(_Input2.default, { className: 'landing-text', type: 'text', name: 'registerUsername', placeholder: 'username', onChange: this.handleChange }),
                 _react2.default.createElement('br', null),
                 _react2.default.createElement('br', null),
-                _react2.default.createElement(_Input2.default, { className: 'landing-text', type: 'text', id: 'firstname', name: 'firstname', placeholder: 'name', value: this.state.name, onChange: this.handleInput }),
+                _react2.default.createElement(_Input2.default, { className: 'landing-text', type: 'text', name: 'registerFirstname', placeholder: 'name', onChange: this.handleChange }),
                 _react2.default.createElement('br', null),
                 _react2.default.createElement('br', null),
-                _react2.default.createElement(_Input2.default, { className: 'landing-text', type: 'text', id: 'email', name: 'email', placeholder: 'email', value: this.state.email, onChange: this.handleInput }),
+                _react2.default.createElement(_Input2.default, { className: 'landing-text', type: 'text', name: 'email', placeholder: 'email', onChange: this.handleChange }),
                 _react2.default.createElement('br', null),
                 _react2.default.createElement('br', null),
-                _react2.default.createElement(_Input2.default, { className: 'landing-text', type: 'password', id: 'password', name: 'password', placeholder: 'password', value: this.state.password, onChange: this.handleInput }),
+                _react2.default.createElement(_Input2.default, { className: 'landing-text', type: 'password', name: 'registerPassword', placeholder: 'Your password', onChange: this.handleChange }),
                 _react2.default.createElement('br', null),
                 _react2.default.createElement('br', null),
                 _react2.default.createElement(

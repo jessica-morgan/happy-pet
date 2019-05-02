@@ -12,16 +12,15 @@ class LandingPage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-          username: '',
-          firstname: '',
+          registerUsername: '',
+          registerFirstname: '',
           email: '',
-          password: '',
+          registerPassword: '',
           loginUsername: '',
           password: ''
         }
         this.handleChange = this.handleChange.bind(this)
         this.checkLogInDetails = this.checkLogInDetails.bind(this)
-        this.handleChange = this.handleInput.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
       }
 
@@ -41,19 +40,13 @@ class LandingPage extends React.Component {
     checkLogInDetails(username, password) {
      this.props.dispatch(getUserLogIn(username, password))
     }
-  
-    //get account create and pet created here
-
-    handleInput(event) {
-      this.setState({ [event.target.name]: event.target.value });
-    }
 
     //dispatch this info to redux register 
     handleSubmit(){
       //destructring- takes this.state and gets the properties username, password and email
-      const {username, firstname, email, password} = this.state
+      const {registerUsername, registerFirstname, email, registerPassword} = this.state
       //this posts new user to database from registration form
-      makeNewUserApi(username, firstname, email, password)
+      makeNewUserApi(registerUsername, registerFirstname, email, registerPassword)
     }
 
       render() {
@@ -89,13 +82,13 @@ class LandingPage extends React.Component {
       <Tab title="Register" >
       <Fieldset legend='Happy Pet' className='happy-pet-title' style={{ marginBottom: '1em', height: '80vh' }}>
        <br/>
-       <Input className='input-fields-row-col1 landing-text' type='text' id='username' name='username' placeholder='username' value={this.state.username} onChange={this.handleInput}/>
+       <Input className='landing-text' type='text' name='registerUsername' placeholder='username' onChange={this.handleChange}/>
          <br/><br/>
-          <Input className='landing-text' type='text' id='firstname' name='firstname' placeholder='name' value={this.state.name} onChange={this.handleInput}/>
+          <Input className='landing-text' type='text' name='registerFirstname' placeholder='name' onChange={this.handleChange}/>
            <br/><br/>
-            <Input className='landing-text' type='text' id='email' name='email' placeholder='email' value={this.state.email} onChange={this.handleInput}/>
+            <Input className='landing-text' type='text' name='email' placeholder='email' onChange={this.handleChange}/>
              <br/><br/>
-            <Input className='landing-text' type='password' id='password' name='password' placeholder='password' value={this.state.password} onChange={this.handleInput}/>
+            <Input className='landing-text' type='password' name='registerPassword' placeholder='Your password' onChange={this.handleChange}/>
           <br/><br/>       
         <Link className='landing-text' style={{textDecoration: 'none'}} to='/login'><Button style={{fontSize: '14px'}} onClick={() => this.handleSubmit()}>Submit</Button></Link>
        <br/><br/>
