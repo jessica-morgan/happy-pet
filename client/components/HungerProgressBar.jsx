@@ -27,11 +27,11 @@ class HungerProgressBar extends React.Component {
               {/* if difference in hours since now and last fed is >= 12 show hunger at 50% */}
                {difference >= 12 ? 
                 <h3 className='feed-pet-row-col3 petPage-stats-title'>
-                 <ProgressBar className='progress-container feed-pet-row-col2' percent={50}/></h3>
+                 <ProgressBar className='feed-pet-row-col2' percent={50}/></h3>
                 :
                 // else show it at 100%
                 <h3 className='feed-pet-row-col3 petPage-stats-title'>
-                <ProgressBar className='progress-container feed-pet-row-col2' percent={100}/>
+                <ProgressBar className='feed-pet-row-col2' percent={100}/>
                 </h3>
                }
               

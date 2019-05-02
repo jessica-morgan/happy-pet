@@ -1,8 +1,7 @@
 import React from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import { petAge } from '../actions/petInfo'
-import {format, differenceInDays} from 'date-fns'
+import {format} from 'date-fns'
 import { Tabs, Tab } from '@react95/core/Tabs'
 import Fieldset from '@react95/core/Fieldset'
 import PetPage from './PetPage'
@@ -30,12 +29,7 @@ class UserPage extends React.Component {
     }
 
     //when click on pet page link calculate pets age using this.props.petCreated state.getPetInfo.petCreated
-    getPetAge() {
-      let created = format(this.props.petCreated)
-      let currentDate = format(new Date())
-      let age = differenceInDays(currentDate, created)
-      this.props.dispatch(petAge(age))
-    }
+    
 
     logoutUser() {
       this.props.dispatch(logout(this.props.userN))
@@ -50,7 +44,8 @@ class UserPage extends React.Component {
          this.setState({createPetPageClicked: true})
        } else if (icon === 'petPage') {
          this.setState({petPageClicked: true})
-       } this.state
+       }
+       this.state
      }
 
       render() {
@@ -92,27 +87,29 @@ class UserPage extends React.Component {
 
                <Tab title="User Page">
                  <Fieldset legend='Happy Pet' className='happy-pet-title' style={{ marginBottom: '1em', height: '80vh' }}>
-              
-                 <h3 className='title' style={{textAlign: 'center'}}>Welcome to {this.props.username}'s page!</h3>
-                <br/>
+                <div className='petPage-title-container'>
+                 <h3 className='petPage-title' style={{textAlign: 'center'}}>Welcome to {this.props.username}'s page!</h3>
+                </div>
 
                 <div className='user-info-container1'>
                  {/* shows user info */}
                  <h3 className='userPage-row-col1 userpage-text'>Username:</h3>
-                 <h3 style={{color: 'rgb(92, 92, 92)'}} className='userPage-row-col4 userpage-text'>{this.props.username}</h3>
+                 <h3 className='userPage-row-col4 userpage-text'>{this.props.username}</h3>
                  <h3 className='userPage-row-col2 userpage-text'>Name:</h3>
-                 <h3 style={{color: 'rgb(92, 92, 92)'}} className='userPage-row-col5 userpage-text'>{this.props.firstname}</h3>
+                 <h3 className='userPage-row-col5 userpage-text'>{this.props.firstname}</h3>
                  <h3 className='userPage-row-col9 userpage-text'>Joined:</h3>
-                 <h3 style={{color: 'rgb(92, 92, 92)'}} className='userPage-row-col10 userpage-text'>{accountCreated}</h3>
+                 <h3 className='userPage-row-col10 userpage-text'>{accountCreated}</h3>
                  <h3 className='userPage-row-col11 userpage-text'>Status:</h3>
-                 {this.props.loggedin === true ? <h3 style={{color: 'rgb(92, 92, 92)'}} className='userPage-row-col12 userpage-text'>Online</h3> 
-                 : <h3 style={{color: 'rgb(92, 92, 92)'}} className='userPage-row-col12 userpage-text'>Offline</h3>}
+                 {this.props.loggedin === true ? <h3 className='userPage-row-col12 userpage-text'>Online</h3> 
+                 : <h3 className='userPage-row-col12 userpage-text'>Offline</h3>}
                 </div>
 
                  <div className='user-info-container2'>
                  {/* shows pet image and link to page */}
-                 {this.props.pettype ? <Link to='/petpage' className='userPage-row-col7' onClick = {() => this.getPetAge()}><img src={this.props.petimage} className='userPage-petimg'></img></Link> : <div></div>}
-                 <h3 className='userPage-row-col8 userpage-text'>Visit {this.props.petname}'s page</h3>
+                 {this.props.pettype ? <img src={this.props.petimage} className='userPage-petimg'></img> : <div></div>}
+                 <Link className='userPage-row-col8' style={{textDecoration: 'none'}} onClick = {() => {this.handleClickIcon('petPage')}}>
+                 <h3 className='userPage-row-col7 userpage-text'>Visit {this.props.petname}'s page</h3>
+                 </Link>
                  </div>
                  </Fieldset>
                </Tab>
@@ -130,16 +127,13 @@ class UserPage extends React.Component {
                {this.state.petPageClicked ? 
                <Tab title='PetPage'>
                <Fieldset className='happy-pet-title' legend='Happy Pet' style={{ marginBottom: '1em', height: '80vh' }}>
-              
-                  <PetPage/>
-                
+                  <PetPage/>    
                  </Fieldset>
                 </Tab> 
                 : <Tab>
                   <Fieldset style={{ marginBottom: '1em', height: '80vh' }}>
                   </Fieldset>
                 </Tab>}
-     
 
                </Tabs>
            </div>
