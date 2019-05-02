@@ -218,6 +218,7 @@ body {
     grid-auto-columns: min-content;
     grid-auto-rows: min-content;
     text-decoration: none;
+    text-align: center;
   }
 
   .home-row-col2 {
@@ -226,6 +227,7 @@ body {
     grid-auto-columns: min-content;
     grid-auto-rows: min-content;
     text-decoration: none;
+    text-align: center;
   }
 
   .home-row-col3 {
@@ -236,6 +238,7 @@ body {
     text-decoration: none;
     width: 58px;
     height: 60px;
+    text-align: center;
   }
 
   .home-row-col4 {
@@ -246,6 +249,7 @@ body {
     text-decoration: none;
     width: 58px;
     height: 60px;
+    text-align: center;
   }
 
   .createpet-container {

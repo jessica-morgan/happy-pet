@@ -71,10 +71,6 @@ class PetPage extends React.Component {
     
 
       render() {
- 
-    const timeNow = format(new Date)
-    const timeLastFed = format(this.props.lastFed)
-    const difference = differenceInHours(timeNow, timeLastFed)
 
         return (
           
