@@ -30,3 +30,8 @@ export const userData = (username, firstname, loggedin, date) => {
     }
 }
 
+export const hasPet = () => {
+  return {
+    type: 'HAS_PET'
+  }
+}

@@ -63,7 +63,7 @@ class UserPage extends React.Component {
                 <Link style={{textDecoration: 'none'}} className='home-row-col2'><img src='/images/userPageIcon.png' style={{width: '6vw', height: '9vh'}}/>
                 <h3 className='landing-text'>User page</h3></Link>
 
-                {this.props.petType ? 
+                {this.props.hasPet ? 
                 <Link style={{textDecoration: 'none'}} className='home-row-col3'><img src='/images/petPageIcon.png' style={{width: '6vw', height: '9vh'}} onClick={() => {this.handleClickIcon('petPage')}}/>
                 <h3 className='landing-text'>Pet page</h3></Link> : <div style={{width: '6vw', height: '9vh'}}></div>}
 
@@ -105,13 +105,16 @@ class UserPage extends React.Component {
                  : <h3 className='userPage-row-col12 userpage-text'>Offline</h3>}
                 </div>
 
-                 <div className='user-info-container2'>
                  {/* shows pet image and link to page */}
-                 {this.props.pettype ? <img src={this.props.petimage} className='userPage-petimg'></img> : <div></div>}
+                 {this.props.hasPet ?  <div className='user-info-container2'>
+                 <img src={this.props.petimage} className='userPage-petimg'></img>
                  <Link className='userPage-row-col8' style={{textDecoration: 'none'}} onClick = {() => {this.handleClickIcon('petPage')}}>
                  <h3 className='userPage-row-col7 userpage-text'>Visit {this.props.petname}'s page</h3>
-                 </Link>
-                 </div>
+                 </Link></div>
+                : <div className='user-info-container2'>
+                  <h3 style={{fontSize: '2vw', fontFamily: "'Times New Roman', Times, serif", color: 'black', marginTop: '15vh'}} >You don't have a pet yet!</h3>
+                </div>}
+                
                  </Fieldset>
                </Tab>
 
@@ -155,7 +158,10 @@ function mapStateToProps (state) {
         pettype: state.getPetInfo.petType,
         petname: state.getPetInfo.petName,
         petimage: state.getPetInfo.petImage,
-        petCreated: state.getPetInfo.petCreated
+        petCreated: state.getPetInfo.petCreated,
+        hasPet: state.user.hasPet,
+        hasPet: state.user.hasPet,
+        userN: state.login.username
     }
   }
   

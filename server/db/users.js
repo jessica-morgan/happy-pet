@@ -6,7 +6,8 @@ module.exports = {
   getUsersPet,
   loggedIn,
   getUser,
-  logout
+  logout,
+  hasPet
 }
 
 //inserts new user to database
@@ -59,4 +60,13 @@ function logout (username, db = connection) {
     loggedin: false
   })
   .select('username', 'loggedin')
+}
+
+//updates hasPet user property
+function hasPet (owner, db = connection) {
+  return db('users')
+  .where('username', owner)
+  .update({
+    hasPet: true
+  })
 }

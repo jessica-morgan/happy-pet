@@ -2,7 +2,8 @@ const initialUserState = [{
   username: '',
   firstname: '',
   loggedin: false,
-  acctCreated: ''
+  acctCreated: '',
+  hasPet: false
 }]
 
 export const user = (state = initialUserState, action) => {
@@ -13,6 +14,10 @@ export const user = (state = initialUserState, action) => {
            firstname: action.firstname,
            loggedin: action.loggedin,
            acctCreated: action.date
+        } 
+        case 'HAS_PET':
+        return {
+          hasPet: true
         }
         default:
         return state

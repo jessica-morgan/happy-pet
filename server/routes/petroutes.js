@@ -16,8 +16,8 @@ router.get('/', (req, res) => {
   })
 
 //posts new pet to db
-router.post('/newpet/:owner', (req, res) => {
-    const ownername = req.params.owner
+router.post('/newpet/:username', (req, res) => {
+    const ownername = req.params.username
     const pettype = req.body.petType
     const petname = req.body.petName
     const pethabitat = req.body.habitat

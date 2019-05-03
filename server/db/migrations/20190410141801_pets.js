@@ -8,7 +8,7 @@ exports.up = function(knex, Promise) {
     table.string('activity').notNullable();
     table.boolean('fed');
     table.string('last_fed');
-    table.string('image').notNullable();
+    table.string('image')
     table.timestamp('petCreatedAt').defaultTo(knex.fn.now());
  })
 };

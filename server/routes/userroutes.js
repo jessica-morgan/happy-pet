@@ -78,6 +78,18 @@ router.get('/logout/:username', (req, res) => {
     })
 })
 
+//updates hasPet user property
+router.post('/haspet/:username', (req, res) => {
+    const owner = req.params.username
+    db.hasPet(owner)
+    .then(pet => {
+        res.json(pet)
+    })
+    .catch(err => {
+        res.status(500).send(err)
+    })
+})
+
 
 
 module.exports = router

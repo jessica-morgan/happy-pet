@@ -13,11 +13,11 @@ export function getPetApi() {
   }
 
   //posts new pet
-  export function newpetApi(ownername, pettype, petname, pethabitat, petactivity) {
+  export function newpetApi(username, pettype, petname, pethabitat, petactivity) {
     return request
-    .post(`${url}/newpet/${ownername}`)
+    .post(`${url}/newpet/${username}`)
     .send({
-      owner: ownername,
+      owner: username,
       petType: pettype,
       petName: petname,
       habitat: pethabitat,

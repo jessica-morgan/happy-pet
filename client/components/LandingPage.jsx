@@ -22,6 +22,7 @@ class LandingPage extends React.Component {
         this.handleChange = this.handleChange.bind(this)
         this.checkLogInDetails = this.checkLogInDetails.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.checkHasPet = this.checkHasPet.bind(this)
       }
 
       componentDidMount () {
@@ -49,6 +50,10 @@ class LandingPage extends React.Component {
       makeNewUserApi(registerUsername, registerFirstname, email, registerPassword)
     }
 
+    checkHasPet(username){
+      
+    }
+
       render() {
    
     //if user is already logged in redirect to home page
@@ -72,7 +77,7 @@ class LandingPage extends React.Component {
                <br/>
                 <Input className='landing-text' type='password' id='password' name='password' placeholder='password' value={this.state.password} onChange={this.handleChange}/>
                <br/><br/>
-           <Link className='landing-text' style={{textDecoration: 'none'}}> <Button onClick = {() => {this.checkLogInDetails(this.state.loginUsername, this.state.password)}}>
+           <Link className='landing-text' style={{textDecoration: 'none'}}> <Button onClick = {() => {this.checkLogInDetails(this.state.loginUsername, this.state.password); this.checkHasPet(this.state.loginUsername)}}>
             Login
           </Button></Link>
          <br/><br/><br/>
@@ -113,6 +118,7 @@ function mapStateToProps (state) {
       name: state.name,
       email: state.email,
       password: state.password
+      
   }
 }
   

@@ -2,6 +2,8 @@ import React from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { newpetApi } from '../api/pets'
+import { hasPetApi } from '../api/users'
+import { hasPet } from '../actions/users'
 import Input from '@react95/core/Input'
 import Button from '@react95/core/Button'
 import { Tabs, Tab } from '@react95/core/Tabs'
@@ -28,6 +30,8 @@ class CreatePet extends React.Component {
         this.logoutUser = this.logoutUser.bind(this) 
         this.handleClickIcon = this.handleClickIcon.bind(this)
         this.redirect = this.redirect.bind(this)
+        this.userHasNewPet = this.userHasNewPet.bind(this)
+        this.sendNewPet = this.sendNewPet.bind(this)
       }
 
       componentDidMount () {
@@ -63,11 +67,19 @@ class CreatePet extends React.Component {
         this.setState({ [event.target.name]: event.target.value });
       }
 
-      handleSubmit() {
+      handleSubmit(username) {
         //dispatch component state to redux petinfo
-        const owner = this.props.ownerName
+        
         const {petType, petName, habitat, activity} = this.state
-        newpetApi(owner, petType, petName, habitat, activity)
+        newpetApi(username, petType, petName, habitat, activity)
+      }
+
+      userHasNewPet(username) {
+        hasPetApi(username)
+      }
+
+      sendNewPet(username) {
+        this.props.dispatch(hasPet(username))
       }
 
       render() {
@@ -84,7 +96,7 @@ class CreatePet extends React.Component {
                   <Link style={{textDecoration: 'none'}} className='home-row-col2'><img src='/images/userPageIcon.png' style={{width: '6vw', height: '9vh'}} onClick={() => {this.handleClickIcon('userPage')}}/>
                 <h3 className='landing-text'>User page</h3></Link>
 
-                {this.props.petType ? 
+                {this.props.hasPet ? 
                 <Link style={{textDecoration: 'none'}} className='home-row-col3'><img src='/images/petPageIcon.png' style={{width: '6vw', height: '9vh'}} onClick={() => {this.handleClickIcon('petPage')}}/>
                 <h3 className='landing-text'>Pet page</h3></Link> : <div style={{width: '6vw', height: '9vh'}}></div>}
 
@@ -113,10 +125,10 @@ class CreatePet extends React.Component {
                 {/* pets to choose from */}
                 <div className='createpet-container'>
                 <h3 className='row-col1' style={{fontFamily: "'Times New Roman', Times, serif", fontSize: '1.3vw', color: 'black', textAlign: 'center'}}>Create your pet</h3>
-                <img id='monkey' className='row-col2 grid-images' src='/images/monkeyPetIcon.png' onClick={() => {this.setPetImage('/images/monkeyPetIcon.png')}}/>
-                <img id='mouse' className='row-col3 grid-images' src='/images/mousePetIcon.png' onClick={() => {this.setPetImage('/images/mousePetIcon.png')}}/>
-                <img id='cat' className='row-col4 grid-images' src='images/catPetIcon.png' onClick={() => {this.setPetImage('images/catPetIcon.png')}}/>
-                <img id='bunny' className='row-col5 grid-images' src='/images/bunnyPetIcon.png' onClick={() => {this.setPetImage('images/bunnyPetIcon.png')}}/>
+                <img id='monkey' className='row-col2 grid-images' src='/images/monkeyPetIcon.png' onClick={() => {this.setPetImage('/images/monkeyPetIcon.png'); this.setState({petType: 'monkey'})}}/>
+                <img id='mouse' className='row-col3 grid-images' src='/images/mousePetIcon.png' onClick={() => {this.setPetImage('/images/mousePetIcon.png'); this.setState({petType: 'mouse'})}}/>
+                <img id='cat' className='row-col4 grid-images' src='images/catPetIcon.png' onClick={() => {this.setPetImage('images/catPetIcon.png'); this.setState({petType: 'cat'})}}/>
+                <img id='bunny' className='row-col5 grid-images' src='/images/bunnyPetIcon.png' onClick={() => {this.setPetImage('images/bunnyPetIcon.png'); this.setState({petType: 'bunny'})}}/>
                  
               </div>  
 
@@ -160,9 +172,12 @@ class CreatePet extends React.Component {
                     <Input style={{marginTop: '3vh'}} className='input-rowcol9 createpet-text' type='text' name='activity' id='activity'onChange={this.handleChange}/>
                   
                 <h3 className='input-rowcol7 createpet-text'>Give your pet a name:</h3>
-                    <Link className='input-rowcol10 createpet-text' to='/home'>
-                    <Button onClick={() => {this.handleSubmit(this.state)}}>Enter</Button>
-                    </Link>   
+                    
+                    {this.state.petType && this.state.petName && this.state.habitat && this.state.activity &&
+                    <Link className='input-rowcol10 createpet-text'>
+                    <Button onClick={() => {this.handleSubmit(this.props.userN); this.userHasNewPet(this.props.userN); this.sendNewPet(this.props.userN)}}>Enter</Button> 
+                    </Link>
+                    }
                   </div>
             </Fieldset>
            </Tab>
@@ -204,12 +219,14 @@ class CreatePet extends React.Component {
 function mapStateToProps (state) {
     return {
         loggedIn: state.login.loggedin,
-        ownerName: state.login.username,
+        ownerName: state.user.username,
         petType: state.getPetInfo.petType,
         petName: state.getPetInfo.petName,
         habitat: state.getPetInfo.habitat,
         activity: state.getPetInfo.activity,
-        petImage: state.getPetInfo.petImgUrl
+        petImage: state.getPetInfo.petImgUrl,
+        hasPet: state.user.hasPet,
+        userN: state.login.username
     }
   }
   

@@ -86,14 +86,15 @@ class Home extends React.Component {
           <Link style={{textDecoration: 'none'}} className='home-row-col2'><img src='/images/userPageIcon.png' style={{width: '6vw', height: '9vh'}} onClick={() => {this.handleClickUserInfo(); this.handleClickPetInfo(); this.handleClickPetImage(); this.handleClickIcon('userPage')}}/>
          <h3 className='landing-text'>User page</h3></Link>
 
-         {this.props.petType ? 
-          <Link style={{textDecoration: 'none'}} className='home-row-col3'><img src='/images/petPageIcon.png' style={{width: '6vw', height: '9vh'}} onClick={() => {this.handleClickIcon('petPage')}}/>
-          <h3 className='landing-text'>Pet page</h3></Link> : <div style={{width: '6vw', height: '9vh'}}></div>}
-
-        <Link style={{textDecoration: 'none'}} className='home-row-col4' to='/' onClick={() => this.redirect()}>
+         <Link style={{textDecoration: 'none'}} className='home-row-col4' to='/' onClick={() => this.redirect()}>
           <img src='/images/logoutIcon.png' style={{width: '6vw', height: '9vh'}} onClick={() => {this.logoutUser()}}/>
         <h3 className='landing-text'>Logout</h3></Link>
         <br/><br/>
+
+         {this.props.hasPet ? 
+          <Link style={{textDecoration: 'none'}} className='home-row-col3'><img src='/images/petPageIcon.png' style={{width: '6vw', height: '9vh'}} onClick={() => {this.handleClickIcon('petPage')}}/>
+          <h3 className='landing-text'>Pet page</h3></Link> : <div style={{width: '6vw', height: '9vh'}}></div>}
+      
         </div>
           
           <div style={{marginLeft: '25vw', fontFamily: "'Caveat Brush', cursive", marginTop: '2.5vh'}}>
@@ -163,7 +164,8 @@ function mapStateToProps (state) {
         username: state.login.username,
         loggedIn: state.login.loggedin,
         pettype: state.getPetInfo.petType,
-        petCreated: state.getPetInfo.petCreated
+        petCreated: state.getPetInfo.petCreated,
+        hasPet: state.user.hasPet
     }
   }
   

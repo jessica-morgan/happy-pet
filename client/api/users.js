@@ -56,3 +56,15 @@ export function getUserApi(username) {
       if (err) throw Error('Cannot get user')
     })
   }
+
+  export function hasPetApi(username) {
+    return request 
+    .post(`${url}/haspet/${username}`)
+    .send({
+      hasPet: true
+    })
+    .then(res => res.body)
+    .catch(err => {
+      if (err) throw Error('Cannot get user')
+    })
+  }
