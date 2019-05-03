@@ -62,3 +62,9 @@ export const petAge = (age) => {
         age
     }
 }
+
+export const initialisePetData = () => {
+    return {
+        type: 'INITIALISE_PET_DATA'
+    }
+}

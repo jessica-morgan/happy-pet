@@ -4495,6 +4495,10 @@ var Home = function (_React$Component) {
     _this.handleClickIcon = _this.handleClickIcon.bind(_this);
     _this.redirect = _this.redirect.bind(_this);
     _this.getPetAge = _this.getPetAge.bind(_this);
+    _this.inititaliseLoginState = _this.inititaliseLoginState.bind(_this);
+    _this.initialisepetInfoState = _this.initialisepetInfoState.bind(_this);
+    _this.initialiseRegisterState = _this.initialiseRegisterState.bind(_this);
+    _this.initialiseUserState = _this.initialiseUserState.bind(_this);
     return _this;
   }
 
@@ -4547,9 +4551,24 @@ var Home = function (_React$Component) {
       }this.state;
     }
   }, {
-    key: 'logoutUser',
-    value: function logoutUser() {
-      this.props.dispatch((0, _login.logout)(this.props.userN));
+    key: 'inititaliseLoginState',
+    value: function inititaliseLoginState() {
+      this.props.dispatch(initialiseLoginData());
+    }
+  }, {
+    key: 'initialisepetInfoState',
+    value: function initialisepetInfoState() {
+      this.props.dispatch(initialisePetData());
+    }
+  }, {
+    key: 'initialiseRegisterState',
+    value: function initialiseRegisterState() {
+      this.props.dispatch(initialiseRegisterData());
+    }
+  }, {
+    key: 'initialiseUserState',
+    value: function initialiseUserState() {
+      this.props.dispatch(initialiseUserData());
     }
   }, {
     key: 'redirect',
@@ -4597,7 +4616,7 @@ var Home = function (_React$Component) {
                 return _this2.redirect();
               } },
             _react2.default.createElement('img', { src: '/images/logoutIcon.png', style: { width: '6vw', height: '9vh' }, onClick: function onClick() {
-                _this2.logoutUser();
+                _this2.initialiseRegisterState();_this2.initialiseUserState();_this2.inititaliseLoginState();_this2.initialisepetInfoState();
               } }),
             _react2.default.createElement(
               'h3',
@@ -5157,6 +5176,12 @@ var _users = __webpack_require__(21);
 
 var _users2 = __webpack_require__(104);
 
+var _login = __webpack_require__(108);
+
+var _petInfo = __webpack_require__(107);
+
+var _register = __webpack_require__(297);
+
 var _Input = __webpack_require__(109);
 
 var _Input2 = _interopRequireDefault(_Input);
@@ -5213,11 +5238,14 @@ var CreatePet = function (_React$Component) {
     _this.setPetImage = _this.setPetImage.bind(_this);
     _this.handleChange = _this.handleChange.bind(_this);
     _this.handleSubmit = _this.handleSubmit.bind(_this);
-    _this.logoutUser = _this.logoutUser.bind(_this);
     _this.handleClickIcon = _this.handleClickIcon.bind(_this);
     _this.redirect = _this.redirect.bind(_this);
     _this.userHasNewPet = _this.userHasNewPet.bind(_this);
     _this.sendNewPet = _this.sendNewPet.bind(_this);
+    _this.inititaliseLoginState = _this.inititaliseLoginState.bind(_this);
+    _this.initialisepetInfoState = _this.initialisepetInfoState.bind(_this);
+    _this.initialiseRegisterState = _this.initialiseRegisterState.bind(_this);
+    _this.initialiseUserState = _this.initialiseUserState.bind(_this);
     return _this;
   }
 
@@ -5240,9 +5268,24 @@ var CreatePet = function (_React$Component) {
       }this.state;
     }
   }, {
-    key: 'logoutUser',
-    value: function logoutUser() {
-      this.props.dispatch(logout(this.props.userN));
+    key: 'inititaliseLoginState',
+    value: function inititaliseLoginState() {
+      this.props.dispatch((0, _login.initialiseLoginData)());
+    }
+  }, {
+    key: 'initialisepetInfoState',
+    value: function initialisepetInfoState() {
+      this.props.dispatch((0, _petInfo.initialisePetData)());
+    }
+  }, {
+    key: 'initialiseRegisterState',
+    value: function initialiseRegisterState() {
+      this.props.dispatch((0, _register.initialiseRegisterData)());
+    }
+  }, {
+    key: 'initialiseUserState',
+    value: function initialiseUserState() {
+      this.props.dispatch((0, _users2.initialiseUserData)());
     }
   }, {
     key: 'redirect',
@@ -5334,7 +5377,7 @@ var CreatePet = function (_React$Component) {
                 return _this2.redirect();
               } },
             _react2.default.createElement('img', { src: '/images/logoutIcon.png', style: { width: '6vw', height: '9vh' }, onClick: function onClick() {
-                _this2.logoutUser();
+                _this2.initialiseRegisterState();_this2.initialiseUserState();_this2.inititaliseLoginState();_this2.initialisepetInfoState();
               } }),
             _react2.default.createElement(
               'h3',
@@ -5594,6 +5637,10 @@ var UserPage = function (_React$Component) {
     _this.logoutUser = _this.logoutUser.bind(_this);
     _this.handleClickIcon = _this.handleClickIcon.bind(_this);
     _this.redirect = _this.redirect.bind(_this);
+    _this.inititaliseLoginState = _this.inititaliseLoginState.bind(_this);
+    _this.initialisepetInfoState = _this.initialisepetInfoState.bind(_this);
+    _this.initialiseRegisterState = _this.initialiseRegisterState.bind(_this);
+    _this.initialiseUserState = _this.initialiseUserState.bind(_this);
     return _this;
   }
 
@@ -5629,6 +5676,26 @@ var UserPage = function (_React$Component) {
         this.setState({ petPageClicked: true });
       }
       this.state;
+    }
+  }, {
+    key: 'inititaliseLoginState',
+    value: function inititaliseLoginState() {
+      this.props.dispatch(initialiseLoginData());
+    }
+  }, {
+    key: 'initialisepetInfoState',
+    value: function initialisepetInfoState() {
+      this.props.dispatch(initialisePetData());
+    }
+  }, {
+    key: 'initialiseRegisterState',
+    value: function initialiseRegisterState() {
+      this.props.dispatch(initialiseRegisterData());
+    }
+  }, {
+    key: 'initialiseUserState',
+    value: function initialiseUserState() {
+      this.props.dispatch(initialiseUserData());
     }
   }, {
     key: 'render',
@@ -5683,7 +5750,7 @@ var UserPage = function (_React$Component) {
                 return _this2.redirect();
               } },
             _react2.default.createElement('img', { src: '/images/logoutIcon.png', style: { width: '6vw', height: '9vh' }, onClick: function onClick() {
-                _this2.logoutUser();
+                _this2.initialiseRegisterState();_this2.initialiseUserState();_this2.inititaliseLoginState();_this2.initialisepetInfoState();
               } }),
             _react2.default.createElement(
               'h3',
@@ -5937,6 +6004,10 @@ var PetPage = function (_React$Component) {
     _this.logoutUser = _this.logoutUser.bind(_this);
     _this.handleClickIcon = _this.handleClickIcon.bind(_this);
     _this.redirect = _this.redirect.bind(_this);
+    _this.inititaliseLoginState = _this.inititaliseLoginState.bind(_this);
+    _this.initialisepetInfoState = _this.initialisepetInfoState.bind(_this);
+    _this.initialiseRegisterState = _this.initialiseRegisterState.bind(_this);
+    _this.initialiseUserState = _this.initialiseUserState.bind(_this);
     return _this;
   }
 
@@ -5958,6 +6029,26 @@ var PetPage = function (_React$Component) {
     key: 'redirect',
     value: function redirect() {
       this.context.history.push('/');
+    }
+  }, {
+    key: 'inititaliseLoginState',
+    value: function inititaliseLoginState() {
+      this.props.dispatch(initialiseLoginData());
+    }
+  }, {
+    key: 'initialisepetInfoState',
+    value: function initialisepetInfoState() {
+      this.props.dispatch(initialisePetData());
+    }
+  }, {
+    key: 'initialiseRegisterState',
+    value: function initialiseRegisterState() {
+      this.props.dispatch(initialiseRegisterData());
+    }
+  }, {
+    key: 'initialiseUserState',
+    value: function initialiseUserState() {
+      this.props.dispatch(initialiseUserData());
     }
   }, {
     key: 'handleClickIcon',
@@ -6040,7 +6131,7 @@ var PetPage = function (_React$Component) {
                 return _this2.redirect();
               } },
             _react2.default.createElement('img', { src: '/images/logoutIcon.png', style: { width: '6vw', height: '9vh' }, onClick: function onClick() {
-                _this2.logoutUser();
+                _this2.initialiseRegisterState();_this2.initialiseUserState();_this2.inititaliseLoginState();_this2.initialisepetInfoState();
               } }),
             _react2.default.createElement(
               'h3',
@@ -11254,7 +11345,7 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.hasPet = exports.userData = undefined;
+exports.initialiseUserData = exports.hasPet = exports.userData = undefined;
 exports.getUser = getUser;
 exports.getAcctCreated = getAcctCreated;
 
@@ -11290,6 +11381,12 @@ var userData = exports.userData = function userData(username, firstname, loggedi
 var hasPet = exports.hasPet = function hasPet() {
   return {
     type: 'HAS_PET'
+  };
+};
+
+var initialiseUserData = exports.initialiseUserData = function initialiseUserData() {
+  return {
+    type: 'INITIALISE_USER_DATA'
   };
 };
 
@@ -12334,7 +12431,7 @@ module.exports = isObject;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.petAge = exports.petCreated = exports.petHunger = exports.petImg = exports.petInfo = undefined;
+exports.initialisePetData = exports.petAge = exports.petCreated = exports.petHunger = exports.petImg = exports.petInfo = undefined;
 exports.getUsersPetInfo = getUsersPetInfo;
 exports.getPetImage = getPetImage;
 
@@ -12402,6 +12499,12 @@ var petAge = exports.petAge = function petAge(age) {
     };
 };
 
+var initialisePetData = exports.initialisePetData = function initialisePetData() {
+    return {
+        type: 'INITIALISE_PET_DATA'
+    };
+};
+
 /***/ }),
 /* 108 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -12412,7 +12515,7 @@ var petAge = exports.petAge = function petAge(age) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.logOut = exports.loggedIn = undefined;
+exports.initialiseLoginData = exports.logOut = exports.loggedIn = undefined;
 exports.getUserLogIn = getUserLogIn;
 exports.logout = logout;
 
@@ -12454,6 +12557,12 @@ var logOut = exports.logOut = function logOut(username) {
   return {
     type: 'LOGOUT',
     username: username
+  };
+};
+
+var initialiseLoginData = exports.initialiseLoginData = function initialiseLoginData() {
+  return {
+    type: 'INITIALISE_LOGIN_DATA'
   };
 };
 
@@ -12555,6 +12664,10 @@ var FeedPet = function (_React$Component) {
     _this.logoutUser = _this.logoutUser.bind(_this);
     _this.handleClickIcon = _this.handleClickIcon.bind(_this);
     _this.redirect = _this.redirect.bind(_this);
+    _this.inititaliseLoginState = _this.inititaliseLoginState.bind(_this);
+    _this.initialisepetInfoState = _this.initialisepetInfoState.bind(_this);
+    _this.initialiseRegisterState = _this.initialiseRegisterState.bind(_this);
+    _this.initialiseUserState = _this.initialiseUserState.bind(_this);
     return _this;
   }
 
@@ -12581,9 +12694,24 @@ var FeedPet = function (_React$Component) {
       this.setState({ state: this.state });
     }
   }, {
-    key: 'logoutUser',
-    value: function logoutUser() {
-      this.props.dispatch(logout(this.props.userN));
+    key: 'inititaliseLoginState',
+    value: function inititaliseLoginState() {
+      this.props.dispatch(initialiseLoginData());
+    }
+  }, {
+    key: 'initialisepetInfoState',
+    value: function initialisepetInfoState() {
+      this.props.dispatch(initialisePetData());
+    }
+  }, {
+    key: 'initialiseRegisterState',
+    value: function initialiseRegisterState() {
+      this.props.dispatch(initialiseRegisterData());
+    }
+  }, {
+    key: 'initialiseUserState',
+    value: function initialiseUserState() {
+      this.props.dispatch(initialiseUserData());
     }
   }, {
     key: 'redirect',
@@ -12654,7 +12782,7 @@ var FeedPet = function (_React$Component) {
                 return _this2.redirect();
               } },
             _react2.default.createElement('img', { src: '/images/logoutIcon.png', style: { width: '6vw', height: '9vh' }, onClick: function onClick() {
-                _this2.logoutUser();
+                _this2.initialiseRegisterState();_this2.initialiseUserState();_this2.inititaliseLoginState();_this2.initialisepetInfoState();
               } }),
             _react2.default.createElement(
               'h3',
@@ -40996,7 +41124,9 @@ exports.default = (0, _redux.combineReducers)({
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var initialRegisterState = [];
+var initialRegisterState = [{
+  user: ''
+}];
 
 var registerUser = exports.registerUser = function registerUser() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialRegisterState;
@@ -41006,14 +41136,17 @@ var registerUser = exports.registerUser = function registerUser() {
     //in case of register action called
     case 'REGISTER':
       //return this info and put into state
-      return action.user;
-    //don't need to include state becuase its empty which seems to cause a problem
-    default:
+      return {
+        user: action.user
+      };
+    case 'INITIALISE_REGISTER_DATA':
+      return {
+        initialRegisterState: initialRegisterState
+        //don't need to include state becuase its empty which seems to cause a problem
+      };default:
       return state;
   }
 };
-
-exports.default = registerUser;
 
 /***/ }),
 /* 167 */
@@ -41042,6 +41175,10 @@ var login = exports.login = function login() {
             return {
                 username: action.username,
                 loggedin: false
+            };
+        case 'INITIALISE_LOGIN_DATA':
+            return {
+                initialLoginState: initialLoginState
             };
         default:
             return state;
@@ -41109,6 +41246,10 @@ var getPetInfo = exports.getPetInfo = function getPetInfo() {
             return _extends({}, state, {
                 petAge: action.age
             });
+        case 'INITIALISE_PET_DATA':
+            return {
+                initialPetState: initialPetState
+            };
         default:
             return state;
     }
@@ -41150,6 +41291,10 @@ var user = exports.user = function user() {
       return {
         hasPet: true
       };
+    case 'INITIALISE_USER_DATA':
+      return {
+        initialUserState: initialUserState
+      };
     default:
       return state;
   }
@@ -41182,10 +41327,6 @@ var _LandingPage = __webpack_require__(295);
 
 var _LandingPage2 = _interopRequireDefault(_LandingPage);
 
-var _IncorrectLogin = __webpack_require__(296);
-
-var _IncorrectLogin2 = _interopRequireDefault(_IncorrectLogin);
-
 var _CreatePet = __webpack_require__(22);
 
 var _CreatePet2 = _interopRequireDefault(_CreatePet);
@@ -41216,7 +41357,6 @@ var App = function App() {
       _reactRouterDom.Switch,
       null,
       _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _LandingPage2.default }),
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/incorrectLogin', component: _IncorrectLogin2.default }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/home', component: _Home2.default }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/createpet', component: _CreatePet2.default }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/petpage', component: _PetPage2.default }),
@@ -47599,7 +47739,8 @@ function mapStateToProps(state) {
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(LandingPage));
 
 /***/ }),
-/* 296 */
+/* 296 */,
+/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47608,106 +47749,20 @@ exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapSt
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouterDom = __webpack_require__(3);
-
-var _reactRedux = __webpack_require__(5);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var IncorrectLogin = function (_React$Component) {
-  _inherits(IncorrectLogin, _React$Component);
-
-  function IncorrectLogin(props) {
-    _classCallCheck(this, IncorrectLogin);
-
-    var _this = _possibleConstructorReturn(this, (IncorrectLogin.__proto__ || Object.getPrototypeOf(IncorrectLogin)).call(this, props));
-
-    _this.state = {
-      username: '',
-      password: ''
-    };
-    _this.handleChange = _this.handleChange.bind(_this);
-    _this.checkLogInDetails = _this.checkLogInDetails.bind(_this);
-    return _this;
-  }
-
-  _createClass(IncorrectLogin, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      if (this.props.loggedIn === true) {
-        this.props.history.push('/home');
-      } else {
-        this.props.history.push('/login');
-      }
-    }
-  }, {
-    key: 'handleChange',
-    value: function handleChange(event) {
-      this.setState(_defineProperty({}, event.target.name, event.target.value));
-    }
-  }, {
-    key: 'checkLogInDetails',
-    value: function checkLogInDetails(username, password) {
-      this.props.dispatch(getUserLogIn(username, password));
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'h3',
-          { className: 'landing-text' },
-          'Your login details were incorrect, please try logging in again'
-        ),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement('input', { className: 'input-fields', type: 'text', id: 'username', name: 'username', placeholder: 'username', value: this.state.username, onChange: this.handleChange }),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement('input', { className: 'input-fields', type: 'password', id: 'password', name: 'password', placeholder: 'password', value: this.state.password, onChange: this.handleChange }),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(
-            'button',
-            { className: 'button', onClick: function onClick() {
-                return _this2.checkLogInDetails(_this2.state.username, _this2.state.password);
-              } },
-            'Login'
-          )
-        )
-      );
-    }
-  }]);
-
-  return IncorrectLogin;
-}(_react2.default.Component);
-
-function mapStateToProps(state) {
+var register = exports.register = function register(user) {
   return {
-    loggedIn: state.login.loggedin
+    //if action register is called
+    type: 'REGISTER',
+    //return this
+    user: user
   };
-}
+};
 
-exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(IncorrectLogin));
+var initialiseRegisterData = exports.initialiseRegisterData = function initialiseRegisterData() {
+  return {
+    type: 'INITIALISE_REGISTER_DATA'
+  };
+};
 
 /***/ })
 /******/ ]);

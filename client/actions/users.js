@@ -35,3 +35,9 @@ export const hasPet = () => {
     type: 'HAS_PET'
   }
 }
+
+export const initialiseUserData = () => {
+  return {
+    type: 'INITIALISE_USER_DATA'
+  }
+}

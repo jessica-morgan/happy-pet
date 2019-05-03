@@ -39,3 +39,9 @@ export const logOut = (username) => {
     username
   }
 }
+
+export const initialiseLoginData = () => {
+  return {
+    type: 'INITIALISE_LOGIN_DATA'
+  }
+}

@@ -13,6 +13,10 @@ export const login = (state = initialLoginState, action) => {
             username: action.username,
             loggedin: false
         }
+        case 'INITIALISE_LOGIN_DATA':
+        return {
+            initialLoginState
+        }
         default:
         return state
     }

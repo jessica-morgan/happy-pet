@@ -46,6 +46,10 @@ export const getPetInfo = (state = initialPetState, action) => {
             ...state,
             petAge: action.age
         }
+        case 'INITIALISE_PET_DATA':
+        return {
+            initialPetState
+        }
         default:
         return state
     }

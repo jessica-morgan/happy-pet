@@ -19,6 +19,10 @@ export const user = (state = initialUserState, action) => {
         return {
           hasPet: true
         }
+        case 'INITIALISE_USER_DATA':
+        return {
+          initialUserState
+        }
         default:
         return state
     }

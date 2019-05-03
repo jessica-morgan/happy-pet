@@ -24,6 +24,10 @@ class PetPage extends React.Component {
         this.logoutUser = this.logoutUser.bind(this) 
         this.handleClickIcon = this.handleClickIcon.bind(this)
         this.redirect = this.redirect.bind(this)
+        this.inititaliseLoginState = this. inititaliseLoginState.bind(this)
+        this.initialisepetInfoState = this.initialisepetInfoState.bind(this)
+        this.initialiseRegisterState = this. initialiseRegisterState.bind(this)
+        this.initialiseUserState = this.initialiseUserState.bind(this)
       }
 
       componentDidMount () {
@@ -40,6 +44,22 @@ class PetPage extends React.Component {
 
     redirect() {
       this.context.history.push('/')
+    }
+
+    inititaliseLoginState() {
+      this.props.dispatch(initialiseLoginData())
+    }
+
+    initialisepetInfoState() {
+      this.props.dispatch(initialisePetData())
+    }
+
+    initialiseRegisterState() {
+      this.props.dispatch(initialiseRegisterData())
+    }
+
+    initialiseUserState() {
+      this.props.dispatch(initialiseUserData())
     }
 
     handleClickIcon(icon) {
@@ -88,7 +108,7 @@ class PetPage extends React.Component {
                 <h3 className='landing-text'>Pet page</h3></Link> : <div style={{width: '6vw', height: '9vh'}}></div>}
 
                 <Link style={{textDecoration: 'none'}} className='home-row-col4' to='/' onClick={() => this.redirect()}>
-                  <img src='/images/logoutIcon.png' style={{width: '6vw', height: '9vh'}} onClick={() => {this.logoutUser()}}/>
+                  <img src='/images/logoutIcon.png' style={{width: '6vw', height: '9vh'}} onClick={() => {this.initialiseRegisterState(); this.initialiseUserState(); this.inititaliseLoginState(); this.initialisepetInfoState()}}/>
                 <h3 className='landing-text'>Logout</h3></Link>
                 <br/><br/>
                 </div>

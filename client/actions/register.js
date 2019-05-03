@@ -8,4 +8,9 @@ export const register = (user) => {
     }
   }
 
+  export const initialiseRegisterData = () => {
+    return {
+      type: 'INITIALISE_REGISTER_DATA'
+    }
+  }
   
