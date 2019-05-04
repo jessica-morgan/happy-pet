@@ -5182,6 +5182,8 @@ var _reactRouterDom = __webpack_require__(4);
 
 var _reactRedux = __webpack_require__(5);
 
+var _dateFns = __webpack_require__(16);
+
 var _pets = __webpack_require__(53);
 
 var _users = __webpack_require__(21);
@@ -5253,11 +5255,12 @@ var CreatePet = function (_React$Component) {
     _this.handleClickIcon = _this.handleClickIcon.bind(_this);
     _this.redirect = _this.redirect.bind(_this);
     _this.userHasNewPet = _this.userHasNewPet.bind(_this);
-    _this.sendNewPet = _this.sendNewPet.bind(_this);
+    _this.sendHasPet = _this.sendHasPet.bind(_this);
     _this.inititaliseLoginState = _this.inititaliseLoginState.bind(_this);
     _this.initialisepetInfoState = _this.initialisepetInfoState.bind(_this);
     _this.initialiseRegisterState = _this.initialiseRegisterState.bind(_this);
     _this.initialiseUserState = _this.initialiseUserState.bind(_this);
+    _this.dispatchNewPetInfo = _this.dispatchNewPetInfo.bind(_this);
     return _this;
   }
 
@@ -5334,9 +5337,27 @@ var CreatePet = function (_React$Component) {
       (0, _users.hasPetApi)(username);
     }
   }, {
-    key: 'sendNewPet',
-    value: function sendNewPet(username) {
+    key: 'sendHasPet',
+    value: function sendHasPet(username) {
       this.props.dispatch((0, _users2.hasPet)(username));
+    }
+
+    //needs to dispatch the pets name, type, habitat, activity and imageUrl to getPetInfo state when new pet is created
+    //use petInfo action send username, timestamp and formatted date object, last fed as null and fed as false see if
+    //I can dispatch to petImg at the same time
+
+  }, {
+    key: 'dispatchNewPetInfo',
+    value: function dispatchNewPetInfo() {
+      var fed = false;
+      var lastFed = '';
+      var created = (0, _dateFns.format)(new Date());
+      this.props.dispatch((0, _petInfo.petInfo)(this.props.userN, this.state.petType, this.state.petName, this.state.habitat, this.state.activity, fed, lastFed, created));
+    }
+  }, {
+    key: 'getPetImage',
+    value: function getPetImage() {
+      this.props.dispatch((0, _petInfo.petImg)(this.state.petImageUrl));
     }
   }, {
     key: 'render',
@@ -5524,7 +5545,7 @@ var CreatePet = function (_React$Component) {
                     _react2.default.createElement(
                       _Button2.default,
                       { onClick: function onClick() {
-                          _this2.handleSubmit(_this2.props.userN);_this2.userHasNewPet(_this2.props.userN);_this2.sendNewPet(_this2.props.userN);
+                          _this2.handleSubmit(_this2.props.userN);_this2.userHasNewPet(_this2.props.userN);_this2.sendHasPet(_this2.props.userN);_this2.dispatchNewPetInfo();_this2.getPetImage();
                         } },
                       'Enter'
                     )

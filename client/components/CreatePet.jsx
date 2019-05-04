@@ -1,11 +1,12 @@
 import React from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {format} from 'date-fns'
 import { newpetApi } from '../api/pets'
 import { hasPetApi } from '../api/users'
 import { hasPet, initialiseUserData} from '../actions/users'
 import { initialiseLoginData } from '../actions/login'
-import { initialisePetData } from '../actions/petInfo'
+import { initialisePetData, petInfo, petImg } from '../actions/petInfo'
 import { initialiseRegisterData } from '../actions/register'
 import Input from '@react95/core/Input'
 import Button from '@react95/core/Button'
@@ -33,11 +34,12 @@ class CreatePet extends React.Component {
         this.handleClickIcon = this.handleClickIcon.bind(this)
         this.redirect = this.redirect.bind(this)
         this.userHasNewPet = this.userHasNewPet.bind(this)
-        this.sendNewPet = this.sendNewPet.bind(this)
+        this.sendHasPet = this.sendHasPet.bind(this)
         this.inititaliseLoginState = this. inititaliseLoginState.bind(this)
         this.initialisepetInfoState = this.initialisepetInfoState.bind(this)
         this.initialiseRegisterState = this. initialiseRegisterState.bind(this)
         this.initialiseUserState = this.initialiseUserState.bind(this)
+        this.dispatchNewPetInfo = this.dispatchNewPetInfo.bind(this)
       }
 
       componentDidMount () {
@@ -96,9 +98,24 @@ class CreatePet extends React.Component {
         hasPetApi(username)
       }
 
-      sendNewPet(username) {
+      sendHasPet(username) {
         this.props.dispatch(hasPet(username))
       }
+
+      //needs to dispatch the pets name, type, habitat, activity and imageUrl to getPetInfo state when new pet is created
+      //use petInfo action send username, timestamp and formatted date object, last fed as null and fed as false see if
+      //I can dispatch to petImg at the same time
+      dispatchNewPetInfo() {
+        const fed = false
+        const lastFed = ''
+        const created = format(new Date())
+        this.props.dispatch(petInfo(this.props.userN, this.state.petType, this.state.petName, this.state.habitat, this.state.activity, fed, lastFed, created))
+      }
+
+      getPetImage() {
+        this.props.dispatch(petImg(this.state.petImageUrl))
+      }
+
 
       render() {
    
@@ -193,7 +210,7 @@ class CreatePet extends React.Component {
                     
                     {this.state.petType && this.state.petName && this.state.habitat && this.state.activity &&
                     <Link className='input-rowcol10 createpet-text'>
-                    <Button onClick={() => {this.handleSubmit(this.props.userN); this.userHasNewPet(this.props.userN); this.sendNewPet(this.props.userN)}}>Enter</Button> 
+                    <Button onClick={() => {this.handleSubmit(this.props.userN); this.userHasNewPet(this.props.userN); this.sendHasPet(this.props.userN); this.dispatchNewPetInfo(); this.getPetImage()}}>Enter</Button> 
                     </Link>
                     }
                   </div>
