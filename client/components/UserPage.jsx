@@ -15,7 +15,6 @@ class UserPage extends React.Component {
           createPetPageClicked: false,
           petPageClicked: false
         } 
-        this.logoutUser = this.logoutUser.bind(this) 
         this.handleClickIcon = this.handleClickIcon.bind(this)
         this.redirect = this.redirect.bind(this)
         this.inititaliseLoginState = this. inititaliseLoginState.bind(this)

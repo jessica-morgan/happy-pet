@@ -6,6 +6,7 @@ import { Tabs, Tab } from '@react95/core/Tabs'
 import Fieldset from '@react95/core/Fieldset'
 import Input from '@react95/core/Input'
 import {makeNewUserApi} from '../api/users'
+import { checkIfUserHasPet } from '../actions/users'
 import { getUserLogIn } from '../actions/login'
 
 class LandingPage extends React.Component {
@@ -22,7 +23,7 @@ class LandingPage extends React.Component {
         this.handleChange = this.handleChange.bind(this)
         this.checkLogInDetails = this.checkLogInDetails.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
-        this.checkHasPet = this.checkHasPet.bind(this)
+        this.checkIfHasPet = this.checkIfHasPet.bind(this)
       }
 
       componentDidMount () {
@@ -50,8 +51,8 @@ class LandingPage extends React.Component {
       makeNewUserApi(registerUsername, registerFirstname, email, registerPassword)
     }
 
-    checkHasPet(username){
-      
+    checkIfHasPet(){
+      this.props.dispatch(checkIfUserHasPet(this.state.loginUsername))
     }
 
       render() {
@@ -77,7 +78,7 @@ class LandingPage extends React.Component {
                <br/>
                 <Input className='landing-text' type='password' id='password' name='password' placeholder='password' value={this.state.password} onChange={this.handleChange}/>
                <br/><br/>
-           <Link className='landing-text' style={{textDecoration: 'none'}}> <Button onClick = {() => {this.checkLogInDetails(this.state.loginUsername, this.state.password); this.checkHasPet(this.state.loginUsername)}}>
+           <Link className='landing-text' style={{textDecoration: 'none'}}> <Button onClick = {() => {this.checkLogInDetails(this.state.loginUsername, this.state.password); this.checkIfHasPet()}}>
             Login
           </Button></Link>
          <br/><br/><br/>

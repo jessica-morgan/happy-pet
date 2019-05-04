@@ -14,16 +14,6 @@ export function getUserLogIn (username, password) {
     }
   }
 
-  export function logout (username) {
-    return function (dispatch) {
-      getUserApi(username)
-        .then(res => {
-             if (res[0].username === username) {
-              return dispatch(logOut(res[0].username)) && logoutUserApi(res[0].username)
-            }
-        })
-    }
-  } 
 
 export const loggedIn = (username, password) => {
     return {
@@ -31,13 +21,6 @@ export const loggedIn = (username, password) => {
         username,
         password
     }
-}
-
-export const logOut = (username) => {
-  return {
-    type: 'LOGOUT',
-    username
-  }
 }
 
 export const initialiseLoginData = () => {

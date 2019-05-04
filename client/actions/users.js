@@ -1,4 +1,5 @@
 import {getUserApi} from '../api/users'
+import {checkHasPetApi} from '../api/users'
 
 export function getUser (username) {
     return function (dispatch) {
@@ -8,6 +9,17 @@ export function getUser (username) {
             })
     }
   }
+
+export function checkIfUserHasPet (username) {
+  return function (dispatch) {
+    checkHasPetApi(username)
+    .then(res => {
+      //getting nothing back
+      console.log(res)
+      return dispatch(hasPetLogin(res[0].hasPet))
+    })
+  }
+}
 
 export function getAcctCreated (username) {
   return function(dispatch) {
@@ -33,6 +45,13 @@ export const userData = (username, firstname, loggedin, date) => {
 export const hasPet = () => {
   return {
     type: 'HAS_PET'
+  }
+}
+
+export const hasPetLogin = (hasPet) => {
+  return {
+    type: 'HAS_PET_LOGIN',
+    hasPet
   }
 }
 

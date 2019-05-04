@@ -90,6 +90,18 @@ router.post('/haspet/:username', (req, res) => {
     })
 })
 
+//gets hasPet
+router.get('/checkHasPet/:username', (req, res) => {
+    const username = req.params.username
+    db.checkIfHasPet(username)
+    .then(pet => {
+        res.json(pet)
+    })
+    .catch(err => {
+        res.status(500).send(err)
+    })
+})
+
 
 
 module.exports = router

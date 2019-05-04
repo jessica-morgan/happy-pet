@@ -23,7 +23,6 @@ class FeedPet extends React.Component {
         }
         this.feedPet = this.feedPet.bind(this) 
         this.refresh = this.refresh.bind(this)
-        this.logoutUser = this.logoutUser.bind(this) 
         this.handleClickIcon = this.handleClickIcon.bind(this)
         this.redirect = this.redirect.bind(this)
         this.inititaliseLoginState = this. inititaliseLoginState.bind(this)

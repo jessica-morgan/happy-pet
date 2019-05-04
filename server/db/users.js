@@ -5,9 +5,10 @@ module.exports = {
   getUsers,
   getUsersPet,
   loggedIn,
-  getUser,
   logout,
-  hasPet
+  getUser,
+  hasPet,
+  checkIfHasPet
 }
 
 //inserts new user to database
@@ -69,4 +70,11 @@ function hasPet (owner, db = connection) {
   .update({
     hasPet: true
   })
+}
+
+//gets hasPet
+function checkIfHasPet (username, db = connection) {
+  return db('users')
+  .where('username', username)
+  .select('username', 'hasPet')
 }

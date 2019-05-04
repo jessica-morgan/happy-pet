@@ -7,7 +7,6 @@ import Fieldset from '@react95/core/Fieldset'
 import { getUser } from '../actions/users'
 import { getUsersPetInfo, getPetImage } from '../actions/petInfo'
 import { petAge } from '../actions/petInfo'
-import { logout } from '../actions/login'
 import CreatePet from './CreatePet'
 import UserPage from './UserPage'
 import PetPage from './PetPage'
@@ -23,7 +22,6 @@ class Home extends React.Component {
         this.handleClickUserInfo = this.handleClickUserInfo.bind(this)
         this.handleClickPetInfo = this.handleClickPetInfo.bind(this)
         this.handleClickPetImage = this.handleClickPetImage.bind(this)
-        this.logoutUser = this.logoutUser.bind(this) 
         this.handleClickIcon = this.handleClickIcon.bind(this)
         this.redirect = this.redirect.bind(this)
         this.getPetAge = this.getPetAge.bind(this)

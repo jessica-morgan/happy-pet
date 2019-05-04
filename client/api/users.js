@@ -44,25 +44,39 @@ export function getUserApi(username) {
       .get(`${url}/loggedin/${username}`)
       .then(res => res.body)
       .catch(err => {
-        if (err) throw Error('Cannot get user')
+        if (err) throw Error('Cannot login user')
     })
   }
 
   export function logoutUserApi(username) {
     return request
     .get(`${url}/logout/${username}`)
+    // .send({
+    //   loggedin: false
+    // })
     .then(res => res.body)
     .catch(err => {
-      if (err) throw Error('Cannot get user')
+      if (err) throw Error('Cannot logout user')
     })
   }
 
+  //gets called when a user creates a pet, changes hasPet to true in db
   export function hasPetApi(username) {
     return request 
     .post(`${url}/haspet/${username}`)
     .send({
       hasPet: true
     })
+    .then(res => res.body)
+    .catch(err => {
+      if (err) throw Error('Cannot get user')
+    })
+  }
+
+  //gets hasPet
+  export function checkHasPetApi(username) {
+    return request 
+    .get(`${url}/checkHasPet/${username}`)
     .then(res => res.body)
     .catch(err => {
       if (err) throw Error('Cannot get user')

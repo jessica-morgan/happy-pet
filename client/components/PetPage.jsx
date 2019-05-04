@@ -21,7 +21,6 @@ class PetPage extends React.Component {
           feedPetClicked: false
         }
         this.checkLastFed = this.checkLastFed.bind(this)
-        this.logoutUser = this.logoutUser.bind(this) 
         this.handleClickIcon = this.handleClickIcon.bind(this)
         this.redirect = this.redirect.bind(this)
         this.inititaliseLoginState = this. inititaliseLoginState.bind(this)

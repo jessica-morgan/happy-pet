@@ -8,11 +8,6 @@ export const login = (state = initialLoginState, action) => {
             password: action.password,
             loggedin: true
         }
-        case 'LOGOUT':
-        return {
-            username: action.username,
-            loggedin: false
-        }
         case 'INITIALISE_LOGIN_DATA':
         return {
             initialLoginState
