@@ -35,7 +35,7 @@ class LandingPage extends React.Component {
     }
 
     handleChange(event) {
-      this.setState({ [event.target.name]: event.target.value });
+      this.setState({ [event.target.name]: event.target.value })
     }
     
     //checks username and password is in database- changes logged in to true if matched
@@ -43,7 +43,7 @@ class LandingPage extends React.Component {
      this.props.dispatch(getUserLogIn(username, password))
     }
 
-    //dispatch this info to redux register 
+    //this isnt working- not posting new user to db- also need to dispatch login info
     handleSubmit(){
       //destructring- takes this.state and gets the properties username, password and email
       const {registerUsername, registerFirstname, email, registerPassword} = this.state
@@ -78,6 +78,7 @@ class LandingPage extends React.Component {
                <br/>
                 <Input className='landing-text' type='password' id='password' name='password' placeholder='password' value={this.state.password} onChange={this.handleChange}/>
                <br/><br/>
+               {/* when button is clicked check if login details are true- if true user will be redirected if flase alert popup */}
            <Link className='landing-text' style={{textDecoration: 'none'}}> <Button onClick = {() => {this.checkLogInDetails(this.state.loginUsername, this.state.password); this.checkIfHasPet()}}>
             Login
           </Button></Link>

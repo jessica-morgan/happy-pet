@@ -6,6 +6,10 @@ import {format} from 'date-fns'
 import { Tabs, Tab } from '@react95/core/Tabs'
 import Fieldset from '@react95/core/Fieldset'
 import Button from '@react95/core/Button'
+import { initialiseUserData, checkIfUserHasPet } from '../actions/users'
+import { initialiseLoginData } from '../actions/login'
+import { initialisePetData } from '../actions/petInfo'
+import { initialiseRegisterData } from '../actions/register'
 import UserPage from './UserPage'
 import Home from './Home'
 import CreatePet from './CreatePet'
@@ -29,6 +33,7 @@ class FeedPet extends React.Component {
         this.initialisepetInfoState = this.initialisepetInfoState.bind(this)
         this.initialiseRegisterState = this. initialiseRegisterState.bind(this)
         this.initialiseUserState = this.initialiseUserState.bind(this)
+        this.checkIfHasPet = this.checkIfHasPet.bind(this)
       }
 
       componentDidMount () {
@@ -80,6 +85,11 @@ class FeedPet extends React.Component {
       } this.state
      }
 
+     checkIfHasPet(){
+      this.props.dispatch(checkIfUserHasPet(this.props.userN))
+    }
+
+
       render() {
        
  
@@ -88,14 +98,16 @@ class FeedPet extends React.Component {
            <div>
 
               <div className='home-container'>
-                  <Link style={{textDecoration: 'none'}} className='home-row-col1'><img src='/images/createPetIcon.png' style={{width: '6vw', height: '9vh'}} onClick={() => {this.handleClickIcon('createPetPage')}}/>
-                  <h3 className='landing-text'>Create a pet</h3></Link>
+              {this.props.hasPet ? 
+                <div className='home-row-col1' style={{width: '6vw', height: '9vh'}}></div>
+                : <Link style={{textDecoration: 'none'}} className='home-row-col1'><img src='/images/createPetIcon.png' style={{width: '6vw', height: '9vh'}} onClick={() => this.handleClickIcon('createPetPage')}/>
+                <h3 className='landing-text'>Create a pet</h3></Link>}
 
-                <Link style={{textDecoration: 'none'}} className='home-row-col2'><img src='/images/userPageIcon.png' style={{width: '6vw', height: '9vh'}} onClick={() => {this.handleClickIcon('userPage')}}/>
+                <Link style={{textDecoration: 'none'}} className='home-row-col2'><img src='/images/userPageIcon.png' style={{width: '6vw', height: '9vh'}} onClick={() => {this.handleClickIcon('userPage'); this.checkIfHasPet()}}/>
                 <h3 className='landing-text'>User page</h3></Link>
 
                 {this.props.hasPet ? 
-                <Link style={{textDecoration: 'none'}} className='home-row-col3'><img src='/images/petPageIcon.png' style={{width: '6vw', height: '9vh'}} onClick={() => {this.handleClickIcon('petPage')}}/>
+                <Link style={{textDecoration: 'none'}} className='home-row-col3'><img src='/images/petPageIcon.png' style={{width: '6vw', height: '9vh'}} onClick={() => {this.handleClickIcon('petPage'); this.checkIfHasPet()}}/>
                 <h3 className='landing-text'>Pet page</h3></Link> : <div style={{width: '6vw', height: '9vh'}}></div>}
 
                 <Link style={{textDecoration: 'none'}} className='home-row-col4' to='/' onClick={() => this.redirect()}>

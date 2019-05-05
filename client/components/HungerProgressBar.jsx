@@ -2,7 +2,6 @@ import React from 'react'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {format, differenceInHours} from 'date-fns'
-// import ProgressBar from 'react-bootstrap/ProgressBar'
 import ProgressBar from '@react95/core/ProgressBar'
 
 class HungerProgressBar extends React.Component {
@@ -14,7 +13,6 @@ class HungerProgressBar extends React.Component {
       }
 
 
-
       render() {
 
  const timeNow = format(new Date)
@@ -22,7 +20,7 @@ class HungerProgressBar extends React.Component {
  const difference = differenceInHours(timeNow, timeLastFed)
 
         return (
-        
+
            <div>
               {/* if difference in hours since now and last fed is >= 12 show hunger at 50% */}
                {difference >= 12 ? 

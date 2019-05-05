@@ -1,4 +1,4 @@
-const initialPetState = [{
+const initialPetState = {
     owner: '',
     petType: '',
     petName: '',
@@ -10,7 +10,7 @@ const initialPetState = [{
     hunger: false,
     petCreated: '',
     petAge: null
- }]
+ }
 
 export const getPetInfo = (state = initialPetState, action) => {
     switch (action.type) {

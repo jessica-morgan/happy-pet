@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {format} from 'date-fns'
 import { newpetApi } from '../api/pets'
 import { hasPetApi } from '../api/users'
-import { hasPet, initialiseUserData} from '../actions/users'
+import { hasPet, initialiseUserData, checkIfUserHasPet } from '../actions/users'
 import { initialiseLoginData } from '../actions/login'
 import { initialisePetData, petInfo, petImg } from '../actions/petInfo'
 import { initialiseRegisterData } from '../actions/register'
@@ -40,6 +40,7 @@ class CreatePet extends React.Component {
         this.initialiseRegisterState = this. initialiseRegisterState.bind(this)
         this.initialiseUserState = this.initialiseUserState.bind(this)
         this.dispatchNewPetInfo = this.dispatchNewPetInfo.bind(this)
+        this.checkIfHasPet = this.checkIfHasPet.bind(this)
       }
 
       componentDidMount () {
@@ -102,9 +103,10 @@ class CreatePet extends React.Component {
         this.props.dispatch(hasPet(username))
       }
 
-      //needs to dispatch the pets name, type, habitat, activity and imageUrl to getPetInfo state when new pet is created
-      //use petInfo action send username, timestamp and formatted date object, last fed as null and fed as false see if
-      //I can dispatch to petImg at the same time
+      checkIfHasPet(){
+        this.props.dispatch(checkIfUserHasPet(this.state.loginUsername))
+      }
+
       dispatchNewPetInfo() {
         const fed = false
         const lastFed = ''
@@ -125,14 +127,16 @@ class CreatePet extends React.Component {
             <div>
 
                   <div className='home-container'>
-                  <Link style={{textDecoration: 'none'}} className='home-row-col1'><img src='/images/createPetIcon.png' style={{width: '6vw', height: '9vh'}}/>
-                  <h3 className='landing-text'>Create a pet</h3></Link>
+                  {this.props.hasPet ? 
+                  <div className='home-row-col1' style={{width: '6vw', height: '9vh'}}></div>
+                  : <Link style={{textDecoration: 'none'}} className='home-row-col1'><img src='/images/createPetIcon.png' style={{width: '6vw', height: '9vh'}} onClick={() => this.handleClickIcon('createPetPage')}/>
+                  <h3 className='landing-text'>Create a pet</h3></Link>}
 
-                  <Link style={{textDecoration: 'none'}} className='home-row-col2'><img src='/images/userPageIcon.png' style={{width: '6vw', height: '9vh'}} onClick={() => {this.handleClickIcon('userPage')}}/>
+                  <Link style={{textDecoration: 'none'}} className='home-row-col2'><img src='/images/userPageIcon.png' style={{width: '6vw', height: '9vh'}} onClick={() => {this.handleClickIcon('userPage'); this.checkIfHasPet()}}/>
                 <h3 className='landing-text'>User page</h3></Link>
 
                 {this.props.hasPet ? 
-                <Link style={{textDecoration: 'none'}} className='home-row-col3'><img src='/images/petPageIcon.png' style={{width: '6vw', height: '9vh'}} onClick={() => {this.handleClickIcon('petPage')}}/>
+                <Link style={{textDecoration: 'none'}} className='home-row-col3'><img src='/images/petPageIcon.png' style={{width: '6vw', height: '9vh'}} onClick={() => {this.handleClickIcon('petPage'); this.checkIfHasPet()}}/>
                 <h3 className='landing-text'>Pet page</h3></Link> : <div style={{width: '6vw', height: '9vh'}}></div>}
 
                 <Link style={{textDecoration: 'none'}} className='home-row-col4' to='/' onClick={() => this.redirect()}>
