@@ -16,6 +16,7 @@ export function getPetImage (pettype) {
     return function(dispatch) {
         petImageApi(pettype)
         .then(res => {
+            //res returns undefined? But api is returning correct data
             return dispatch(petImg(res))
         })
     }
@@ -66,5 +67,20 @@ export const petAge = (age) => {
 export const initialisePetData = () => {
     return {
         type: 'INITIALISE_PET_DATA'
+    }
+}
+
+export const petDeleted = () => {
+    return {
+        type: 'PET_DELETED'
+    }
+}
+
+export const updatedPetInfo = (petName, habitat, activity) => {
+    return {
+        type: 'UPDATE_PET_INFO',
+        petName,
+        habitat,
+        activity
     }
 }

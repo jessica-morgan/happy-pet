@@ -7,6 +7,7 @@ import Fieldset from '@react95/core/Fieldset'
 import Input from '@react95/core/Input'
 import {makeNewUserApi} from '../api/users'
 import { checkIfUserHasPet } from '../actions/users'
+import {  getUsersPetInfo } from '../actions/petInfo'
 import { getUserLogIn } from '../actions/login'
 
 class LandingPage extends React.Component {
@@ -24,6 +25,7 @@ class LandingPage extends React.Component {
         this.checkLogInDetails = this.checkLogInDetails.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.checkIfHasPet = this.checkIfHasPet.bind(this)
+        this.handleClickPetInfo = this.handleClickPetInfo.bind(this)
       }
 
       componentDidMount () {
@@ -55,6 +57,10 @@ class LandingPage extends React.Component {
       this.props.dispatch(checkIfUserHasPet(this.state.loginUsername))
     }
 
+    handleClickPetInfo() {
+      this.props.dispatch(getUsersPetInfo(this.state.loginUsername))
+    }
+
       render() {
    
     //if user is already logged in redirect to home page
@@ -78,8 +84,7 @@ class LandingPage extends React.Component {
                <br/>
                 <Input className='landing-text' type='password' id='password' name='password' placeholder='password' value={this.state.password} onChange={this.handleChange}/>
                <br/><br/>
-               {/* when button is clicked check if login details are true- if true user will be redirected if flase alert popup */}
-           <Link className='landing-text' style={{textDecoration: 'none'}}> <Button onClick = {() => {this.checkLogInDetails(this.state.loginUsername, this.state.password); this.checkIfHasPet()}}>
+           <Link className='landing-text' style={{textDecoration: 'none'}}> <Button onClick = {() => {this.checkLogInDetails(this.state.loginUsername, this.state.password); this.checkIfHasPet(); this.handleClickPetInfo()}}>
             Login
           </Button></Link>
          <br/><br/><br/>

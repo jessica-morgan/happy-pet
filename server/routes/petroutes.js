@@ -56,4 +56,27 @@ router.post('/feedpet/:username', (req, res) => {
   })
 })
 
+router.delete('/deletepet/:username', (req, res) => {
+  db.deletePet(req.params.username)
+  .then(() => {
+    res.json('ok')
+  })
+  .catch(err => {
+    res.status(500).send(err)
+  })
+})
+
+router.put('/updatepet/:username', (req, res) => {
+  const petname = req.body.petName
+  const habitat = req.body.habitat
+  const activity = req.body.activity
+  db.updatePet(req.params.username, petname, habitat, activity)
+  .then(updatedPet => {
+    res.json(updatedPet)
+  })
+  .catch(err => {
+    res.status(500).send(err)
+  })
+})
+
 module.exports = router

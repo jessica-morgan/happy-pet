@@ -1,10 +1,10 @@
-const initialUserState = [{
+const initialUserState = {
   username: '',
   firstname: '',
   loggedin: false,
   acctCreated: '',
   hasPet: false
-}]
+}
 
 export const user = (state = initialUserState, action) => {
     switch (action.type) {
@@ -28,6 +28,11 @@ export const user = (state = initialUserState, action) => {
         return {
           ...state,
           hasPet: action.hasPet
+        }
+        case 'PET_DELETED':
+        return {
+          ...state,
+          hasPet: false
         }
         default:
         return state

@@ -1,12 +1,10 @@
 import React from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {format} from 'date-fns'
-import { newpetApi } from '../api/pets'
-import { hasPetApi } from '../api/users'
-import { hasPet, initialiseUserData, checkIfUserHasPet } from '../actions/users'
+import { updatePetApi } from '../api/pets'
+import { initialiseUserData, checkIfUserHasPet } from '../actions/users'
 import { initialiseLoginData } from '../actions/login'
-import { initialisePetData, petInfo, petImg } from '../actions/petInfo'
+import { initialisePetData, updatedPetInfo } from '../actions/petInfo'
 import { initialiseRegisterData } from '../actions/register'
 import Input from '@react95/core/Input'
 import Button from '@react95/core/Button'
@@ -16,7 +14,7 @@ import UserPage from './UserPage'
 import PetPage from './PetPage'
 import Home from './Home'
 
-class CreatePet extends React.Component {
+class EditPet extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -28,25 +26,21 @@ class CreatePet extends React.Component {
             userPageClicked: false,
             petPageClicked: false
         }
-        this.setPetImage = this.setPetImage.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleClickIcon = this.handleClickIcon.bind(this)
         this.redirect = this.redirect.bind(this)
-        this.userHasNewPet = this.userHasNewPet.bind(this)
-        this.sendHasPet = this.sendHasPet.bind(this)
         this.inititaliseLoginState = this. inititaliseLoginState.bind(this)
         this.initialisepetInfoState = this.initialisepetInfoState.bind(this)
         this.initialiseRegisterState = this. initialiseRegisterState.bind(this)
         this.initialiseUserState = this.initialiseUserState.bind(this)
         this.dispatchNewPetInfo = this.dispatchNewPetInfo.bind(this)
         this.checkIfHasPet = this.checkIfHasPet.bind(this)
-        this.getPetImage = this.getPetImage.bind(this)
       }
 
       componentDidMount () {
         if (this.props.loggedIn  === true) {
-          this.props.history.push('/createpet')
+          this.props.history.push('/editpet')
       } else {
           this.props.history.push('/')
       } 
@@ -80,9 +74,6 @@ class CreatePet extends React.Component {
       this.context.history.push('/')
     }
 
-      setPetImage (imgurl) {
-        this.setState({petImageUrl: imgurl})
-    }
 
       handleChange(event) {
           //sets state with pet info input
@@ -92,16 +83,8 @@ class CreatePet extends React.Component {
       handleSubmit(username) {
         //dispatch component state to redux petinfo
         
-        const {petType, petName, habitat, activity} = this.state
-        newpetApi(username, petType, petName, habitat, activity)
-      }
-
-      userHasNewPet(username) {
-        hasPetApi(username)
-      }
-
-      sendHasPet(username) {
-        this.props.dispatch(hasPet(username))
+        const {petName, habitat, activity} = this.state
+        updatePetApi(username, petName, habitat, activity)
       }
 
       checkIfHasPet(){
@@ -109,16 +92,8 @@ class CreatePet extends React.Component {
       }
 
       dispatchNewPetInfo() {
-        const fed = false
-        const lastFed = ''
-        const created = format(new Date())
-        this.props.dispatch(petInfo(this.props.userN, this.state.petType, this.state.petName, this.state.habitat, this.state.activity, fed, lastFed, created))
+        this.props.dispatch(updatedPetInfo(this.state.petName, this.state.habitat, this.state.activity))
       }
-
-      getPetImage() {
-        this.props.dispatch(petImg(this.state.petImageUrl))
-      }
-
 
       render() {
    
@@ -151,7 +126,7 @@ class CreatePet extends React.Component {
               
               <Tabs
                style={{ width: '70vw'}}
-               defaultActiveTab="Create A Pet">
+               defaultActiveTab="Edit Pet">
 
                <Tab title='Home'>
                  <Fieldset style={{ marginBottom: '1em', height: '80vh' }}>
@@ -159,29 +134,20 @@ class CreatePet extends React.Component {
                  </Fieldset>
                </Tab>
      
-                <Tab title="Create A Pet">
+                <Tab title="Edit Pet">
                  <Fieldset  legend='Happy Pet' className='happy-pet-title' style={{ marginBottom: '1em', height: '80vh' }}>
-                   
-                {/* pets to choose from */}
-                <div className='createpet-container'>
-                <h3 className='row-col1' style={{fontFamily: "'Times New Roman', Times, serif", fontSize: '1.3vw', color: 'black', textAlign: 'center'}}>Create your pet</h3>
-                <img id='monkey' className='row-col2 grid-images' src='/images/monkeyPetIcon.png' onClick={() => {this.setPetImage('/images/monkeyPetIcon.png'); this.setState({petType: 'monkey'})}}/>
-                <img id='mouse' className='row-col3 grid-images' src='/images/mousePetIcon.png' onClick={() => {this.setPetImage('/images/mousePetIcon.png'); this.setState({petType: 'mouse'})}}/>
-                <img id='cat' className='row-col4 grid-images' src='images/catPetIcon.png' onClick={() => {this.setPetImage('images/catPetIcon.png'); this.setState({petType: 'cat'})}}/>
-                <img id='bunny' className='row-col5 grid-images' src='/images/bunnyPetIcon.png' onClick={() => {this.setPetImage('images/bunnyPetIcon.png'); this.setState({petType: 'bunny'})}}/>
-                 
-              </div>  
 
               <div>
-                 {/* shows chosen pet */}
-                 {this.state.petImageUrl ? 
-                 <img className='chosen-pet-container chosen-pet' src={this.state.petImageUrl}/> :
-                 <div className='chosen-pet-container chosen-pet'></div>
-                  }
+                 {/* show pet image here */}
+                 
+                 <img className='pet-image-container chosen-pet' src={this.props.petImage}/> 
+                
               </div>        
 
                 {/* where inputted name, habitat and activity are shown */}
-                  <div className='petinfo-container'>
+                  <div className='edit-pet-container'>
+
+                  {/* heading that says enter the information you would like to change */}
                   <h3 className='input-rowcol1 createpet-text'>
                 Name:
                 </h3>
@@ -199,7 +165,7 @@ class CreatePet extends React.Component {
                 : <div className='input-rowcol6 createpet-text petInfo-text-container'> </div>}
                 </div>
 
-               <div className='input-container'>
+               <div className='edit-input-container'>
               
                 {/* inputs for name, habitat and activity */}
                 <h3 className='input-rowcol7 createpet-text'>Give your pet a name:</h3>
@@ -213,9 +179,9 @@ class CreatePet extends React.Component {
                   
                 <h3 className='input-rowcol7 createpet-text'>Give your pet a name:</h3>
                     
-                    {this.state.petType && this.state.petName && this.state.habitat && this.state.activity &&
+                    {this.state.petName && this.state.habitat && this.state.activity &&
                     <Link className='input-rowcol10 createpet-text' to='/petpage'>
-                    <Button onClick={() => {this.handleSubmit(this.props.userN); this.userHasNewPet(this.props.userN); this.sendHasPet(this.props.userN); this.dispatchNewPetInfo(); this.getPetImage()}}>Enter</Button> 
+                    <Button onClick={() => {this.handleSubmit(this.props.userN); this.dispatchNewPetInfo()}}>Enter</Button> 
                     </Link>
                     }
                   </div>
@@ -264,11 +230,11 @@ function mapStateToProps (state) {
         petName: state.getPetInfo.petName,
         habitat: state.getPetInfo.habitat,
         activity: state.getPetInfo.activity,
-        petImage: state.getPetInfo.petImgUrl,
+        petImage: state.getPetInfo.petImage,
         hasPet: state.user.hasPet,
         userN: state.login.username
     }
   }
   
-  export default withRouter(connect(mapStateToProps)(CreatePet))
+  export default withRouter(connect(mapStateToProps)(EditPet))
 

@@ -136,7 +136,7 @@ class UserPage extends React.Component {
                 </div>
 
                  {/* shows pet image and link to page */}
-                 {this.props.hasPet ?  <div className='user-info-container2'>
+                 {this.props.hasPet ? <div className='user-info-container2'>
                  <img src={this.props.petimage} className='userPage-petimg'></img>
                  <Link className='userPage-row-col8' style={{textDecoration: 'none'}} onClick = {() => {this.handleClickIcon('petPage')}}>
                  <h3 className='userPage-row-col7 userpage-text'>Visit {this.props.petname}'s page</h3>

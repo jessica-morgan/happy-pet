@@ -15,7 +15,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           petType: 'monkey',
-          imageUrl: 'images/mokeyPetIcon.png'
+          imageUrl: 'images/monkeyPetIcon.png'
         },
         {
           petType: 'bunny',

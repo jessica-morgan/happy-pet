@@ -14,8 +14,6 @@ export function checkIfUserHasPet (username) {
   return function (dispatch) {
     checkHasPetApi(username)
     .then(res => {
-      //getting nothing back
-      console.log(res)
       return dispatch(hasPetLogin(res[0].hasPet))
     })
   }
@@ -58,5 +56,11 @@ export const hasPetLogin = (hasPet) => {
 export const initialiseUserData = () => {
   return {
     type: 'INITIALISE_USER_DATA'
+  }
+}
+
+export const changeHasPet = () => {
+  return {
+    type: 'PET_DELETED'
   }
 }

@@ -50,6 +50,27 @@ export const getPetInfo = (state = initialPetState, action) => {
         return {
             initialPetState
         }
+        case 'PET_DELETED':
+        return {
+            ...state,
+            petType: '',
+            petName: '',
+            habitat: '',
+            activity: '',
+            fed: false,
+            lastFed: '',
+            petImage: '', 
+            hunger: false,
+            petCreated: '',
+            petAge: null
+        }
+        case 'UPDATE_PET_INFO':
+        return {
+            ...state,
+            petName: action.petName,
+            habitat: action.habitat,
+            activity: action.activity 
+        }
         default:
         return state
     }

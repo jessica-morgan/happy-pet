@@ -4,7 +4,9 @@ module.exports = {
   getPets,
   newPet,
   petImage,
-  feedPet
+  feedPet,
+  deletePet,
+  updatePet
 }
 
 //gets all pets
@@ -39,6 +41,22 @@ function petImage (pettype, db = connection) {
   .update({
     last_fed: lastFed,
     fed: true
+  })
+}
+
+function deletePet (username, db = connection) {
+  return db('pets')
+  .where('owner', username)
+  .delete()
+}
+
+function updatePet (username, petname, habitat, activity, db = connection) {
+  return db('pets')
+  .where('owner', username)
+  .update({
+      petName: petname,
+      habitat: habitat,
+      activity: activity
   })
 }
 

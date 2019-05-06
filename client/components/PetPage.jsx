@@ -6,10 +6,11 @@ import { Tabs, Tab } from '@react95/core/Tabs'
 import Fieldset from '@react95/core/Fieldset'
 import Button from '@react95/core/Button'
 import HungerProgressBar from './HungerProgressBar'
-import { initialiseUserData, checkIfUserHasPet } from '../actions/users'
+import { initialiseUserData, checkIfUserHasPet, changeHasPet } from '../actions/users'
 import { initialiseLoginData } from '../actions/login'
-import { petHunger, initialisePetData } from '../actions/petInfo'
+import { petHunger, initialisePetData, petDeleted } from '../actions/petInfo'
 import { initialiseRegisterData } from '../actions/register'
+import { deletePetApi } from '../api/pets'
 import UserPage from './UserPage'
 import Home from './Home'
 import CreatePet from './CreatePet'
@@ -31,6 +32,7 @@ class PetPage extends React.Component {
         this.initialiseRegisterState = this. initialiseRegisterState.bind(this)
         this.initialiseUserState = this.initialiseUserState.bind(this)
         this.checkIfHasPet = this.checkIfHasPet.bind(this)
+        this.deletePet = this.deletePet.bind(this)
       }
 
       componentDidMount () {
@@ -96,6 +98,18 @@ class PetPage extends React.Component {
       this.props.dispatch(checkIfUserHasPet(this.props.username))
     }
 
+    deletePet() {
+      deletePetApi(this.props.username)
+    }
+
+    dispatchHasPetChange() {
+      this.props.dispatch(changeHasPet())
+    }
+
+    dispatchPetDeleted() {
+      this.props.dispatch(petDeleted())
+    }
+
       render() {
 
         return (
@@ -148,6 +162,16 @@ class PetPage extends React.Component {
              
                 <Button onClick={() => {this.checkLastFed(); this.handleClickIcon('feedPet')}}>Feed {this.props.petName}</Button>
                 </h3>
+
+                   {/* edit and delete pet buttons*/}
+                 <Link className='petPage-row-col13 petPage-text' to='/editpet'><Button style={{width: '2vw', height: '1vh'}}>
+                    Edit pet
+                    </Button></Link>
+                   
+                   <Link className='petPage-row-col14 petPage-text' to='/home'><Button onClick={() => {this.initialisepetInfoState(); this.deletePet(); this.dispatchHasPetChange(); this.dispatchPetDeleted()}}>
+                    Delete Pet
+                    </Button></Link> 
+
                 </div>
 
                 <div className='petPage-container2'>
@@ -174,9 +198,6 @@ class PetPage extends React.Component {
                 <HungerProgressBar/>
                 </h3>
 
-                {/* edit and delete buttons here */}
-
-                
                </div>
                 
                   </Fieldset>

@@ -33,9 +33,13 @@ export function getPetApi() {
   export function petImageApi(pettype) {
     return request
     .get(`${url}/petimage/${pettype}`)
-    .then(res => res.body[0].imageUrl)
+    .then(res => {
+      console.log(res.body[0].imageUrl)
+      //this gives back correct data- for somereason it won't come through in action
+      return res.body[0].imageUrl
+    })
     .catch(err => {
-      if (err) throw Error('Cannot create pet')
+      if (err) throw Error('Cannot get pet image')
     })
   }
 
@@ -53,5 +57,27 @@ export function getPetApi() {
     })
   }
 
-  
+  //deletes pet
+  export function deletePetApi(username) {
+    return request
+    .delete(`${url}/deletepet/${username}`)
+    .then(res => res.body)
+    .catch(err => {
+      if (err) throw Error('Cannot delete pet')
+    })
+  }
+
+  export function updatePetApi(username, petName, activity, habitat) {
+    return request
+    .put(`${url}/updatepet/${username}`)
+    .send({
+      petName: petName,
+      activity: activity,
+      habitat: habitat
+    })
+    .then(res => res.body)
+    .catch(err => {
+      if (err) throw Error('Cannot delete pet')
+    })
+  }
 
